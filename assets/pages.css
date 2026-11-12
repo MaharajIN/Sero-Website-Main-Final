@@ -1,0 +1,916 @@
+/* Sero Chocolates: shared styles for the Gifts and Sero Club pages.
+   Photo heroes with white text and gold accents, half-picture / half-text sections, flat square shapes. */
+.pg{--ink:#24160F;--paper:#FBF7F1;--sand:#F3EBDF;--gold:#E2A93B;--gold-l:#F2C46B;--acc:#B4452A;color:var(--ink);font-family:'Montserrat',system-ui,sans-serif;font-size:17px;line-height:1.6}
+.pg *{box-sizing:border-box}
+.pg ul,.pg ol{list-style:none;margin:0;padding:0}
+.pg .w{max-width:1360px;margin:0 auto;padding:0 clamp(20px,4.4vw,72px)}
+.pg h1,.pg h2{font-family:'Bebas Neue','Impact',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:.94;margin:0;white-space:normal}
+.pg h1 em,.pg h2 em{font-style:normal;color:var(--gold)}
+.pg h2{font-size:clamp(48px,5.6vw,92px)}
+.pg h3{font-family:'Montserrat',sans-serif}
+.pg .k{display:block;font-size:14px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.pg .lead{font-size:clamp(18px,1.5vw,22px);line-height:1.55;max-width:36em}
+.pg a{color:inherit}
+
+/* buttons */
+.pg .btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 34px;font:600 17px/1 'Montserrat',sans-serif;text-decoration:none;border:0;cursor:pointer;transition:background-color .2s,color .2s,transform .15s}
+.pg .btn:hover{transform:translateY(-2px)}
+.pg .btn.gold{background:var(--gold);color:#24160F}.pg .btn.gold:hover{background:#fff}
+.pg .btn.ink{background:#24160F;color:#FBF7F1}.pg .btn.ink:hover{background:var(--acc)}
+.pg .btn.line{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.65)}.pg .btn.line:hover{background:#fff;color:#24160F}
+.pg .acts{display:flex;flex-wrap:wrap;gap:14px 16px;margin-top:34px}
+
+/* hero: a photo behind white text */
+.pg-hero{position:relative;isolation:isolate;display:flex;align-items:center;min-height:min(92svh,820px);padding:calc(var(--bar-h) + var(--hdr-h) + 48px) 0 88px;color:#fff;background:#1a0f0a;overflow:hidden}
+.pg-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(20,11,7,.9) 0%,rgba(20,11,7,.66) 50%,rgba(20,11,7,.22) 100%),var(--bg) center/cover no-repeat}
+.pg-hero h1{font-size:clamp(76px,10.6vw,176px);line-height:.86;color:#fff;max-width:9em}
+.pg-hero .lead{color:rgba(255,255,255,.92);margin-top:26px}
+.pg-hero .facts{display:flex;flex-wrap:wrap;gap:12px 40px;margin-top:44px}
+.pg-hero .facts b{display:block;font-family:'Bebas Neue','Impact',sans-serif;font-weight:400;font-size:46px;line-height:1;color:var(--gold)}
+.pg-hero .facts span{font-size:15px;color:rgba(255,255,255,.88)}
+
+/* half picture, half text */
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:600px}
+.split .im{position:relative;min-height:380px;background:var(--bg) center/cover no-repeat;overflow:hidden}
+.split .tx{display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,6vw,112px);background:#24160F;color:#fff}
+.split.rev .im{order:2}
+.split .tx h2{color:#fff;margin-bottom:22px}
+.split .tx p{color:rgba(255,255,255,.9);font-size:18px;max-width:30em;margin:0 0 16px}
+.split.light .tx{background:var(--sand);color:#24160F}.split.light .tx h2{color:#24160F}.split.light .tx h2 em{color:var(--acc)}.split.light .tx p{color:#3a2a20}.split.light .k{color:var(--acc)}
+.split .ticks{display:grid;gap:14px;margin-top:14px}
+.split .ticks li{display:flex;gap:14px;align-items:flex-start;font-size:17.5px;font-weight:500}
+.split .ticks li::before{content:"";flex:none;width:12px;height:12px;margin-top:8px;background:var(--gold)}
+.split.light .ticks li::before{background:var(--acc)}
+
+/* section blocks */
+.sec{padding:clamp(72px,9vw,140px) 0}
+.sec.dark{background:#24160F;color:#fff}.sec.sand{background:var(--sand)}.sec.paper{background:var(--paper)}
+.sec.dark h2{color:#fff}
+.sec .head{max-width:760px;margin-bottom:clamp(36px,5vw,64px)}
+.sec .head .lead{margin-top:18px}
+.sec.dark .lead{color:rgba(255,255,255,.88)}
+
+/* gift types: eight picture cards */
+.types{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.type{position:relative;isolation:isolate;min-height:400px;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;text-decoration:none;overflow:hidden;background:#24160F}
+.type::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,11,7,0) 28%,rgba(20,11,7,.9) 100%),var(--bg) center/cover no-repeat;transition:transform .7s}
+.type:hover::before{transform:scale(1.07)}
+.type h3{font-family:'Bebas Neue','Impact',sans-serif;font-weight:400;font-size:44px;line-height:.95;letter-spacing:.02em;text-transform:uppercase;color:var(--gold-l);margin:0 0 8px}
+.type p{font-size:15.5px;line-height:1.5;margin:0 0 14px;color:rgba(255,255,255,.94)}
+.type span{font-size:15px;font-weight:700;color:#fff;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px;text-decoration-color:var(--gold)}
+
+/* product tiles */
+.pgrid2{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.gt{display:flex;flex-direction:column}
+.gt .ph{display:grid;place-items:center;aspect-ratio:1/1;background:#EDE2D2;overflow:hidden}
+.gt .ph img{width:92%;max-height:92%;object-fit:contain;transition:transform .5s}
+.gt:hover .ph img{transform:scale(1.05)}
+.gt .m{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:14px 0 4px}
+.gt h3{font-size:20px;font-weight:600;margin:0}.gt h3 a{text-decoration:none}
+.gt .m b{font-size:20px}
+.gt p{font-size:15px;color:#4a3a30;margin:0 0 14px;line-height:1.5}
+.gt .btn{margin-top:auto;min-height:48px;width:100%;font-size:16px}
+
+/* steps */
+.steps3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.steps3 li{background:#fff;padding:32px}
+.steps3 .n{display:block;font-family:'Bebas Neue','Impact',sans-serif;font-size:96px;line-height:.8;color:var(--gold);margin-bottom:14px}
+.steps3 b{display:block;font-size:21px;line-height:1.25}
+.steps3 span.t{display:block;margin-top:8px;color:#4a3a30;font-size:16px}
+.sec.dark .steps3 li{background:rgba(255,255,255,.07)}.sec.dark .steps3 span.t{color:rgba(255,255,255,.85)}
+
+/* sample notes */
+.slips{display:flex;align-items:flex-end;gap:12px;height:300px;margin-top:44px}
+.slip{flex:1;min-width:0;background:var(--paper);color:#24160F;padding:20px;font-size:15.5px;line-height:1.5}
+.slip b{display:block;font-size:17px;margin-bottom:10px}
+.slip:nth-child(1){height:74%}.slip:nth-child(2){height:100%;transform:rotate(-1.5deg)}.slip:nth-child(3){height:64%}.slip:nth-child(4){height:88%;transform:rotate(1.5deg)}.slip:nth-child(5){height:72%}
+
+/* closing band */
+.band-cta{background:var(--gold);color:#24160F;padding:clamp(56px,7vw,100px) 0}
+.band-cta .w{display:flex;flex-wrap:wrap;gap:24px 56px;justify-content:space-between;align-items:center}
+.band-cta h2{color:#24160F;max-width:11em}.band-cta h2 em{color:#fff}
+.band-cta .acts{margin:0}
+.band-cta .btn.ink{background:#24160F;color:#fff}
+
+/* Sero Club: calculator, birthday, comparison, faq */
+.calc{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,4vw,64px);align-items:stretch}
+.calc .in{background:#fff;padding:clamp(28px,3.4vw,52px)}
+.calc label{display:block;font-weight:700;font-size:18px;margin-bottom:6px}
+.calc .big{font-family:'Bebas Neue','Impact',sans-serif;font-size:96px;line-height:.9;color:var(--acc)}
+.calc input[type=range]{width:100%;accent-color:#24160F;height:34px;margin:12px 0 4px}
+.calc .scale{display:flex;justify-content:space-between;font-size:14px;color:#5E4C40}
+.calc .out{background:#24160F;color:#fff;padding:clamp(28px,3.4vw,52px);display:flex;flex-direction:column;justify-content:center;gap:22px}
+.calc .out b{display:block;font-family:'Bebas Neue','Impact',sans-serif;font-weight:400;font-size:clamp(64px,6vw,104px);line-height:.9;color:var(--gold)}
+.calc .out span{display:block;font-size:16px;color:rgba(255,255,255,.88)}
+.bday{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
+.bday select{width:100%;padding:18px 18px;font:500 18px 'Montserrat',sans-serif;border:0;background:#fff;color:#24160F;margin-top:14px}
+.bday .msg{margin-top:22px;font-family:'Bebas Neue','Impact',sans-serif;font-size:clamp(44px,4.6vw,72px);line-height:.95;color:var(--gold)}
+.bday .msg small{display:block;margin-top:12px;font:500 17px/1.5 'Montserrat',sans-serif;color:rgba(255,255,255,.88)}
+.cmp{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:6px}
+.cmp>div{padding:20px 22px;background:#fff;font-size:17px}
+.cmp .h{background:transparent;font-family:'Bebas Neue','Impact',sans-serif;font-size:34px;letter-spacing:.03em;text-transform:uppercase;padding:0 22px 6px}
+.cmp .h.m{color:var(--acc)}
+.cmp .yes{background:#24160F;color:#fff;font-weight:600}.cmp .yes::before{content:"";display:inline-block;width:10px;height:10px;background:var(--gold);margin-right:12px}
+.cmp .no{color:#5E4C40}
+.faq2 details{background:#fff;margin-bottom:8px}
+.faq2 summary{list-style:none;cursor:pointer;padding:22px 26px;font-weight:600;font-size:18px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+.faq2 summary::-webkit-details-marker{display:none}
+.faq2 summary::after{content:"+";font-size:28px;line-height:1;color:var(--acc);transition:transform .25s}
+.faq2 details[open] summary::after{transform:rotate(45deg)}
+.faq2 details p{margin:0;padding:0 26px 24px;color:#3a2a20;max-width:46em}
+.pg .card{position:relative;max-width:420px;width:100%;aspect-ratio:1.586/1;padding:24px 26px;display:flex;flex-direction:column;justify-content:space-between;color:#FFF6E6;background:#2E1C11;box-shadow:inset 0 0 0 2px var(--gold)}
+.pg .card .wm{font-family:'Bebas Neue','Impact',sans-serif;font-size:46px;letter-spacing:.14em;line-height:1}
+.pg .card .wm small{display:block;margin-top:8px;font:700 12px 'Montserrat',sans-serif;letter-spacing:.34em;color:var(--gold)}
+.pg .card .r{display:flex;justify-content:space-between;align-items:flex-end;font:700 12px 'Montserrat',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,246,230,.75)}
+.pg .card .r b{display:block;margin-top:6px;font-family:'Bebas Neue','Impact',sans-serif;font-weight:400;font-size:28px;letter-spacing:.02em;text-transform:none;color:#FFF6E6}
+.perkgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.perkgrid li{background:rgba(255,255,255,.08);padding:22px 22px}
+.perkgrid b{display:block;font-size:19px;color:var(--gold-l);margin-bottom:6px}
+.perkgrid span{font-size:15.5px;color:rgba(255,255,255,.9);line-height:1.5}
+
+@media (max-width:1100px){.types,.pgrid2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:900px){.split{grid-template-columns:1fr}.split .im{min-height:320px;order:0!important}.calc,.bday{grid-template-columns:1fr}.steps3{grid-template-columns:1fr}.cmp{grid-template-columns:1.2fr 1fr 1fr}}
+@media (max-width:600px){.types,.pgrid2{grid-template-columns:1fr}.type{min-height:340px}.perkgrid{grid-template-columns:1fr}.slips{height:340px}.slip:nth-child(n+3){display:none}.cmp>div{padding:14px 12px;font-size:15px}.pg-hero h1{font-size:72px}}
+@media (prefers-reduced-motion:reduce){.pg *{transition:none!important}}
+
+/* premium touches: gold seal, icon list, card pattern, watermark */
+.pg-hero.sq{background:#140b07}
+.pg-hero.sq::before{background:linear-gradient(90deg,#140b07 0%,#140b07 38%,rgba(20,11,7,.62) 62%,rgba(20,11,7,.08) 100%),var(--bg) right center/auto 100% no-repeat;background-color:#140b07}
+.pg-hero .seal{display:block;margin:0 0 22px;filter:drop-shadow(0 0 22px rgba(226,169,59,.28))}
+.perk-ic{display:grid;gap:18px;margin-top:18px}
+.perk-ic li{display:flex;gap:18px;align-items:flex-start}
+.perk-ic .gi{flex:none;padding:10px;width:56px;height:56px;background:rgba(226,169,59,.1);box-shadow:inset 0 0 0 1.5px rgba(226,169,59,.55)}
+.perk-ic span{font-size:16.5px;line-height:1.5;color:rgba(255,255,255,.88)}
+.perk-ic b{display:block;font-size:19px;color:#F2C46B;margin-bottom:2px}
+.pg .card{overflow:hidden}
+.pg .card .pat{position:absolute;right:-10%;top:-12%;width:80%;height:auto;pointer-events:none}
+.pg .card .wm,.pg .card .r{position:relative}
+.band-cta{position:relative;overflow:hidden}
+.band-cta .wm-seal{position:absolute;right:4%;top:50%;transform:translateY(-50%);opacity:.12;pointer-events:none}
+.band-cta .w{position:relative}
+@media (max-width:900px){.pg-hero.sq::before{background:linear-gradient(180deg,rgba(20,11,7,.55),rgba(20,11,7,.92)),var(--bg) center top/cover no-repeat}.band-cta .wm-seal{display:none}}
+
+/* ================= Membership: dark and gold ================= */
+.mb{background:#140B07;color:#fff}
+.mb h1,.mb h2{color:#fff}
+.mb h2{font-size:clamp(46px,5.2vw,86px)}
+.mb em{color:var(--gold)!important;font-style:normal}
+.mb .lead{color:rgba(255,255,255,.9)}
+.mb .btn.linek{background:transparent;color:#140B07;box-shadow:inset 0 0 0 2px #140B07}.mb .btn.linek:hover{background:#140B07;color:#fff}
+.mb-hero{position:relative;isolation:isolate;overflow:hidden;padding:calc(var(--bar-h) + var(--hdr-h) + 56px) 0 clamp(72px,8vw,120px);background:radial-gradient(80% 90% at 82% 22%,#3a2410 0%,#140B07 64%)}
+.mb-hero .lattice{position:absolute;inset:0;z-index:-1;opacity:.1;width:100%;height:100%}
+.mb-hero .grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,5vw,96px);align-items:center}
+.mb-hero h1{font-size:clamp(78px,9.6vw,156px);line-height:.86}
+.mb-hero .seal{display:block;margin-bottom:20px;filter:drop-shadow(0 0 22px rgba(226,169,59,.3))}
+.mb-hero .lead{margin-top:24px}
+.mb-card{position:relative;overflow:hidden;width:100%;max-width:520px;margin:0 auto;aspect-ratio:1.586/1;padding:30px 32px;display:flex;flex-direction:column;justify-content:space-between;color:#FFF6E6;background:linear-gradient(145deg,#38220f,#150c07 72%);box-shadow:inset 0 0 0 2px var(--gold),0 50px 90px -30px rgba(0,0,0,.9);animation:mbfloat 7s ease-in-out infinite}
+.mb-card .pat{position:absolute;inset:0;width:100%;height:100%}
+.mb-card .top,.mb-card .bot{position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.mb-card .wm{font-family:'Bebas Neue','Impact',sans-serif;font-size:62px;letter-spacing:.16em;line-height:1}
+.mb-card .wm small{display:block;margin-top:8px;font:700 13px 'Montserrat',sans-serif;letter-spacing:.36em;color:var(--gold)}
+.mb-card .bot{align-items:flex-end}
+.mb-card .bot span{font:700 12px 'Montserrat',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,246,230,.78)}
+.mb-card .bot b{display:block;margin-top:6px;font-family:'Bebas Neue','Impact',sans-serif;font-weight:400;font-size:40px;line-height:1;letter-spacing:.02em;text-transform:none;color:#FFF6E6}
+@keyframes mbfloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-14px) rotate(-1deg)}}
+.mb-strip{background:#1c110b;padding:clamp(28px,3vw,44px) 0}
+.mb-strip ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.mb-strip li{display:flex;gap:16px;align-items:center}
+.mb .gi{flex:none;padding:10px;width:56px;height:56px;background:rgba(226,169,59,.08);box-shadow:inset 0 0 0 1.5px rgba(226,169,59,.55)}
+.mb-strip b{display:block;font-size:17px;color:var(--gold-l)}
+.mb-strip li span{font-size:14.5px;color:rgba(255,255,255,.86);line-height:1.4}
+.mb-sec{padding:clamp(80px,9vw,140px) 0;background:#140B07}.mb-sec.alt{background:#1c110b}
+.mb-sec .head{max-width:780px;margin-bottom:clamp(32px,4vw,56px)}
+.mb-sec .head.c{max-width:none;text-align:center;margin-inline:auto}
+.mb-two{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(32px,5vw,96px);align-items:center}
+.mb-burst{display:block;width:100%;max-width:420px;margin:0 auto;filter:drop-shadow(0 0 30px rgba(226,169,59,.25))}
+.mb-calc{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:34px}
+.mb-calc .in{background:rgba(255,255,255,.06);padding:clamp(22px,2.6vw,34px);box-shadow:inset 0 0 0 1px rgba(226,169,59,.4)}
+.mb-calc label{display:block;font-weight:700;font-size:17px;margin-bottom:6px}
+.mb-calc .big{font-family:'Bebas Neue','Impact',sans-serif;font-size:92px;line-height:.9;color:var(--gold)}
+.mb-calc input[type=range]{width:100%;accent-color:#E2A93B;height:34px;margin:10px 0 4px}
+.mb-calc .scale{display:flex;justify-content:space-between;font-size:14px;color:rgba(255,255,255,.75)}
+.mb-calc .out{background:var(--gold);color:#140B07;padding:clamp(22px,2.6vw,34px);display:grid;gap:14px;align-content:center}
+.mb-calc .out b{display:block;font-family:'Bebas Neue','Impact',sans-serif;font-weight:400;font-size:60px;line-height:.9}
+.mb-calc .out span{font-size:15px;font-weight:600}
+.mb-shelf{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.mb-prod{position:relative;background:#140B07;padding:34px 26px 28px;box-shadow:inset 0 0 0 1px rgba(226,169,59,.38)}
+.mb-prod .tag{position:absolute;left:0;top:0;display:flex;gap:8px;align-items:center;background:var(--gold);color:#140B07;font:700 12.5px 'Montserrat',sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:9px 16px}
+.mb-prod .tag svg{stroke:#140B07}
+.mb-prod .art{aspect-ratio:1/1;display:grid;place-items:center;padding:14px}
+.mb-prod .art svg{width:100%;height:100%}
+.mb-prod h3{font-family:'Bebas Neue','Impact',sans-serif;font-weight:400;font-size:40px;line-height:1;letter-spacing:.02em;text-transform:uppercase;color:var(--gold-l);margin:8px 0 8px}
+.mb-prod p{margin:0;font-size:16px;color:rgba(255,255,255,.88);line-height:1.55}
+.mb-note{margin-top:22px;font-size:14.5px;color:rgba(255,255,255,.72)}
+.mb-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.mb-steps li{background:rgba(255,255,255,.05);padding:clamp(28px,3vw,44px);text-align:center;box-shadow:inset 0 0 0 1px rgba(226,169,59,.28)}
+.mb-steps .ring{display:block;width:96px;height:96px;margin:0 auto 20px}
+.mb-steps b{display:block;font-size:21px;line-height:1.25;color:var(--gold-l)}
+.mb-steps li>span{display:block;margin-top:10px;font-size:16px;color:rgba(255,255,255,.86);max-width:22em;margin-inline:auto}
+.mb-cmp.cmp{max-width:980px;margin:0 auto}
+.mb-cmp.cmp>div{background:rgba(255,255,255,.06);color:#fff}
+.mb-cmp.cmp .h{background:transparent;color:#fff}.mb-cmp.cmp .h.m{color:var(--gold)}
+.mb-cmp.cmp .yes{background:var(--gold);color:#140B07}.mb-cmp.cmp .yes::before{background:#140B07}
+.mb-cmp.cmp .no{color:rgba(255,255,255,.7)}
+.mb .bl{display:block;margin-top:26px;font-weight:600}
+.mb-sel{width:100%;max-width:420px;padding:16px 18px;margin-top:10px;font:500 18px 'Montserrat',sans-serif;border:0;background:#fff;color:#140B07}
+.bmsg{margin:16px 0 0;font-size:18px;color:var(--gold-l);font-weight:600}
+.mb-year{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.mt{background:rgba(255,255,255,.06);padding:18px 16px;min-height:150px;display:flex;flex-direction:column;gap:8px;box-shadow:inset 0 0 0 1px rgba(226,169,59,.22)}
+.mt .mn{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.mt b{font-family:'Bebas Neue','Impact',sans-serif;font-size:58px;font-weight:400;color:var(--gold);line-height:1}
+.mt .bd{display:none;align-items:center;gap:6px;font-size:13.5px;font-weight:700;color:#140B07;margin-top:auto}
+.mt .bd svg{stroke:#140B07}
+.mt.bd-on{background:var(--gold)}.mt.bd-on .mn,.mt.bd-on b{color:#140B07}.mt.bd-on .bd{display:flex}
+.mb-faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,5vw,96px);align-items:start}
+.mb .faq2 details{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(226,169,59,.28)}
+.mb .faq2 summary{color:#fff}.mb .faq2 summary::after{color:var(--gold)}
+.mb .faq2 details p{color:rgba(255,255,255,.88)}
+.mb-cta .wm-seal{position:absolute;right:3%;top:50%;transform:translateY(-50%);opacity:.14;pointer-events:none}
+.mb-cta .wm-seal *{fill:#140B07;stroke:#140B07}
+.mb-cta{position:relative;overflow:hidden}.mb-cta .w{position:relative}
+@media (max-width:1000px){.mb-hero .grid,.mb-two,.mb-faq{grid-template-columns:1fr}.mb-strip ul{grid-template-columns:1fr 1fr}.mb-shelf,.mb-steps{grid-template-columns:1fr}.mb-year{grid-template-columns:repeat(4,minmax(0,1fr))}.mb-calc{grid-template-columns:1fr}.mb-burst{max-width:280px}}
+@media (max-width:560px){.mb-strip ul{grid-template-columns:1fr}.mb-year{grid-template-columns:repeat(3,minmax(0,1fr))}.mb-card .wm{font-size:44px}.mb-card .bot b{font-size:30px}.mb-cta .wm-seal{display:none}}
+@media (prefers-reduced-motion:reduce){.mb-card{animation:none}}
+
+/* ===== Membership, round two: photographs back, glowing foil card, shining gold ===== */
+/* gold that shines: headings, and the gold button */
+.mb em{background:linear-gradient(100deg,#B98330 0%,#F7DE97 24%,#E2A93B 42%,#FFF4CC 54%,#E2A93B 66%,#B98330 84%,#F3D27E 100%);background-size:240% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent!important;animation:mbfoil 6.5s ease-in-out infinite alternate}
+@keyframes mbfoil{from{background-position:0% 0}to{background-position:100% 0}}
+.mb .btn.gold{position:relative;overflow:hidden;background:linear-gradient(135deg,#F7DE97,#E2A93B 45%,#B98330);box-shadow:0 0 0 1px rgba(255,236,170,.4),0 14px 40px -10px rgba(226,169,59,.75)}
+.mb .btn.gold::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);transform:skewX(-20deg);animation:mbbtn 4.5s ease-in-out infinite}
+@keyframes mbbtn{0%,65%{left:-60%}100%{left:130%}}
+.mb .btn.gold:hover{background:linear-gradient(135deg,#fff3c4,#F2C46B 50%,#E2A93B)}
+
+/* hero: a photograph under a dark veil, and the glowing card */
+.mb-hero{background:#140B07}
+.mb-hero::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(20,11,7,.94) 0%,rgba(20,11,7,.74) 48%,rgba(20,11,7,.5) 100%),var(--bg) center/cover no-repeat}
+.mb-hero .lattice{opacity:.14}
+.mb-glow{position:relative;max-width:560px;margin:0 auto;perspective:1200px}
+.mb-glow .aura{position:absolute;inset:-12% -10%;z-index:0;border-radius:50%;background:radial-gradient(closest-side,rgba(247,222,151,.55),rgba(226,169,59,.28) 45%,rgba(226,169,59,0) 72%);filter:blur(12px);animation:mbaura 5s ease-in-out infinite}
+@keyframes mbaura{0%,100%{opacity:.75;transform:scale(.96)}50%{opacity:1;transform:scale(1.06)}}
+.mb-card{--rx:0deg;--ry:0deg;--gx:50%;--gy:50%;position:relative;z-index:1;max-width:none;border:2px solid transparent;
+  background:linear-gradient(150deg,#3b2410 0%,#1a0f08 55%,#0f0805 100%) padding-box,linear-gradient(135deg,#FFF4CC,#E2A93B 30%,#8a5d17 52%,#F7DE97 74%,#E2A93B) border-box;
+  box-shadow:0 0 0 1px rgba(255,236,170,.25),0 0 70px rgba(226,169,59,.45),0 50px 90px -26px rgba(0,0,0,.95);
+  transform:rotateX(var(--rx)) rotateY(var(--ry)) rotate(-3deg);transition:transform .2s ease-out;animation:mbfloat2 7s ease-in-out infinite}
+.mb-card.live{animation:none;transform:rotateX(var(--rx)) rotateY(var(--ry))}
+@keyframes mbfloat2{0%,100%{translate:0 0}50%{translate:0 -14px}}
+.mb-card .foil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 30%,rgba(255,240,190,.22) 42%,rgba(255,255,255,.5) 50%,rgba(255,240,190,.22) 58%,transparent 70%);background-size:260% 100%;animation:mbsheen 5s ease-in-out infinite}
+@keyframes mbsheen{0%{background-position:150% 0}55%,100%{background-position:-60% 0}}
+.mb-card .glare{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s;background:radial-gradient(circle at var(--gx) var(--gy),rgba(255,244,204,.5),rgba(255,244,204,0) 46%)}
+.mb-card.live .glare{opacity:1}
+.mb-card .wm{background:linear-gradient(100deg,#B98330,#F7DE97 30%,#fff4cc 50%,#E2A93B 70%,#B98330);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.mb-card .crest{filter:drop-shadow(0 0 10px rgba(226,169,59,.7))}
+.mb-card .mid{position:relative;display:flex;align-items:center;gap:20px}
+.mb-card .chip{filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+.mb-card .no{font:600 17px 'Montserrat',sans-serif;letter-spacing:.2em;color:rgba(255,236,190,.85);text-shadow:0 1px 0 rgba(0,0,0,.6)}
+.mb-card .bot b{background:linear-gradient(100deg,#fff4cc,#F2C46B);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.mb-glow .sp{position:absolute;z-index:2;width:18px;height:18px;background:#FFF4CC;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);animation:mbtw 3.2s ease-in-out infinite}
+.mb-glow .s1{left:-3%;top:8%}.mb-glow .s2{right:-2%;top:22%;animation-delay:.8s;width:26px;height:26px}.mb-glow .s3{left:8%;bottom:-4%;animation-delay:1.6s}.mb-glow .s4{right:10%;bottom:-6%;animation-delay:2.2s;width:14px;height:14px}
+@keyframes mbtw{0%,100%{opacity:0;transform:scale(.3) rotate(0)}50%{opacity:1;transform:scale(1) rotate(45deg)}}
+
+/* reason one: photograph with the badge on its corner */
+.mb-photo{position:relative;max-width:480px;margin:0 auto}
+.mb-photo img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;box-shadow:0 0 0 1px rgba(226,169,59,.5),0 40px 80px -30px rgba(0,0,0,.9)}
+.mb-photo .b{position:absolute;right:-12%;bottom:-8%;width:52%}
+.mb-photo .mb-burst{max-width:none}
+
+/* reason two: photograph cards */
+.mb-prod{padding:0}
+.mb-prod .ph{position:relative;aspect-ratio:4/3;background:linear-gradient(180deg,rgba(20,11,7,.15),rgba(20,11,7,.7)),var(--bg) center/cover no-repeat;display:flex;align-items:flex-end;padding:18px}
+.mb-prod .art{position:relative;width:84px;height:84px;padding:0;aspect-ratio:auto;background:rgba(20,11,7,.78);box-shadow:inset 0 0 0 1.5px rgba(226,169,59,.7);display:grid;place-items:center}
+.mb-prod .art svg{width:70px;height:70px}
+.mb-prod .tx{padding:22px 24px 26px}
+.mb-prod h3{margin-top:0}
+
+/* a full-width photograph in the middle of the story */
+.mb-band{position:relative;isolation:isolate;overflow:hidden;padding:clamp(96px,11vw,170px) 0;text-align:left}
+.mb-band::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(20,11,7,.92) 0%,rgba(20,11,7,.7) 50%,rgba(20,11,7,.35) 100%),var(--bg) center/cover no-repeat}
+.mb-band h2{font-size:clamp(56px,7vw,116px);max-width:9em}
+.mb-band .lead{margin-top:20px;max-width:28em}
+
+/* members and guests, with the birthday picker beside it */
+.mb-dual{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,4vw,72px);align-items:start}
+.mb-dual .head{margin-bottom:28px}
+.mb-dual .mb-cmp.cmp{max-width:none}
+.mb-bday{background:rgba(255,255,255,.05);padding:clamp(22px,2.6vw,36px);box-shadow:inset 0 0 0 1px rgba(226,169,59,.4)}
+.mb-bday h3{font-family:'Bebas Neue','Impact',sans-serif;font-weight:400;font-size:46px;line-height:1;letter-spacing:.02em;text-transform:uppercase;margin:6px 0 14px;color:#fff}
+.mb-bday .mb-sel{margin-top:0;max-width:none}
+.mb-bday .bmsg{font-size:16px;margin:12px 0 16px}
+.mb-bday .mb-year{grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.mb-bday .mt{min-height:72px;padding:10px 8px;gap:2px;align-items:center;text-align:center;justify-content:center}
+.mb-bday .mt .mn{font-size:12px;letter-spacing:.08em}
+.mb-bday .mt b{font-size:26px}
+.mb-bday .mt .bd{font-size:0;margin-top:0}.mb-bday .mt .bd svg{width:22px;height:22px}
+.mb-bday .mt.bd-on b{display:none}
+@media (max-width:1000px){.mb-dual{grid-template-columns:1fr}.mb-photo{max-width:380px}.mb-photo .b{right:-6%}}
+@media (max-width:560px){.mb-bday .mb-year{grid-template-columns:repeat(4,minmax(0,1fr))}.mb-card .mid .no{font-size:13px}}
+@media (prefers-reduced-motion:reduce){.mb em,.mb .btn.gold::after,.mb-card .foil,.mb-glow .aura,.mb-glow .sp,.mb-card{animation:none!important}.mb-glow .sp{opacity:1}}
+
+/* ===== Shaped cards: sample notes and the three order steps =====
+   Every card has its own shape, colours and fonts. On hover it grows and
+   gets a soft shadow on all four sides so it stands out. */
+.slips{height:auto;align-items:center;gap:22px;margin-top:52px;padding:14px 0 26px}
+.slip{--r:0deg;position:relative;height:auto!important;min-height:250px;display:flex;flex-direction:column;justify-content:center;padding:34px 28px;
+  transform:rotate(var(--r));transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease}
+.slip b{margin-bottom:12px;line-height:1.05}
+.slip:hover{transform:rotate(0deg) scale(1.09);z-index:2;box-shadow:0 0 0 3px rgba(255,255,255,.12),0 0 38px 10px rgba(242,196,107,.5),0 22px 46px rgba(0,0,0,.55)}
+.slip:nth-child(1){--r:-2deg;border-radius:46px 8px 46px 8px;background:#F4DDBE;color:#4a2c18;font:500 16px/1.5 'Lora',serif}
+.slip:nth-child(1) b{font:400 34px/1 'DM Serif Display',serif;color:#B4452A}
+.slip:nth-child(2){--r:1.5deg;min-height:300px;border-radius:50% 50% 50% 50%/58% 58% 42% 42%;padding:44px 34px;text-align:center;background:#E2A93B;color:#2c1a0d;font:600 17px/1.4 'Lora',serif}
+.slip:nth-child(2) b{font:700 40px/.95 'Caveat',cursive;color:#fff;text-shadow:0 2px 0 rgba(90,50,10,.35)}
+.slip:nth-child(3){--r:-1deg;border-radius:140px 140px 24px 24px;padding:56px 26px 30px;text-align:center;background:#FBF7F1;color:#3a2a20;font:500 15.5px/1.55 'Playfair Display',serif;font-style:italic}
+.slip:nth-child(3) b{font:400 38px/1 'Bebas Neue',sans-serif;letter-spacing:.04em;font-style:normal;color:#2f6b4f}
+.slip:nth-child(4){--r:2deg;border-radius:10px 56px 10px 56px;background:#B4452A;color:#fff0e0;font:600 21px/1.2 'Caveat',cursive}
+.slip:nth-child(4) b{font:600 26px/1.1 'Fraunces',serif;font-style:italic;color:#FFD98A}
+.slip:nth-child(5){--r:-1.5deg;border-radius:999px 999px 999px 24px;padding:40px 36px;background:#CFE3D6;color:#1e3b2c;font:500 15.5px/1.5 'Montserrat',sans-serif}
+.slip:nth-child(5) b{font:400 25px/1.1 'Pacifico',cursive;color:#7a2f6b}
+
+.steps3{gap:26px;padding:10px 0 18px}
+.steps3 li{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease}
+.steps3 li:hover{transform:scale(1.07);z-index:2;box-shadow:0 0 0 2px rgba(36,22,15,.05),0 0 42px 8px rgba(36,22,15,.22),0 24px 44px rgba(36,22,15,.22)}
+.steps3 li:nth-child(1){border-radius:56px 10px 56px 10px;background:#fff;padding:40px 34px}
+.steps3 li:nth-child(1) .n{font-family:'DM Serif Display',serif;color:#B4452A}
+.steps3 li:nth-child(1) b{font:400 26px/1.15 'DM Serif Display',serif;color:#B4452A}
+.steps3 li:nth-child(1) span.t{font-family:'Lora',serif}
+.steps3 li:nth-child(2){border-radius:160px 160px 28px 28px;background:#F4DDBE;padding:70px 34px 40px;text-align:center}
+.steps3 li:nth-child(2) .n{color:#2f6b4f}
+.steps3 li:nth-child(2) b{font:400 34px/1 'Bebas Neue',sans-serif;letter-spacing:.03em;color:#2f6b4f}
+.steps3 li:nth-child(2) span.t{font-family:'Playfair Display',serif;font-style:italic}
+.steps3 li:nth-child(3){border-radius:12px 70px 12px 70px;background:#24160F;padding:40px 34px}
+.steps3 li:nth-child(3) .n{font-family:'Pacifico',cursive;font-size:76px;color:#F2C46B}
+.steps3 li:nth-child(3) b{font:700 30px/1.1 'Caveat',cursive;color:#FFD98A}
+.steps3 li:nth-child(3) span.t{color:rgba(255,255,255,.88);font-family:'Montserrat',sans-serif}
+.steps3 li:nth-child(3):hover{box-shadow:0 0 0 2px rgba(226,169,59,.3),0 0 42px 8px rgba(226,169,59,.45),0 24px 44px rgba(36,22,15,.35)}
+@media (max-width:900px){.steps3 li:hover,.slip:hover{transform:scale(1.03)}}
+@media (max-width:600px){.slips{height:auto}.slip:nth-child(n+3){display:flex}.slips{flex-direction:column;align-items:stretch}}
+@media (prefers-reduced-motion:reduce){.slip,.steps3 li{transition:none}}
+
+/* ===== Corporate order steps: a darker sand background ===== */
+.sec.tan{background:#CDAE86;color:#24160F}
+.sec.tan .k{color:#7A2A14!important}
+.sec.tan h2 em{color:#8E2F18!important}
+
+/* ===== Closing band: photos on the right half ===== */
+.band-cta{overflow:hidden}
+.band-cta .w{align-items:center;flex-wrap:nowrap;gap:32px}
+.band-cta .cta-tx{flex:1 1 50%;min-width:0}
+.band-cta .cta-tx .acts{margin-top:28px}
+.cta-pics{position:relative;flex:1 1 46%;min-height:380px}
+.cta-pics img{position:absolute;display:block;object-fit:cover;box-shadow:0 26px 50px -14px rgba(36,22,15,.55),0 0 0 6px #FBF7F1}
+.cta-pics .p1{width:56%;aspect-ratio:1/1;right:8%;top:-4%;transform:rotate(4deg)}
+.cta-pics .p2{width:50%;aspect-ratio:1/1;left:4%;bottom:-14%;transform:rotate(-5deg)}
+@media (max-width:900px){.band-cta .w{flex-wrap:wrap}.cta-pics{flex-basis:100%;min-height:300px}}
+
+/* ===== Membership hero: fits one screen, seal sits under the card ===== */
+.mb-hero{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:calc(var(--bar-h) + var(--hdr-h) + 20px) 0 36px}
+.mb-hero .grid{width:100%}
+.mb-hero .seal{display:block;margin:26px auto 0;width:96px;height:96px}
+.mb-hero h1{font-size:clamp(64px,min(9vw,15vh),150px)}
+.mb-hero .lead{margin-top:18px}
+@media (max-width:1000px){.mb-hero{min-height:0;padding-top:calc(var(--bar-h) + var(--hdr-h) + 32px)}}
+
+/* ===== Membership card: rounded corners ===== */
+.mb-card{border-radius:28px}
+.mb-card .foil,.mb-card .glare{border-radius:inherit}
+@media (max-width:560px){.mb-card{border-radius:20px}}
+
+/* ===== Membership: different backgrounds, photo, repeated calls to action, closing block ===== */
+/* gold strip */
+.mb-strip.gold{background:linear-gradient(100deg,#B98330 0%,#E2A93B 38%,#F6D88A 58%,#E2A93B 78%,#B98330 100%)}
+.mb-strip.gold b{color:#24160F}
+.mb-strip.gold li span{color:#3b2410}
+.mb-strip.gold .gi{stroke:#24160F;background:rgba(36,22,15,.1);box-shadow:inset 0 0 0 1.5px rgba(36,22,15,.55)}
+
+/* section colours: green, wine and cream, so the page is not one colour from top to bottom */
+.mb-sec.th-green{background:radial-gradient(80% 70% at 15% 0%,#2B4A37 0%,#16291F 62%,#0F1D15 100%)}
+.mb-sec.th-wine{background:radial-gradient(80% 70% at 85% 0%,#5A2018 0%,#2B0F0B 64%,#1E0A07 100%)}
+.mb-sec.alt:not(.th-cream){background:#140B07}
+
+/* photo beside the comparison */
+.mb-dual{align-items:center}
+.mb-pic{position:relative;margin:0 auto;width:100%;max-width:470px;aspect-ratio:4/5;border-radius:220px 220px 32px 32px;overflow:hidden;box-shadow:0 0 0 4px #E2A93B,0 40px 70px -30px rgba(36,22,15,.65)}
+.mb-pic img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* call to action rows */
+.mb-ctarow{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:clamp(40px,4.5vw,64px)}
+.mb .btn.line{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.65)}
+.mb .btn.line:hover{background:#fff;color:#140B07}
+
+/* closing block: the homepage Sero Club idea, centred, with circles behind it */
+.mb-final{position:relative;isolation:isolate;overflow:hidden;text-align:center;padding:clamp(90px,10vw,150px) 0;background:radial-gradient(90% 80% at 50% 0%,#4a2e16 0%,#1c110b 56%,#120a06 100%);color:#f4ede3}
+.mb-final .rings{position:absolute;inset:0;z-index:-1;width:100%;height:100%}
+.mb-final .w{display:flex;flex-direction:column;align-items:center}
+.mb-final .ask{font-size:clamp(60px,9vw,150px);line-height:.88;max-width:11em;margin:0 0 clamp(40px,5vw,72px)}
+.mb-final .crown{display:inline-grid;place-items:center;width:60px;height:60px;border-radius:50%;background:rgba(226,169,59,.12);box-shadow:inset 0 0 0 1px rgba(226,169,59,.4)}
+.mb-final .ctitle{margin:18px 0 6px;font-family:'Bebas Neue','Impact',sans-serif;font-size:clamp(72px,10vw,150px);line-height:.9;letter-spacing:.02em;text-transform:uppercase}
+.mb-final .ctitle em{font-style:normal}
+.mb-final .ctag{margin:0;font:700 clamp(14px,1.4vw,18px) 'Montserrat',sans-serif;letter-spacing:.42em;padding-left:.42em;text-transform:uppercase;color:#F7DE97}
+.mb-final .lead{margin:24px auto 0;max-width:34em;font-size:clamp(18px,1.6vw,22px);color:rgba(244,237,227,.85)}
+.mb-final .lead b{color:#FFF1C4}
+.mb-final .joinsteps{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 34px;margin:34px 0 0;padding:0;list-style:none;font-size:clamp(16px,1.4vw,19px);font-weight:600;color:#fff}
+.mb-final .joinsteps li{display:flex;align-items:center;gap:12px}
+.mb-final .joinsteps i{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;font:700 16px 'Montserrat',sans-serif;font-style:normal;color:#140B07;background:linear-gradient(135deg,#F7DE97,#E2A93B)}
+.mb-final .acts{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:40px}
+@media (max-width:1000px){.mb-pic{max-width:380px}}
+
+/* ===== Membership round four ===== */
+/* header takes the colour of the hero, so the top reads as one long dark block */
+html body.mb-page .header,html body.mb-page.scrolled .header{background:#140B07!important;color:#fff!important;box-shadow:none!important}
+html body.mb-page .header nav a,html body.mb-page .header .icon-btn{color:#fff!important}
+html body.mb-page .header .icon-btn svg{stroke:#fff}
+html body.mb-page .header nav a::after{background:#E2A93B!important}
+html body.mb-page .header .burger svg{stroke:#fff}
+
+/* call to action rows: always some air above them */
+.mb .mb-ctarow{margin:clamp(44px,5vw,72px) auto 0}
+.mb .mb-ctarow.left{justify-content:flex-start;margin-left:0}
+
+/* section 3: photo fills the whole left half, text on the right */
+.mb-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:radial-gradient(70% 60% at 100% 0%,#2a1a0e 0%,#140B07 70%)}
+.mb-split .pic{position:relative;min-height:100%;background:linear-gradient(180deg,rgba(20,11,7,.05),rgba(20,11,7,.35)),var(--bg) center/cover no-repeat}
+.mb-split .pic .b{position:absolute;right:clamp(18px,3vw,44px);bottom:clamp(18px,3vw,44px);width:clamp(120px,14vw,190px)}
+.mb-split .tx{padding:clamp(64px,7vw,112px) clamp(24px,5vw,88px);max-width:760px}
+.mb-split .tx h2{font-size:clamp(46px,4.6vw,76px)}
+.mb-split .mb-calc{margin-top:28px}
+@media (max-width:1000px){.mb-split{grid-template-columns:1fr}.mb-split .pic{min-height:360px}}
+
+/* section 4: cards that move */
+.mb-prod .tag{overflow:hidden}
+.mb-prod .tag::after{content:"";position:absolute;top:0;bottom:0;left:-70%;width:50%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-20deg);animation:mbbtn 4.5s ease-in-out infinite}
+.mb-prod .art svg{animation:mbbob 4.2s ease-in-out infinite}
+.mb-prod:nth-child(2) .art svg{animation-delay:-1.4s}.mb-prod:nth-child(3) .art svg{animation-delay:-2.8s}
+@keyframes mbbob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(4deg)}}
+.mb-prod{transition:transform .4s cubic-bezier(.2,.8,.2,1),box-shadow .4s}
+.mb-prod:hover{transform:translateY(-10px);box-shadow:inset 0 0 0 1px rgba(226,169,59,.7),0 24px 50px -16px rgba(226,169,59,.45)}
+.mb-prod .ph{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.mb-prod:hover .ph{transform:scale(1.04)}
+.mb-prod{overflow:hidden}
+.mbjs .mb-prod:not(.in),.mbjs .mb-steps li:not(.in){opacity:0;transform:translateY(46px)}
+.mbjs .mb-prod.in,.mbjs .mb-steps li.in{opacity:1;transform:none;transition:opacity .8s ease var(--d,0s),transform .8s cubic-bezier(.2,.8,.2,1) var(--d,0s),box-shadow .4s}
+.mbjs .mb-prod.in:hover{transform:translateY(-10px)}
+
+
+/* steps: a lighter wine so it does not melt into the dark sections around it */
+.mb-sec.th-wine{background:radial-gradient(80% 80% at 80% 0%,#9A3A2A 0%,#6B2519 58%,#4F1A12 100%)}
+.mb-steps li{background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px rgba(247,222,151,.4)}
+
+/* comparison, old look, with product photos filling the right half */
+.mb-dual2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:0;background:#1c110b}
+.mb-dual2 .l{padding:clamp(72px,8vw,128px) clamp(24px,4vw,64px);justify-self:end;width:100%;max-width:760px}
+.mb-dual2 .head{margin-bottom:28px}
+.mb-dual2 .mb-cmp.cmp{max-width:none}
+.collage{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:6px}
+.mb-tile{position:relative;overflow:hidden;background:var(--tc);display:grid;place-items:center;min-height:210px}
+.mb-tile img{width:auto;height:84%;max-width:80%;object-fit:contain;filter:drop-shadow(0 18px 18px rgba(0,0,0,.35));animation:mbbob 5s ease-in-out infinite;transition:transform .5s}
+.mb-tile:nth-child(2n) img{animation-delay:-1.6s}.mb-tile:nth-child(3n) img{animation-delay:-3.1s}
+.mb-tile:hover img{transform:scale(1.1) rotate(-3deg)}
+.mbjs .mb-tile:not(.in){opacity:0;transform:scale(.94)}
+.mbjs .mb-tile.in{opacity:1;transform:none;transition:opacity .8s ease var(--d,0s),transform .8s cubic-bezier(.2,.8,.2,1) var(--d,0s)}
+@media (max-width:1000px){.mb-dual2{grid-template-columns:1fr}.collage{grid-template-columns:1fr 1fr 1fr}.mb-dual2 .l{justify-self:stretch;max-width:none}}
+@media (max-width:560px){.collage{grid-template-columns:1fr 1fr}}
+
+
+/* closing block: back to the centred design, a lighter brown so it differs from the footer and the section above */
+.mb-final{padding:clamp(90px,10vw,150px) 0;background:radial-gradient(90% 80% at 50% 0%,#8a6038 0%,#5a3a20 52%,#3e2713 100%)}
+
+/* ===== Membership round five ===== */
+/* header is not sticky on this page: it scrolls away and the whole screen is for the content */
+html body.mb-page .header{position:absolute!important}
+
+/* buttons side by side */
+.mb .mb-ctarow{flex-wrap:nowrap}
+.mb .mb-ctarow .btn{flex:0 1 auto;white-space:nowrap;padding-left:clamp(16px,2vw,28px);padding-right:clamp(16px,2vw,28px)}
+@media (max-width:480px){.mb .mb-ctarow{flex-wrap:wrap}}
+
+/* photo band: the dark layers are back so the words are easy to read */
+.mb-band::before{background:linear-gradient(90deg,rgba(20,11,7,.92) 0%,rgba(20,11,7,.7) 50%,rgba(20,11,7,.35) 100%),var(--bg) center/cover no-repeat}
+
+/* members-only products: photograph, frosted panel on the right */
+.mb-vault{position:relative;isolation:isolate;overflow:hidden;background:#CDAE86}
+.mb-vault::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(255,248,236,.1),rgba(120,84,48,.25)),var(--bg) center/cover no-repeat}
+.mb-vault .head.glass{margin:0 0 clamp(36px,4vw,60px) auto;max-width:580px;padding:clamp(26px,3vw,42px);border-radius:28px;background:rgba(255,255,255,.58);-webkit-backdrop-filter:blur(18px) saturate(1.2);backdrop-filter:blur(18px) saturate(1.2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.75),0 26px 60px -26px rgba(36,22,15,.5)}
+.mb-vault .head.glass h2{color:#24160F}
+.mb-vault .head.glass em{background:none;-webkit-text-fill-color:#B4452A;color:#B4452A!important;animation:none}
+.mb-vault .head.glass .lead{color:#3b2a1e}
+.mb-vault .mb-prod{box-shadow:inset 0 0 0 1px rgba(226,169,59,.5),0 26px 50px -22px rgba(36,22,15,.7)}
+.mb-vault .btn.linek{background:rgba(255,255,255,.55);color:#24160F;box-shadow:inset 0 0 0 2px #24160F}
+.mb-vault .btn.linek:hover{background:#24160F;color:#fff}
+
+/* three steps: photograph behind, three cards across, buttons sit on the photo */
+.mb-stepsbg{position:relative;isolation:isolate;overflow:hidden;background:#2a140d}
+.mb-stepsbg::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,11,7,.55),rgba(20,11,7,.78)),var(--bg) center/cover no-repeat}
+.mb-stepsbg .mb-steps li{background:rgba(20,11,7,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px rgba(247,222,151,.45)}
+
+/* terms: photo and heading on the left, answers on a plain background on the right */
+.mb-faqsplit{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:#1c110b}
+.mb-faqsplit .ph{position:relative;isolation:isolate;display:flex;align-items:flex-end;min-height:420px;padding:clamp(32px,5vw,80px)}
+.mb-faqsplit .ph::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,11,7,.15) 0%,rgba(20,11,7,.8) 100%),var(--bg) center/cover no-repeat}
+.mb-faqsplit .ph h2{font-size:clamp(44px,5vw,84px)}
+.mb-faqsplit .answers{display:flex;align-items:center;padding:clamp(40px,6vw,96px) clamp(24px,5vw,80px)}
+.mb-faqsplit .answers .faq2{width:100%;max-width:640px}
+@media (max-width:900px){.mb-faqsplit{grid-template-columns:1fr}.mb-faqsplit .ph{min-height:300px}}
+
+/* ===== Membership round six ===== */
+/* special price: badge top-left, gradient rising from the bottom, buttons on the photo */
+.mb-split .pic{min-height:560px}
+.mb-split .pic::after{content:"";position:absolute;left:0;right:0;bottom:0;height:clamp(260px,26vw,360px);background:linear-gradient(0deg,rgba(20,11,7,.94) 0%,rgba(20,11,7,.66) 48%,rgba(20,11,7,0) 100%);pointer-events:none}
+.mb-split .pic .b{left:clamp(18px,3vw,44px);right:auto;top:clamp(18px,3vw,44px);bottom:auto;width:clamp(120px,13vw,180px);z-index:2}
+.mb-ctarow.over{position:absolute;z-index:2;left:clamp(18px,3vw,44px);right:clamp(18px,3vw,44px);bottom:clamp(22px,3vw,40px);margin:0!important;justify-content:flex-start}
+.mb-split .tx{padding:clamp(48px,5vw,80px) clamp(24px,5vw,88px)}
+
+/* members-only products: gradient from the top */
+.mb-vault::before{background:linear-gradient(180deg,rgba(36,22,15,.72) 0%,rgba(36,22,15,.3) 38%,rgba(36,22,15,0) 72%),var(--bg) center/cover no-repeat}
+
+/* "every harvest": no photograph, a lighter brown, same gold type as everywhere else */
+.mb-band::before{background:linear-gradient(135deg,#6e4929 0%,#583820 55%,#472c19 100%)}
+.mb-band h2,.mb-band .lead{text-shadow:none}
+
+/* comparison: its own colour, and clear air before the next section */
+.mb-dual2{background:radial-gradient(80% 90% at 0% 0%,#4d3019 0%,#2c1b0e 72%)}
+.mb-faqsplit{margin-top:clamp(48px,6vw,88px)}
+
+/* terms: heading and questions centred; answers on cream so they are easy to read */
+.mb-faqsplit .ph{align-items:center;justify-content:center;text-align:center}
+.mb-faqsplit .ph .head{margin:0 auto}
+.mb-faqsplit .answers{background:#F4EBDD;justify-content:center}
+.mb-faqsplit .faq2 details{background:#fff;box-shadow:inset 0 0 0 1px rgba(36,22,15,.12)}
+.mb-faqsplit .faq2 summary{color:#24160F}
+.mb-faqsplit .faq2 summary::after{color:#B4452A}
+.mb-faqsplit .faq2 details p{color:#3b2a1e}
+
+/* closing block: club on the left, the pitch on the right, smaller overall */
+.mb-final{padding:clamp(60px,7vw,104px) 0}
+.mb-final .ask{margin:0 0 clamp(28px,3.4vw,52px)}
+.mb-final .club-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center;width:100%;text-align:left}
+.mb-final .club-row .club{display:flex;flex-direction:column;align-items:flex-start}
+.mb-final .club-row .ctitle{margin:14px 0 4px;font-size:clamp(64px,8vw,122px)}
+.mb-final .club-row .lead{margin:0;max-width:none;font-size:clamp(18px,1.7vw,24px)}
+.mb-final .joinsteps{margin-top:clamp(28px,3vw,44px)}
+.mb-final .acts{margin-top:30px}
+@media (max-width:900px){.mb-final .club-row{grid-template-columns:1fr}.mb-split .pic{min-height:460px}}
+.mb-final .joinsteps{width:100%;gap:14px clamp(20px,3vw,44px)}
+@media (min-width:1100px){.mb-final .joinsteps{flex-wrap:nowrap;justify-content:space-between;font-size:17px}}
+
+/* ===== Closing block: the homepage Sero Club layout (text | steps and buttons | member card) ===== */
+.mb-club{position:relative;isolation:isolate;overflow:hidden;padding:clamp(64px,7vw,104px) 0;background:radial-gradient(90% 80% at 50% 0%,#8a6038 0%,#5a3a20 52%,#3e2713 100%);color:#f4ede3}
+.mb-club .rings{position:absolute;inset:0;z-index:-1;width:100%;height:100%}
+.mb-club .ask{text-align:center;font-size:clamp(52px,7vw,116px);line-height:.88;margin:0 0 clamp(32px,4vw,60px)}
+.mb-club .cgrid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,.8fr);gap:clamp(24px,3.4vw,56px);align-items:center}
+.mb-club .crown{display:inline-grid;place-items:center;width:60px;height:60px;border-radius:50%;background:rgba(226,169,59,.12);box-shadow:inset 0 0 0 1px rgba(226,169,59,.4)}
+.mb-club .ctitle{margin:16px 0 6px;font-family:'Bebas Neue','Impact',sans-serif;font-size:clamp(64px,6.6vw,100px);line-height:.9;letter-spacing:.01em;text-transform:uppercase;white-space:nowrap}
+.mb-club .ctitle em{font-style:normal}
+.mb-club .ctag{margin:0;font:700 clamp(14px,1.3vw,17px) 'Montserrat',sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#F7DE97}
+.mb-club .lead{margin:18px 0 0;max-width:30em;font-size:clamp(17px,1.4vw,19px);color:rgba(244,237,227,.88)}
+.mb-club .lead b{color:#FFF1C4}
+.mb-club .cm{display:grid;gap:28px}
+.mb-club .joinsteps{display:flex;flex-direction:column;align-items:flex-start;gap:16px;margin:0;padding:0;list-style:none;font-size:clamp(16px,1.4vw,19px);font-weight:600;color:#fff}
+.mb-club .joinsteps li{display:flex;align-items:center;gap:12px}
+.mb-club .joinsteps i{flex:none;display:grid;place-items:center;width:32px;height:32px;border-radius:50%;font:700 15px 'Montserrat',sans-serif;font-style:normal;color:#140B07;background:linear-gradient(135deg,#F7DE97,#E2A93B)}
+.mb-club .acts{display:flex;flex-wrap:wrap;gap:12px}
+.mb-club .cardwrap{position:relative;display:grid;place-items:center;padding:0;perspective:1100px}
+.mb-club .cardwrap::before{content:"";position:absolute;inset:6% 2%;border-radius:50%;background:radial-gradient(closest-side,rgba(226,169,59,.42),rgba(226,169,59,0));filter:blur(18px);animation:mbaura 5s ease-in-out infinite}
+.mb-club .float{width:100%;max-width:340px;animation:mbclubfloat 7s ease-in-out infinite}
+@keyframes mbclubfloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-14px) rotate(-2deg)}}
+.mb-club .mcard{position:relative;overflow:hidden;width:100%;aspect-ratio:1.586/1;border-radius:18px;padding:clamp(16px,1.6vw,22px);display:flex;flex-direction:column;justify-content:space-between;color:#fff6e6;border:1.5px solid transparent;background:radial-gradient(120% 120% at 0% 0%,#3a2414,#140b06 62%) padding-box,linear-gradient(135deg,#FFF4CC,#E2A93B 30%,#8a5d17 52%,#F7DE97 74%,#E2A93B) border-box;box-shadow:0 40px 80px -24px rgba(0,0,0,.8)}
+.mb-club .mcard::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,236,190,.26) 47%,transparent 58%);background-size:260% 100%;animation:mbsheen 5.5s ease-in-out infinite;pointer-events:none}
+.mb-club .mcard .r1,.mb-club .mcard .r2{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.mb-club .mcard .wm{font-family:'Bebas Neue','Impact',sans-serif;font-size:clamp(30px,2.8vw,40px);letter-spacing:.16em;line-height:1;background:linear-gradient(100deg,#B98330,#F7DE97 30%,#fff4cc 50%,#E2A93B 70%,#B98330);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.mb-club .mcard .wm small{display:block;margin-top:6px;font:700 11px 'Montserrat',sans-serif;letter-spacing:.3em}
+.mb-club .mcard .chip{width:44px;height:34px;border-radius:7px;background:linear-gradient(135deg,#F7DE97,#E2A93B,#B98330)}
+.mb-club .mcard .r2{align-items:flex-end;font:700 10.5px 'Montserrat',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,246,230,.7)}
+.mb-club .mcard .r2 b{display:block;margin-top:5px;font:400 clamp(15px,1.35vw,20px) 'Bebas Neue','Impact',sans-serif;letter-spacing:.02em;text-transform:none;color:#fff6e6;white-space:nowrap}
+.mb-club .mcard .r2 span:last-child{text-align:right}
+@media (max-width:900px){.mb-club .cgrid{grid-template-columns:1fr;max-width:560px;margin-inline:auto}.mb-club .ctitle{font-size:clamp(60px,17vw,96px)}.mb-club .float{max-width:320px;margin:0 auto}.mb-club .ask{text-align:left}}
+@media (prefers-reduced-motion:reduce){.mb-club .float,.mb-club .mcard::after,.mb-club .cardwrap::before{animation:none}}
+
+/* ===== Membership round seven ===== */
+/* the harvest story now opens the steps section */
+.mb-harvest{margin-bottom:clamp(56px,6vw,96px)}
+.mb-harvest h2{font-size:clamp(56px,7vw,116px);line-height:.92}
+.mb-harvest .lead{margin:20px auto 0;max-width:32em}
+.mb-how{margin-bottom:clamp(28px,3vw,44px)}
+/* no gap above the terms section */
+.mb-faqsplit{margin-top:0}
+/* closing block: gradient from top to bottom, less height, equal buttons in a row */
+.mb-club{padding:clamp(40px,4.5vw,64px) 0 clamp(56px,6vw,88px);background:linear-gradient(180deg,#1e120a 0%,#4a2e19 38%,#7a5230 72%,#9a6a3c 100%)}
+.mb-club .ask{margin-bottom:clamp(24px,3vw,40px)}
+.mb-club .cgrid{grid-template-columns:minmax(0,1.15fr) minmax(0,1.15fr) minmax(0,.8fr)}
+.mb-club .acts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.mb-club .acts .btn{width:100%;min-height:54px;padding:0 8px;justify-content:center;white-space:nowrap;font-size:16px}
+@media (max-width:900px){.mb-club .cgrid{grid-template-columns:1fr}}
+
+/* steps section: one big line, then a smaller plain line */
+.mb-harvest{margin-bottom:clamp(14px,1.6vw,24px)}
+.mb-how{margin-bottom:clamp(32px,3.6vw,52px)}
+.mb-how h3{margin:0;font-family:'Montserrat',sans-serif;font-weight:600;font-size:clamp(20px,2vw,28px);line-height:1.3;letter-spacing:0;text-transform:none;color:#fff}
+.mb-how h3 em{font-style:normal;font-weight:700}
+
+/* terms heading: twice the size */
+.mb-faqsplit .ph h2{font-size:clamp(88px,10vw,168px);line-height:.9}
+@media (max-width:900px){.mb-faqsplit .ph h2{font-size:clamp(64px,16vw,110px)}}
+
+/* ===== Membership: the hero's diamond pattern runs behind the header and the announcement bar too ===== */
+html body.mb-page .header,html body.mb-page.scrolled .header{background:transparent!important}
+html body.mb-page .announce{background-color:#140B07!important;background-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2256%22 height=%2256%22 viewBox=%220 0 56 56%22%3E%3Cpath d=%22M28 6l22 22-22 22L6 28z%22 fill=%22none%22 stroke=%22%23E2A93B%22 stroke-width=%22.8%22 stroke-opacity=%22.16%22/%3E%3Ccircle cx=%2228%22 cy=%2228%22 r=%222%22 fill=%22%23E2A93B%22 fill-opacity=%22.16%22/%3E%3C/svg%3E")!important;background-size:56px 56px!important;background-position:0 -18px!important;color:#F4EDE3!important}
+
+/* ===== Version 2: let the gold light show through the membership hero ===== */
+.mb-hero::before{background:linear-gradient(90deg,rgba(20,11,7,.9) 0%,rgba(20,11,7,.5) 45%,rgba(20,11,7,.05) 100%),linear-gradient(0deg,rgba(20,11,7,.55) 0%,rgba(20,11,7,0) 30%),var(--bg) center/cover no-repeat}
+
+/* ===== Version 2: gifts page ===== */
+/* header sits see-through on the hero photo, light text; turns solid cream again after scrolling */
+html body.gift-page .header{position:absolute!important;background:transparent!important;color:#fff!important;box-shadow:none!important}
+html body.gift-page .header nav a,html body.gift-page .header .icon-btn{color:#fff!important}
+html body.gift-page .header .icon-btn svg{stroke:#fff}
+html body.gift-page .header nav a::after{background:#E2A93B!important}
+html body.gift-page .logo img{content:url(logo-light.png)}
+
+/* occasions: heading centred about 18% below the top, paragraph and link at the bottom */
+.type{justify-content:flex-end}
+.type h3{position:absolute;left:20px;right:20px;top:18%;margin:0;text-align:center}
+.type::before{background:linear-gradient(180deg,rgba(20,11,7,.6) 0%,rgba(20,11,7,.3) 34%,rgba(20,11,7,0) 52%,rgba(20,11,7,.9) 100%),var(--bg) center/cover no-repeat}
+
+/* light text sides, each a different tone, so the page is not all chocolate brown */
+.split.light.ivory .tx{background:#FBF7F1}
+.split.light.pale .tx{background:#F4E4BF}
+.split.light .ticks li{color:#3a2a20}
+.split.light .tx h2{color:#24160F}
+
+/* closing band: gold dust photo with a dark wash, gold and white type */
+.band-cta{background:#140b07 url(../assets/img/gold-dust-depth-ai.webp) center/cover no-repeat;color:#fff;position:relative;isolation:isolate;border-top:1px solid rgba(226,169,59,.55)}
+.band-cta::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(20,11,7,.88) 0%,rgba(20,11,7,.55) 55%,rgba(20,11,7,.2) 100%)}
+.band-cta h2{color:#fff}
+.band-cta h2 em{color:var(--gold)}
+.band-cta .btn.ink{background:linear-gradient(135deg,#F7DE97,#E2A93B);color:#140b07}
+.band-cta .btn.line{color:#fff!important;box-shadow:inset 0 0 0 2px rgba(255,255,255,.85)!important}
+.band-cta .btn.line:hover{background:#fff;color:#140b07!important}
+
+/* gifting questions: heading, then photo background on the left and accordion on the right */
+.gfaq{background:#140b07;color:#f4ede3;padding:clamp(64px,8vw,120px) 0 0}
+.gq-head{text-align:center;margin-bottom:clamp(34px,4.4vw,64px)}
+.gq-head .k{color:var(--gold)}
+.gq-head h2{color:#fff}
+.gq-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.gq-bg{min-height:640px;background:var(--bg) center/cover no-repeat}
+.gq-list{display:grid;gap:14px;align-content:center;padding:clamp(32px,5vw,84px) clamp(22px,5vw,88px);background:#1c110b}
+.gq-list details{border-radius:20px;background:rgba(255,255,255,.045);box-shadow:inset 0 0 0 1px rgba(226,169,59,.28);transition:background .3s,box-shadow .3s}
+.gq-list details[open]{background:rgba(226,169,59,.1);box-shadow:inset 0 0 0 1.5px rgba(226,169,59,.75)}
+.gq-list summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:22px 26px;font-weight:700;font-size:clamp(17px,1.4vw,20px);color:#fff}
+.gq-list summary::-webkit-details-marker{display:none}
+.gq-list summary::after{content:"+";flex:0 0 36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:24px;font-weight:400;line-height:1;color:#140b07;background:linear-gradient(135deg,#F7DE97,#E2A93B);transition:transform .35s}
+.gq-list details[open] summary::after{transform:rotate(45deg)}
+.gq-list p{margin:0;padding:0 26px 24px;font-size:clamp(16px,1.2vw,18px);line-height:1.6;color:rgba(244,237,227,.86);max-width:42em}
+@media (max-width:900px){.gq-split{grid-template-columns:1fr}.gq-bg{min-height:360px}}
+
+/* ===== Version 2: the "Join membership" button looks the same in every section ===== */
+.mb .btn.gold{min-height:56px;font-size:17px}
+.mb-club .acts .btn{min-height:56px;font-size:17px;padding:0 clamp(16px,2vw,28px)}
+
+/* ===== Version 2: membership page changes ===== */
+/* shelf heading: the heading on one line, the paragraph on the next line */
+.mb-vault .head.glass{max-width:none;margin:0 0 clamp(26px,3vw,44px);display:block;padding:clamp(20px,2.2vw,30px) clamp(24px,3vw,44px)}
+.mb-vault .head.glass h2{font-size:clamp(30px,3.7vw,56px);line-height:1;margin:0 0 10px;white-space:nowrap}
+.mb-vault .head.glass .lead{margin:0;max-width:none;font-size:clamp(15px,1.2vw,18px)}
+@media (max-width:900px){.mb-vault .head.glass h2{white-space:normal}}
+
+/* three steps: one, two and three round icons */
+.mb-steps .mb-ics{display:flex;justify-content:center;gap:10px;margin:0 0 16px}
+.mb-steps .mb-ics i{display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:rgba(226,169,59,.12);box-shadow:inset 0 0 0 1.5px #E2A93B}
+.mb-steps .mb-ics svg,.mb-cmp svg.mi{fill:none;stroke:#F7DE97;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.mb-steps .mb-ics svg{width:24px;height:24px}
+
+/* comparison table: a little wider, everything on one line, icons as tall as the text */
+.mb-dual2{grid-template-columns:minmax(0,1.22fr) minmax(0,.78fr)}
+.mb-dual2 .l{max-width:900px}
+.mb-dual2 .mb-cmp.cmp{grid-template-columns:1.45fr 1.1fr 1fr}
+.mb-dual2 .mb-cmp.cmp>div{white-space:nowrap;font-size:16px;padding:18px 16px;display:flex;align-items:center;gap:10px}
+.mb-dual2 .mb-cmp.cmp .yes::before{flex:none;margin-right:0}
+.mb-dual2 .mb-cmp.cmp>div.h{font-size:34px;line-height:1;padding:0 16px 8px;gap:12px}
+.mb-cmp svg.mi{flex:none;width:1.2em;height:1.2em;margin:0;fill:none;stroke:#F7DE97;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.mb-cmp .h svg.mi{width:.78em;height:.78em;stroke:#E2A93B}
+.mb-cmp .h:not(.m) svg.mi{stroke:#fff;opacity:.85}
+@media (max-width:1000px){.mb-dual2{grid-template-columns:1fr}.mb-dual2 .mb-cmp.cmp>div{white-space:normal}}
+
+/* questions: the photo is the background with a dark shade, answers on dark cards, fixed height */
+.mb-faqsplit{position:relative;isolation:isolate;background:#1c110b}
+.mb-faqsplit::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(20,11,7,.94) 0%,rgba(20,11,7,.84) 42%,rgba(20,11,7,.62) 100%),var(--bg) center/cover no-repeat}
+.mb-faqsplit .ph::before{display:none}
+.mb-faqsplit .answers{background:transparent}
+.mb-faqsplit .answers .faq2{display:grid;align-content:start;gap:8px;width:100%;max-width:640px}
+.mb-faqsplit .answers .faq2 details{margin:0;background:rgba(20,11,7,.6);box-shadow:inset 0 0 0 1px rgba(226,169,59,.4)}
+.mb-faqsplit .answers .faq2 summary{color:#fff}
+.mb-faqsplit .answers .faq2 summary::after{color:#E2A93B}
+.mb-faqsplit .answers .faq2 details p{color:rgba(255,255,255,.9)}
+
+/* closing section: crown beside the heading, then Sero Club / Premium membership, steps and the card */
+.mb-club .mb-club-top{display:flex;align-items:center;justify-content:center;gap:clamp(16px,2.2vw,32px);margin-bottom:clamp(30px,4vw,56px)}
+.mb-club .mb-club-top .ask{margin:0;text-align:left}
+.mb-club .mb-club-top .crown{flex:none;width:clamp(64px,6vw,92px);height:clamp(64px,6vw,92px)}
+.mb-club .mb-club-top .crown svg{width:50%;height:50%}
+.mb-club .cgrid{grid-template-columns:minmax(0,.37fr) minmax(0,.3fr) minmax(0,.33fr);gap:clamp(18px,2vw,32px);align-items:stretch}
+.mb-club .cl{display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+.mb-club .cl .ctitle{margin:0 0 6px;font-size:clamp(48px,5vw,76px);line-height:.9}
+.mb-club .cl .ctag{margin:0}
+.mb-club .cl .acts{margin:0}
+.mb-club .cm{display:flex;flex-direction:column;justify-content:space-between}
+.mb-club .joinsteps{height:100%;justify-content:space-between;gap:18px}
+.mb-club .joinsteps li{display:flex;align-items:center;gap:14px;white-space:nowrap;font-size:clamp(15px,1.2vw,18px)}
+.mb-club .joinsteps i{display:grid;place-items:center;flex:none;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#F7DE97,#E2A93B);box-shadow:0 0 0 4px rgba(226,169,59,.16)}
+.mb-club .joinsteps i svg{width:24px;height:24px;fill:none;stroke:#140B07;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.mb-club .cardwrap{align-self:center}
+.mb-club .cl .acts .btn{font-size:15px;padding:0 12px}
+.mb-club .mb-card{padding:20px 22px}
+.mb-club .mb-card .wm{font-size:clamp(36px,3.3vw,48px)}
+.mb-club .mb-card .wm small{font-size:11px;letter-spacing:.3em}
+.mb-club .mb-card .bot span{font-size:10px;letter-spacing:.12em}
+.mb-club .mb-card .bot b{font-size:clamp(22px,2.1vw,30px)}
+.mb-club .mb-card .no{font-size:13px;letter-spacing:.14em}
+.mb-club .mb-card .chip{width:48px;height:36px}
+.mb-club .mb-card .crest{width:44px;height:44px}
+.mb-club .cardwrap{display:block;padding:0}
+.mb-club .cardwrap::before{display:none}
+.mb-club .cardwrap .mb-glow{max-width:480px}
+@media (max-width:900px){.mb-club .joinsteps li{white-space:normal}.mb-club .cgrid{grid-template-columns:1fr;text-align:center}.mb-club .cm{justify-items:center}.mb-club .mb-club-top{flex-direction:column}.mb-club .mb-club-top .ask{text-align:center}}
+
+/* ===== Tablet fixes ===== */
+@media (min-width:600px) and (max-width:1100px){
+/* gifts hero: both buttons are the same size */
+.pg-hero .acts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-width:640px}
+.pg-hero .acts .btn{width:100%;min-width:0;padding:0 14px;text-align:center}
+/* sample cards: five cards wrap onto two rows (3 + 2) so no text leaves its card */
+.slips{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:22px;align-items:stretch}
+.slips .slip{grid-column:span 2;min-height:230px;padding-left:22px!important;padding-right:22px!important}
+.slips .slip:nth-child(4){grid-column:2/4}
+.slips .slip:nth-child(5){grid-column:4/6}
+.slips .slip:nth-child(1) b{font-size:28px}
+.slips .slip:nth-child(2) b{font-size:32px}
+.slips .slip:nth-child(3) b{font-size:32px}
+.slips .slip:nth-child(4) b{font-size:21px}
+.slips .slip:nth-child(5) b{font-size:20px}
+}
+@media (max-width:900px){
+/* corporate quote band: smaller photos, below the text and never over the button */
+.band-cta .cta-pics{min-height:240px;margin-top:8px}
+.band-cta .cta-pics .p1{width:36%;top:0;right:12%}
+.band-cta .cta-pics .p2{width:32%;bottom:0;left:10%}
+/* gifting answers: the photo becomes the background behind the questions, like the other sections */
+.gq-split{position:relative;isolation:isolate}
+.gq-bg{position:absolute;inset:0;min-height:0;z-index:-1}
+.gq-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,11,7,.82),rgba(20,11,7,.66))}
+.gq-list{background:transparent}
+.gq-list details{background:rgba(20,11,7,.62)}
+/* membership closing: title, steps, buttons, then the member card below the buttons */
+.mb-club .cl{display:contents}
+.mb-club .cl > div:first-child{order:1;text-align:center}
+.mb-club .cm{order:2}
+.mb-club .cl .acts{order:3;width:100%}
+.mb-club .cardwrap{order:4;min-height:0;height:auto;padding:8px 0 0}
+}
+@media (min-width:600px) and (max-width:1000px){
+/* membership shelf: photo beside the text so each product card is short */
+.mb-shelf .mb-prod{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+.mb-shelf .mb-prod .ph{aspect-ratio:auto;min-height:230px}
+}
+
+/* ===== Tablet: gifts picture-and-text sections stay side by side (picture on one half, text on the other) ===== */
+@media (min-width:600px) and (max-width:900px){
+.split{grid-template-columns:minmax(0,1fr) minmax(0,1fr);min-height:0}
+.split .im{min-height:380px;order:0}
+.split.rev .im{order:2!important}
+.split .tx{padding:36px 28px}
+.split .tx h2{font-size:clamp(30px,5.2vw,40px);margin-bottom:14px}
+.split .tx p{font-size:16px;margin-bottom:12px}
+.split .ticks{gap:10px;margin-top:8px}
+.split .ticks li{font-size:15.5px;gap:10px}
+}
+
+/* Membership hero: the highlighted word is plain gold. The shimmering gradient could not show once the headline words are animated in one by one. */
+.mb .mb-hero h1 em,.mb .mb-hero h1 em *{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;-webkit-text-fill-color:#E2A93B!important;color:#E2A93B!important}
+.mb .mb-hero h1 em{animation:none!important}
+
+/* ===== Membership: tidier price calculator, shorter 3 steps, cleaner compare table ===== */
+/* price calculator: one panel, big amount beside its label, a proper slider, three result cards underneath */
+.mb-split .tx{display:flex;flex-direction:column;justify-content:center}
+.mb-split .mb-calc{display:block;margin-top:28px;padding:clamp(22px,2.4vw,32px);border-radius:18px;background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px rgba(226,169,59,.4)}
+.mb-split .mb-calc .in{display:grid;grid-template-columns:1fr auto;grid-template-areas:"lab big" "rng rng" "scl scl";align-items:end;column-gap:16px;padding:0;background:none;box-shadow:none}
+.mb-split .mb-calc label{grid-area:lab;margin:0 0 10px;font-size:16px;font-weight:600;color:rgba(255,255,255,.92)}
+.mb-split .mb-calc .big{grid-area:big;font-size:64px;line-height:.9}
+.mb-split .mb-calc input[type=range]{grid-area:rng;-webkit-appearance:none;appearance:none;width:100%;height:8px;margin:20px 0 10px;border-radius:999px;outline:none;background:linear-gradient(90deg,#E2A93B var(--pct,16%),rgba(255,255,255,.22) var(--pct,16%))}
+.mb-split .mb-calc input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:26px;height:26px;border-radius:50%;background:#F7DE97;border:4px solid #E2A93B;box-shadow:0 0 0 5px rgba(226,169,59,.25);cursor:pointer}
+.mb-split .mb-calc input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#F7DE97;border:4px solid #E2A93B;box-shadow:0 0 0 5px rgba(226,169,59,.25);cursor:pointer}
+.mb-split .mb-calc input[type=range]::-moz-range-track{background:transparent}
+.mb-split .mb-calc .scale{grid-area:scl;font-size:13.5px;color:rgba(255,255,255,.7)}
+.mb-split .mb-calc .out{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:22px;padding:0;background:none;align-content:start}
+.mb-split .mb-calc .out>div{padding:16px 14px;border-radius:12px;background:var(--gold);color:#140B07}
+.mb-split .mb-calc .out b{font-size:46px}
+.mb-split .mb-calc .out span{display:block;margin-top:6px;font-size:13.5px;line-height:1.3;font-weight:600}
+
+/* three steps: compact cards (number ring and icon on one row), much less height */
+.mb-stepsbg{padding-block:clamp(48px,5vw,72px)}
+.mb-stepsbg .mb-harvest{margin-bottom:10px}
+.mb-stepsbg .mb-how{margin-bottom:24px}
+.mb-stepsbg .mb-how h3{font-size:clamp(26px,2.4vw,34px)}
+.mb-steps{gap:14px}
+.mb-steps li{display:grid;grid-template-columns:auto auto;justify-content:center;align-items:center;column-gap:14px;padding:22px 22px 24px}
+.mb-steps .ring{width:64px;height:64px;margin:0 0 12px}
+.mb-steps .mb-ics{margin:0 0 12px}
+.mb-steps .mb-ics i{width:40px;height:40px}
+.mb-steps .mb-ics svg{width:21px;height:21px}
+.mb-steps b,.mb-steps li>span{grid-column:1/-1}
+.mb-steps b{font-size:19px}
+.mb-steps li>span{margin-top:8px;font-size:15px}
+
+/* compare table: one clean block, the Member column is a single gold panel */
+.mb-dual2 .mb-cmp.cmp{gap:0;border-radius:18px;overflow:hidden;background:rgba(255,255,255,.06)}
+.mb-dual2 .mb-cmp.cmp>div{background:transparent;padding:20px 20px}
+.mb-dual2 .mb-cmp.cmp>div.h{padding:16px 20px}
+.mb-dual2 .mb-cmp.cmp .h.m{background:var(--gold);color:#140B07}
+.mb-dual2 .mb-cmp.cmp .h.m svg.mi{stroke:#140B07}
+.mb-dual2 .mb-cmp.cmp .yes{background:var(--gold);color:#140B07}
+.mb-dual2 .mb-cmp.cmp .yes::before{background:#140B07}
+.mb-dual2 .mb-cmp.cmp .no{color:rgba(255,255,255,.72)}
+.mb-dual2 .head{margin-bottom:24px}
+
+/* ===== Mobile and tablet: the members / guests table always fits the screen ===== */
+@media (max-width:1000px){
+.mb-dual2{grid-template-columns:minmax(0,1fr)}
+.mb-dual2 .l{min-width:0}
+.mb-dual2 .mb-cmp.cmp>div{min-width:0}
+}
+@media (max-width: 599.98px){
+.mb-dual2 .mb-cmp.cmp{grid-template-columns:1.25fr 1fr 1fr}
+.mb-dual2 .mb-cmp.cmp>div{padding:14px 10px;font-size:14px;gap:6px}
+.mb-dual2 .mb-cmp.cmp>div.h{padding:12px 8px;font-size:19px;gap:4px;letter-spacing:0}
+.mb-dual2 .mb-cmp svg.mi{width:1.1em;height:1.1em}
+}
+
+/* ===== Mobile (up to 599px): the same fixes as the tablet, sized for phones ===== */
+@media (max-width: 599.98px){
+/* gifts hero: the two buttons are the same size, one under the other */
+.pg-hero .acts{display:grid;grid-template-columns:minmax(0,1fr)}
+.pg-hero .acts .btn{width:100%;min-width:0;padding:0 14px;text-align:center}
+/* sample cards: as many per row as fit, text always stays inside its card */
+.slips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;height:auto;padding:6px 0 10px;margin-top:28px}
+.slips .slip{display:flex;min-height:150px;padding:18px 14px!important;font-size:13px;line-height:1.4;overflow-wrap:anywhere}
+.slips .slip:nth-child(1) b{font-size:22px}
+.slips .slip:nth-child(2) b{font-size:24px}
+.slips .slip:nth-child(3) b{font-size:24px}
+.slips .slip:nth-child(4) b{font-size:17px}
+.slips .slip:nth-child(5) b{font-size:16px}
+.slips .slip:nth-child(5){grid-column:1/-1;justify-self:center;width:calc(50% - 6px)}
+/* how it works: smaller shapes, number beside the text */
+.steps3{max-width:400px;margin-inline:auto;gap:12px;padding:0}
+.steps3 li{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:16px;align-items:center;padding:16px 20px!important}
+.steps3 .n{grid-row:1/3;font-size:50px!important;margin:0!important;line-height:.9}
+.steps3 b{font-size:17px}
+.steps3 span.t{margin-top:4px;font-size:14px;line-height:1.4}
+/* gift boxes: two by two */
+.pgrid2{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 12px}
+.gt .m{flex-direction:column;align-items:flex-start;gap:2px;margin:10px 0 4px}
+.gt h3{font-size:16px}
+.gt .m b{font-size:16px}
+.gt p{font-size:12.5px;margin:0 0 10px;line-height:1.4}
+.gt .btn{min-height:42px;font-size:13px;padding:0 8px}
+/* picture-and-text sections: the picture is a shorter banner above the text */
+.split .im{min-height:220px}
+.split .tx{padding:32px 20px}
+.split .tx h2{font-size:clamp(28px,8vw,36px);margin-bottom:12px}
+.split .tx p{font-size:16px}
+.split .ticks li{font-size:15.5px}
+/* membership shelf: shorter photos */
+.mb-shelf .mb-prod .ph{aspect-ratio:16/10}
+}
+
+/* ===== Mobile: membership photo panels are shorter ===== */
+@media (max-width: 599.98px){
+.mb-split .pic{min-height:320px}
+.mb-faqsplit .ph{min-height:0;padding:36px 20px 6px}
+.mb-faqsplit .ph h2{font-size:clamp(38px,11vw,52px)}
+}
+
+/* ===== Mobile: gifts hero is shorter and tidier; the three picture-and-text sections are text only ===== */
+@media (max-width: 599.98px){
+.pg-hero{min-height:0;padding:calc(var(--bar-h) + var(--hdr-h) + 28px) 0 44px}
+.pg-hero h1{font-size:clamp(46px,13.5vw,64px);line-height:.95}
+.pg-hero .lead{margin-top:16px;font-size:16px}
+.pg-hero .acts{margin-top:22px}
+.pg-hero .facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:28px}
+.pg-hero .facts b{font-size:34px}
+.pg-hero .facts span{display:block;font-size:12.5px;line-height:1.3}
+/* picture-and-text sections: title, text, then the picture just above the bullet points */
+.split{display:flex;flex-direction:column;min-height:0;padding:44px 20px;color:#24160F}
+.split.light{background:var(--sand)}
+.split.light.ivory{background:#FBF7F1}
+.split.light.pale{background:#F4E4BF}
+.split .tx{display:contents}
+.split .tx>.k{order:1}
+.split .tx>h2{order:2}
+.split .tx>p{order:3}
+.split .im{order:4!important;display:block;min-height:0;height:190px;border-radius:14px;margin:8px 0 18px}
+.split .tx>.ticks{order:5}
+/* eight ways to give: two cards per row, half the width and half the height */
+.types{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.type{min-height:170px;padding:12px}
+.type h3{font-size:24px;top:12%;left:10px;right:10px}
+.type p{font-size:12px;line-height:1.35;margin:0 0 6px}
+.type span{font-size:12px;text-underline-offset:3px}
+}

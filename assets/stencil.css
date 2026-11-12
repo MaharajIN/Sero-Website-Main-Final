@@ -1,0 +1,50 @@
+/* Sero Chocolates: the Stencil look, shared by every inner page.
+   Loaded last on each page, so it re-themes the existing pages without rebuilding them.
+   Headings: Big Shoulders Stencil. Subheadings, nav and buttons: Bricolage Grotesque. Text: Manrope. */
+:root{
+  --cocoa:#24160F; --primary:#24160F; --choc:#24160F; --milk:#6A5A4E;
+  --secondary:#FBF7F1; --cream:#FBF7F1; --sand:#F3EBDF; --burgundy:#B4452A; --amber:#E2A93B; --ink:#24160F;
+  --line:rgba(36,22,15,.14);
+  --bar-h:38px; --hdr-h:72px; --hdr-h-small:72px; --logo-h:44px; --logo-h-small:44px;
+  --st:'Bebas Neue','Impact',sans-serif; --sb:'Montserrat',system-ui,sans-serif; --sx:'Montserrat',system-ui,sans-serif;
+}
+body{font-family:var(--sx)!important;background:#FBF7F1!important;color:#24160F;font-size:17px;line-height:1.55}
+html{font-synthesis-weight:none}
+h1,h2{font-family:var(--st);font-weight:400;text-transform:uppercase;letter-spacing:.02em;line-height:.96}
+h1,h2{white-space:normal!important;overflow-wrap:break-word}
+h1 em,h2 em,h3 em{font-style:normal;color:#B4452A}
+h3,h4{font-family:var(--sb)}
+::selection{background:#24160F;color:#FBF7F1}
+
+/* announcement bar */
+.announce{background:#24160F!important;color:#F4EDE3!important;font-family:var(--sb)!important;font-size:13.5px!important;letter-spacing:.02em!important;text-transform:none!important}
+.ticker span::after{color:#E2A93B!important}
+
+/* header: solid paper bar, same as the homepage */
+.header{background:#FBF7F1!important;color:#24160F!important;height:72px!important;box-shadow:none!important}
+body.scrolled .header{background:#FBF7F1!important;color:#24160F!important;height:72px!important;box-shadow:0 8px 24px -18px rgba(36,22,15,.45)!important}
+.header nav a{font-family:var(--sb)!important;font-size:15.5px!important;font-weight:500!important;letter-spacing:0!important;text-transform:none!important}
+.header nav a::after{background:#B4452A!important}
+.logo img{filter:none!important;mix-blend-mode:multiply!important;height:44px!important}
+body.scrolled .logo img{height:44px!important}
+.icon-btn{font-family:var(--sb)!important}
+.icon-btn:hover{background:#F3EBDF!important}
+.badge{background:#B4452A!important;color:#fff!important}
+.search input{border-bottom-color:#24160F!important;color:#24160F!important}
+.search input::placeholder{color:#6A5A4E!important}
+.menu-pop{background:#FBF7F1!important;color:#24160F!important}
+.menu-pop a:hover{background:#F3EBDF!important}
+.drawer{background:#FBF7F1!important;color:#24160F!important}
+.drawer a{font-family:var(--st)!important;font-weight:800;font-size:44px!important;letter-spacing:.012em!important;line-height:1.1!important;border-bottom:0!important}
+
+/* footer */
+footer{background:#24160F!important;color:#F4EDE3!important}
+footer h4{font-family:var(--sb)!important;text-transform:none!important;letter-spacing:0!important;font-weight:600!important}
+footer .tagline{font-family:var(--st)!important;font-weight:800!important;text-transform:uppercase!important;letter-spacing:.02em!important}
+footer input{border-radius:0}
+
+/* buttons and controls: square, solid, one voice */
+button,.btn,[class*="btn"]{font-family:var(--sb)}
+
+/* menu: dim the page behind the open menu so it is clear where to tap to close it */
+.drawer.open{box-shadow:0 0 0 100vmax rgba(20,11,7,.55);overflow-y:auto}

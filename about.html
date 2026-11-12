@@ -1,0 +1,5399 @@
+<!doctype html>
+
+<!-- ======================================================================
+     PAGE: GIFTS PAGE
+     Custom gifts. Hero, personalised sleeve, note and seal, shipping
+     box, occasions, gift boxes, sample notes, steps and call to
+     action.
+     ====================================================================== -->
+<!--  How this file is organised (top to bottom):
+        1. <head>   : meta tags, fonts, page styles (CSS)
+        2. <body>   : header, mobile menu, main content, footer
+        3. scripts  : page behaviour, then the shared files in assets/
+      Shared files: assets/sero.js (catalogue, cart), assets/stencil.css and
+      assets/stencil.js (theme), assets/footer.css (footer), assets/pages.css
+      (gifts and membership). -->
+
+<html lang="en">
+  <!-- ======================================================================
+       AREA: HEAD
+       Page title, meta tags, fonts and styles. Nothing here is visible
+       on the page itself.
+       ====================================================================== -->
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Our story – Sero Chocolates</title>
+    <meta
+      name="description"
+      content="How Sero started on a farm porch in 2018, how we grew to four named farms and 500+ farming families, and how every bar is made, from the pod to the bar."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Caveat:wght@600;700&family=DM+Serif+Display&family=Fraunces:ital,wght@0,600;1,600&family=Lora:wght@500;600&family=Pacifico&family=Playfair+Display:ital,wght@0,600;1,600&family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- ======================================================================
+         CSS: STYLES
+         CSS for this page. Colours, fonts and spacing are set as variables
+         near the top of the first block.
+         ====================================================================== -->
+    <style>
+      :root {
+        /* working palette – to be finalised in the colour discussion */
+        --cocoa: #2a160d; /* deepest chocolate (footer, text on light) */
+        --primary: #4f1b01; /* PRIMARY colour – header, footer (RGB 79 27 1) */
+        --choc: #4f1b01;
+        --milk: #8a5a3b; /* milk chocolate */
+        --secondary: #f4f0eb; /* SECONDARY colour – text on primary, light surfaces */
+        --cream: #f4f0eb;
+        --sand: #e9d6b8; /* light sand */
+        --burgundy: #6e1f33; /* accent / member */
+        --amber: #d98e2c; /* highlight */
+        --ink: #241410;
+        --line: rgba(42, 22, 13, 0.16);
+
+        --bar-h: 38px;
+        --hdr-h: 64px; /* enlarged header (70% of first draft) */
+        --hdr-h-small: 55px; /* compact header after scroll */
+        --logo-h: 49px;
+        --logo-h-small: 42px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Montserrat", system-ui, sans-serif;
+        color: var(--ink);
+        background: #fbf6ee;
+        line-height: 1.5;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font: inherit;
+        color: inherit;
+        background: none;
+        border: 0;
+        cursor: pointer;
+      }
+      ul {
+        list-style: none;
+      }
+      :focus-visible {
+        outline: 2px solid var(--amber);
+        outline-offset: 3px;
+      }
+
+      /* ============ ANNOUNCEMENT BAR ============ */
+      .announce {
+        height: var(--bar-h);
+        background: var(--burgundy);
+        color: #f6e7d2;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        font-size: 14.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        position: relative;
+      }
+      .announce:hover .ticker {
+        animation-play-state: paused;
+      }
+      .ticker {
+        display: flex;
+        flex: none;
+        white-space: nowrap;
+        animation: marquee 32s linear infinite;
+      }
+      .ticker span {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 0 28px;
+      }
+      .ticker span::after {
+        content: "◆";
+        color: var(--amber);
+        font-size: 8px;
+        margin-left: 28px;
+      }
+      @keyframes marquee {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ============ HEADER ============ */
+      .header {
+        position: fixed;
+        top: var(--bar-h);
+        left: 0;
+        right: 0;
+        z-index: 50;
+        height: var(--hdr-h);
+        background: transparent;
+        color: var(--secondary);
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        padding: 0 40px;
+        transition:
+          height 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+          background-color 0.45s,
+          color 0.45s,
+          box-shadow 0.45s;
+      }
+      .header nav ul {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+      .header .left {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+      .header nav {
+        display: flex;
+        align-items: center;
+      }
+      .header nav a {
+        white-space: nowrap;
+        line-height: 1;
+        font-size: 14.5px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        position: relative;
+        padding: 8px 0;
+      }
+      .header nav a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 0;
+        background: var(--amber);
+        transition: width 0.3s;
+      }
+      .header nav a:hover::after,
+      .header nav a[aria-current="page"]::after {
+        width: 100%;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        line-height: 0;
+      }
+      .logo img {
+        height: var(--logo-h);
+        width: auto;
+        transition: height 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+        filter: invert(1);
+        mix-blend-mode: screen;
+      } /* black-on-white PNG → white-on-chocolate */
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 8px;
+      }
+      .icon-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 40px;
+        min-width: 40px;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 0 10px;
+        font-size: 15.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: background 0.2s;
+      }
+      .icon-btn:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .icon-btn svg {
+        width: 22px;
+        height: 22px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .badge {
+        position: absolute;
+        top: 2px;
+        right: 0;
+        min-width: 17px;
+        height: 17px;
+        border-radius: 9px;
+        background: var(--amber);
+        color: var(--cocoa);
+        font-size: 11px;
+        font-weight: 600;
+        display: grid;
+        place-items: center;
+      }
+      .cart {
+        position: relative;
+      }
+
+      .search {
+        display: flex;
+        align-items: center;
+      }
+      .search input {
+        width: 0;
+        opacity: 0;
+        border: 0;
+        border-bottom: 1px solid currentColor;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        font-size: 15.5px;
+        padding: 6px 0;
+        transition:
+          width 0.35s,
+          opacity 0.35s;
+      }
+      .search.open input {
+        width: 170px;
+        opacity: 1;
+        margin-right: 4px;
+      }
+      .search input::placeholder {
+        color: inherit;
+        opacity: 0.6;
+      }
+
+      /* account – two states */
+      .acct {
+        position: relative;
+      }
+      .acct .in {
+        display: none;
+      }
+      body.signed-in .acct .out {
+        display: none;
+      }
+      body.signed-in .acct .in {
+        display: inline-flex;
+      }
+      .avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: var(--amber);
+        color: var(--cocoa);
+        display: grid;
+        place-items: center;
+        font-weight: 600;
+        font-size: 14.5px;
+      }
+      .member-tag {
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        padding: 2px 7px;
+        border-radius: 99px;
+        background: var(--burgundy);
+        color: #f6e7d2;
+      }
+      .menu-pop {
+        position: absolute;
+        right: 0;
+        top: calc(100% + 6px);
+        min-width: 220px;
+        background: var(--cream);
+        color: var(--ink);
+        border-radius: 10px;
+        box-shadow: 0 14px 40px rgba(42, 22, 13, 0.28);
+        padding: 8px;
+        display: none;
+      }
+      .acct.open .menu-pop {
+        display: block;
+      }
+      .menu-pop .who {
+        padding: 10px 12px 8px;
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 6px;
+      }
+      .menu-pop .who b {
+        display: block;
+        font-size: 16.5px;
+      }
+      .menu-pop .who small {
+        color: var(--milk);
+      }
+      .menu-pop a {
+        display: block;
+        padding: 9px 12px;
+        border-radius: 6px;
+        font-size: 15.5px;
+      }
+      .menu-pop a:hover {
+        background: var(--sand);
+      }
+      .menu-pop a.signout {
+        color: var(--burgundy);
+        border-top: 1px solid var(--line);
+        margin-top: 6px;
+        border-radius: 0 0 6px 6px;
+      }
+
+      .burger {
+        display: none;
+      }
+      @media (max-width: 1180px) {
+        .header {
+          padding: 0 24px;
+        }
+        .header nav ul {
+          gap: 18px;
+        }
+        .header nav a {
+          font-size: 13px;
+          letter-spacing: 0.1em;
+        }
+      }
+
+      /* scrolled: half-height, light colours, shadow */
+      body.scrolled .header {
+        height: var(--hdr-h-small);
+        background: var(--primary);
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+      }
+      body.scrolled .logo img {
+        height: var(--logo-h-small);
+      }
+
+      @media (max-width: 980px) {
+        .header {
+          padding: 0 16px;
+        }
+        .header nav {
+          display: none;
+        }
+        .burger {
+          display: inline-flex;
+        }
+        .header .left {
+          display: flex;
+        }
+        .logo img {
+          height: 47px;
+        }
+        body.scrolled .logo img {
+          height: 42px;
+        }
+        :root {
+          --hdr-h: 68px;
+        }
+        .icon-btn .lbl {
+          display: none;
+        }
+        .search.open input {
+          width: 110px;
+        }
+        .drawer {
+          display: none;
+          position: fixed;
+          inset: 0 auto 0 0;
+          width: 78%;
+          max-width: 320px;
+          background: var(--choc);
+          color: var(--cream);
+          z-index: 60;
+          padding: 90px 28px 28px;
+        }
+        .drawer.open {
+          display: block;
+        }
+        .drawer a {
+          display: block;
+          padding: 14px 0;
+          font-size: 20px;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+        }
+      }
+      .drawer {
+        display: none;
+      }
+
+      /* ============ HERO ============ */
+      .hero-home {
+        --gutter: max(40px, calc((100vw - 1360px) / 2 + 40px));
+        position: relative;
+        min-height: calc(100svh - var(--bar-h));
+        display: flex;
+        align-items: stretch;
+        overflow: hidden;
+        background: #1b0c04;
+        color: var(--secondary);
+        isolation: isolate;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        overflow: hidden;
+        background: #1b0c04;
+      }
+      .bg-layer {
+        position: absolute;
+        inset: 0;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .bg-panel {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .bg-group {
+        position: absolute;
+        inset: -24%;
+        rotate: var(--tilt, 0deg);
+        animation: groupDrift 24s ease-in-out infinite alternate;
+        will-change: translate, scale;
+      }
+      @keyframes groupDrift {
+        from {
+          translate: -1.5% -1%;
+          scale: 1;
+        }
+        to {
+          translate: 1.5% 1%;
+          scale: 1.05;
+        }
+      }
+      @media (max-width: 980px) {
+        .bg-group {
+          inset: -45%;
+        }
+      }
+      .bg-slider .slide {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 1.2s ease;
+      }
+      .bg-slider .slide.on {
+        opacity: 1;
+      }
+      .bg-slider .slide.on .bg-layer,
+      .bg-slider .slide.on .bg-photo {
+        animation: kenburns 9s ease-out forwards;
+      }
+      @keyframes kenburns {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.07);
+        }
+      }
+      .hero-dots {
+        position: absolute;
+        left: 50%;
+        bottom: 26px;
+        transform: translateX(-50%);
+        display: none;
+        gap: 14px;
+        z-index: 3;
+      }
+      .hero-dots.show {
+        display: flex;
+      }
+      .hero-dots button {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1.5px solid var(--amber);
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+        transition:
+          background 0.3s,
+          box-shadow 0.3s,
+          transform 0.3s;
+      }
+      .hero-dots button:hover {
+        transform: scale(1.15);
+      }
+      .hero-dots button.on {
+        background: var(--secondary);
+        box-shadow:
+          0 0 0 3px rgba(110, 31, 51, 0.55),
+          0 0 14px 4px rgba(110, 31, 51, 0.95);
+      }
+      .hero-shade {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        /* chocolate radial gradient: lighter in the centre, darker towards the edges */
+        background: radial-gradient(
+          ellipse at center,
+          rgba(79, 27, 1, 0.28) 0%,
+          rgba(52, 18, 2, 0.55) 55%,
+          rgba(24, 8, 0, 0.86) 100%
+        );
+      }
+      .hero-inner {
+        width: 100%;
+        max-width: 1360px;
+        margin: 0 auto;
+        position: relative;
+        padding: calc(var(--hdr-h) + 16px) 40px 64px;
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 24px 40px;
+        align-items: center;
+      }
+      .hero-copy {
+        position: relative;
+        z-index: 2;
+      }
+      .hero-cocoa {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+      }
+      .hero-bars {
+        position: absolute;
+        inset: 0 0 0 40%;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .hero-edge {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .hero-fruit {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1/1;
+        max-width: 640px;
+        justify-self: end;
+        pointer-events: none;
+      }
+      .hero-bars {
+        display: none;
+      }
+      .hero-home[data-bg^="blend"] .hero-bars {
+        display: block;
+      }
+      .hero-inner {
+        z-index: 2;
+      }
+      .hero-copy h1 {
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-weight: 600;
+        font-size: clamp(71.68px, 13.31vw, 192px);
+        line-height: 0.92;
+        letter-spacing: -0.01em;
+        color: var(--secondary);
+        text-wrap: balance;
+        text-transform: uppercase;
+      }
+      .hero-copy .support {
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-weight: 500;
+        font-size: clamp(40.96px, 5.38vw, 76.8px);
+        line-height: 1.05;
+        color: var(--sand);
+        margin-top: 22px;
+        text-transform: uppercase;
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 40px;
+        align-items: stretch;
+      }
+      .hbtn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        min-height: 56px;
+        padding: 0 34px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 14.5px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        border: 1.5px solid transparent;
+        border-radius: 0;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-position: left;
+        background-size: 0% 100%;
+        transition:
+          background-size 0.4s,
+          color 0.3s,
+          transform 0.25s,
+          border-color 0.3s;
+      }
+      .hbtn svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: transform 0.25s;
+      }
+      .hbtn:hover {
+        background-size: 100% 100%;
+        color: var(--primary);
+        transform: translateY(-2px);
+      }
+      .hbtn:hover svg {
+        transform: translateX(4px);
+      }
+      .hbtn-light {
+        background-color: var(--secondary);
+        background-image: linear-gradient(var(--amber), var(--amber));
+        color: var(--primary);
+      }
+      .hbtn-dark {
+        background-color: var(--primary);
+        background-image: linear-gradient(var(--amber), var(--amber));
+        color: var(--secondary);
+        border-color: rgba(244, 240, 235, 0.45);
+      }
+      .hbtn-dark:hover {
+        border-color: var(--amber);
+      }
+
+      .hero-fruit img,
+      .hero-cocoa img,
+      .hero-bars img,
+      .hero-edge img {
+        position: absolute;
+        width: var(--w);
+        height: auto;
+        transform: rotate(var(--r));
+        filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.45)) blur(var(--b, 0px));
+        animation: float 7s ease-in-out infinite;
+        animation-delay: var(--d, 0s);
+        will-change: transform;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(var(--r));
+        }
+        50% {
+          transform: translateY(-12px) rotate(calc(var(--r) + 3deg));
+        }
+      }
+      @media (max-width: 980px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+          padding-top: calc(var(--hdr-h) + 32px);
+          gap: 8px;
+        }
+        .hero-fruit {
+          max-width: 440px;
+          justify-self: center;
+        }
+        .hero-bars {
+          inset: auto 0 0 0;
+          height: 46%;
+        }
+        .hero-edge {
+          display: none;
+        }
+        .hero-inner {
+          padding-bottom: 140px;
+        }
+        .hero-copy h1 {
+          font-size: clamp(52px, 15vw, 100px);
+        }
+      }
+
+      .hero-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--amber);
+        margin-bottom: 22px;
+        white-space: nowrap;
+      }
+      .hero-eyebrow span {
+        display: inline-block;
+        width: 38px;
+        height: 1.5px;
+        background: var(--amber);
+        flex: none;
+      }
+      .stats-bar {
+        width: 100%;
+        background: var(--secondary);
+        padding: 84px 40px 92px;
+      }
+      .stats-bar ul {
+        list-style: none;
+        max-width: 1360px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+      }
+      .stats-bar li {
+        padding: 0;
+        position: relative;
+      }
+      .stat-7 .halo {
+        position: absolute;
+        left: -46px;
+        top: -30px;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        pointer-events: none;
+        opacity: 0;
+        background: radial-gradient(
+          circle,
+          rgba(110, 31, 51, 0.5) 0%,
+          rgba(110, 31, 51, 0.22) 38%,
+          rgba(110, 31, 51, 0) 70%
+        );
+      }
+      .stats-bar b {
+        display: block;
+        font-family: "Dancing Script", cursive;
+        font-weight: 700;
+        font-size: 66px;
+        line-height: 1;
+        color: var(--primary);
+      }
+      .stats-bar span {
+        display: block;
+        margin-top: 12px;
+        font-family: "Montserrat", system-ui, sans-serif;
+        font-variation-settings:
+          "opsz" 18,
+          "wght" 480;
+        font-size: 18.5px;
+        line-height: 1.4;
+        letter-spacing: 0.005em;
+        color: rgba(79, 27, 1, 0.9);
+        max-width: 250px;
+      }
+      .stats-bar span i {
+        font-style: normal;
+        font-variation-settings:
+          "opsz" 18,
+          "wght" 680;
+        color: var(--burgundy);
+      }
+      .stats-bar b {
+        position: relative;
+        min-width: 3ch;
+        transform-origin: left 70%;
+      }
+      .stat-7 b {
+        will-change: text-shadow, transform, color;
+      }
+      .hero-cocoa img.puff {
+        filter: none;
+        opacity: 0.5;
+        animation: drift 16s ease-in-out infinite;
+        animation-delay: var(--d, 0s);
+      }
+      @keyframes drift {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+        50% {
+          transform: translate(14px, -10px) scale(1.06);
+        }
+      }
+      @media (max-width: 980px) {
+        .stats-bar {
+          padding: 56px 20px 60px;
+        }
+        .stats-bar ul {
+          grid-template-columns: 1fr 1fr;
+          gap: 30px 20px;
+        }
+        .stats-bar b {
+          font-size: 50px;
+        }
+        .stats-bar span {
+          font-size: 17.5px;
+        }
+        .hero-eyebrow {
+          font-size: 11px;
+          letter-spacing: 0.14em;
+          white-space: normal;
+        }
+        .hero-copy {
+          min-width: 0;
+        }
+        .hero-cocoa {
+          opacity: 0.85;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-fruit img,
+        .hero-edge img,
+        .hero-bars img,
+        .hero-cocoa img,
+        .hero-cocoa img.puff,
+        .bg-group,
+        .bg-slider .slide .bg-layer {
+          animation: none;
+        }
+      }
+
+      /* ============ CATEGORIES ============ */
+      .cats {
+        width: 100%;
+        background: #2a0e03 url(assets/textures/choc-caramel.jpg) center top/cover no-repeat;
+      }
+      .cats-head {
+        position: relative;
+        width: 100%;
+        min-height: 140px;
+        padding: 104px 40px 34px;
+        display: grid;
+        place-items: center;
+      }
+      .cats-head h2 {
+        position: relative;
+        margin: 0;
+        max-width: 1360px;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+        font-style: italic;
+        font-weight: 600;
+        font-size: clamp(20px, calc((100vw - 96px) / 23.6), 58px);
+        white-space: nowrap;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+        color: var(--secondary);
+        text-shadow:
+          0 2px 6px rgba(20, 6, 0, 0.55),
+          0 2px 22px rgba(20, 6, 0, 0.6);
+      }
+      .cats-body {
+        width: 100%;
+        position: relative;
+        padding: 6px 0 105px;
+      }
+      .dock-wrap {
+        position: relative;
+        width: 100%;
+      }
+      .dock {
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+        padding: 120px 0 18px;
+        scroll-snap-type: x proximity;
+      }
+      .dock::-webkit-scrollbar {
+        display: none;
+      }
+      .dock-inner {
+        --base: 164px;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        gap: 28px;
+        width: max-content;
+        margin: 0 auto;
+        padding: 0 112px;
+      }
+      .cat {
+        flex: none;
+        width: var(--base);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        text-decoration: none;
+        color: var(--primary);
+        scroll-snap-align: center;
+        outline: none;
+      }
+      .cat-disc {
+        position: relative;
+        display: block;
+        width: var(--base);
+        height: var(--base);
+        border-radius: 50%;
+        background: radial-gradient(circle at 34% 26%, var(--c2), var(--c1) 74%);
+        box-shadow:
+          0 16px 30px -10px rgba(10, 3, 0, 0.7),
+          inset 0 0 0 1.5px rgba(255, 255, 255, 0.2);
+        transform-origin: 50% 100%;
+        transform: translateX(var(--dx, 0px)) scale(var(--s, 1));
+        will-change: transform;
+      }
+      .cat-pop {
+        position: absolute;
+        left: 4%;
+        right: 4%;
+        top: -14%;
+        bottom: 16%;
+        display: grid;
+        place-items: end center;
+        pointer-events: none;
+      }
+      .cat-pop img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 12px 12px rgba(10, 3, 0, 0.55));
+        transition: translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .cat:hover .cat-pop img,
+      .cat:focus-visible .cat-pop img {
+        translate: 0 -4%;
+      }
+      .cat-name,
+      .cat-meta {
+        display: block;
+        transform: translateX(var(--dx, 0px));
+      }
+      .cat-name {
+        margin-top: 20px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 14.5px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--secondary);
+        line-height: 1.35;
+        min-height: 2.7em;
+        text-shadow: 0 1px 8px rgba(20, 6, 0, 0.5);
+      }
+      .cat-meta {
+        margin-top: 4px;
+        font-family: "Montserrat", sans-serif;
+        font-style: italic;
+        font-weight: 600;
+        font-size: 16.5px;
+        color: #f0b55f;
+      }
+      .cat:focus-visible .cat-disc {
+        box-shadow:
+          0 0 0 3px #2a0e03,
+          0 0 0 6px var(--amber),
+          0 14px 28px -10px rgba(10, 3, 0, 0.7);
+      }
+      .dock-arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 3;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: 1.5px solid var(--amber);
+        background: var(--primary);
+        color: var(--secondary);
+        font-size: 20px;
+        line-height: 1;
+        cursor: pointer;
+        transform: translateY(-70%);
+        transition:
+          background 0.25s,
+          color 0.25s,
+          box-shadow 0.25s;
+      }
+      .dock-arrow:hover {
+        background: var(--amber);
+        color: var(--primary);
+      }
+      .dock-arrow.prev {
+        left: 18px;
+      }
+      .dock-arrow.next {
+        right: 18px;
+      }
+      @media (max-width: 1400px) {
+        .dock-inner {
+          --base: 150px;
+          gap: 22px;
+          padding: 0 70px;
+        }
+      }
+      @media (max-width: 760px) {
+        .cats-head h2 {
+          white-space: normal;
+          font-size: clamp(26px, 7.4vw, 38px);
+        }
+        .cats-head {
+          padding: 72px 20px 28px;
+        }
+        .dock-inner {
+          --base: 140px;
+          gap: 20px;
+          padding: 0 24px;
+        }
+        .dock {
+          padding-top: 70px;
+        }
+      }
+
+      /* ============ BEST SELLERS ============ */
+      .best {
+        width: 100%;
+        background: var(--secondary);
+        color: var(--primary);
+        --ol: var(--primary);
+        padding: 116px 40px 128px;
+      }
+      .best-inner {
+        max-width: 1360px;
+        margin: 0 auto;
+      }
+      .best-head {
+        margin-bottom: 26px;
+      }
+      .best-row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px 44px;
+        margin: 2px 0 8px;
+      }
+      .best-head .eyebrow {
+        color: var(--burgundy);
+      }
+      .best-head h2 {
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-weight: 600;
+        font-size: clamp(38.4px, 4.74vw, 66.56px);
+        line-height: 1;
+        color: var(--primary);
+        margin: 0;
+        white-space: nowrap;
+        text-transform: uppercase;
+      }
+      .best-row .lnk {
+        padding: 0 0 6px;
+      }
+      .best-sub {
+        font-size: 17.5px;
+        line-height: 1.5;
+        color: #5b3f31;
+      }
+      .best .lnk {
+        font-size: 14.5px;
+      }
+      .best-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+      .pcard {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .pcard-media {
+        position: relative;
+        display: grid;
+        place-items: center;
+        aspect-ratio: 4/5;
+        border-radius: 20px;
+        overflow: hidden;
+        padding: 33% 7% 7%;
+        background: radial-gradient(circle at 50% 38%, var(--m2), var(--m1) 78%);
+        box-shadow: inset 0 0 0 1px rgba(79, 27, 1, 0.08);
+      }
+      .pcard-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 18px 18px rgba(40, 12, 2, 0.38));
+        transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .pcard:hover .pcard-media img {
+        transform: translateY(-6px) scale(1.05);
+      }
+      .pdetails {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 2px 2px 0;
+      }
+      .pdetails h3 {
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-weight: 600;
+        font-size: 38.4px;
+        line-height: 1.05;
+        color: var(--primary);
+      }
+      .porigin {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        font-size: 16.5px;
+        line-height: 1.35;
+        color: #5b3f31;
+      }
+      .porigin svg {
+        flex: none;
+        width: 18px;
+        height: 18px;
+        margin-top: 2px;
+        fill: none;
+        stroke: var(--burgundy);
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .porigin b {
+        display: block;
+        font-weight: 500;
+        color: var(--primary);
+      }
+      .porigin i {
+        display: block;
+        font-style: normal;
+        font-size: 15px;
+        opacity: 0.8;
+      }
+      .pingr {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        z-index: 2;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .pingr li {
+        padding: 5px 10px;
+        border-radius: 99px;
+        background: rgba(42, 14, 3, 0.9);
+        backdrop-filter: blur(4px);
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        color: var(--secondary);
+      }
+      .pprice {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: baseline;
+        gap: 12px;
+        margin-top: 6px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(79, 27, 1, 0.16);
+      }
+      .pprice b {
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-weight: 600;
+        font-size: 43.52px;
+        line-height: 1;
+        color: var(--primary);
+        text-transform: uppercase;
+      }
+      .pprice span {
+        font-size: 14.5px;
+        color: #5b3f31;
+        text-align: center;
+      }
+      .pprice::after {
+        content: "";
+      }
+      @media (max-width: 1180px) {
+        .best-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .best-head h2 {
+          white-space: normal;
+        }
+      }
+      @media (max-width: 620px) {
+        .best {
+          padding: 72px 20px 80px;
+        }
+        .best-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ============ PROCESS ============ */
+      .process {
+        --p-bg: #6e1f33;
+        --p-bg2: #9c3a55;
+        --p-edge: rgba(0, 0, 0, 0.34);
+        width: 100%;
+        color: #fbf3e8;
+        padding: 120px 40px 124px;
+        overflow: hidden;
+        background: radial-gradient(90% 120% at 18% 0%, var(--p-bg2) 0%, var(--p-bg) 62%);
+      }
+      .process-inner {
+        max-width: 1360px;
+        margin: 0 auto;
+      }
+      .process-head {
+        margin-bottom: 52px;
+        max-width: 1100px;
+      }
+      .process-head h2 {
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-weight: 600;
+        font-size: clamp(46.08px, 5.89vw, 81.92px);
+        line-height: 1;
+        color: #fbf3e8;
+        margin: 0 0 14px;
+        text-transform: uppercase;
+      }
+      .process-head p {
+        font-size: 18px;
+        line-height: 1.55;
+        color: rgba(251, 243, 232, 0.85);
+      }
+      .process-track {
+        display: flex;
+        overflow-x: auto;
+        overflow-y: visible;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        scroll-behavior: smooth;
+        outline: none;
+        cursor: grab;
+        padding: 8px 30px 36px 18px;
+        margin: -8px -30px -36px -18px;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      .process-track.dragging {
+        cursor: grabbing;
+        scroll-behavior: auto;
+      }
+      .process-track::-webkit-scrollbar {
+        display: none;
+      }
+      .step {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 76px;
+        align-items: center;
+        padding: 0 14px 0 0;
+      }
+      .step-media {
+        position: relative;
+      }
+      .step-img {
+        position: relative;
+        margin: 0;
+        border-radius: 24px;
+        overflow: hidden;
+        aspect-ratio: 5/4;
+        background: rgba(0, 0, 0, 0.25);
+        box-shadow: 0 30px 60px -28px rgba(0, 0, 0, 0.65);
+      }
+      .step-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1.04);
+        transition: transform 1.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+        -webkit-user-drag: none;
+        pointer-events: none;
+      }
+      .step.in .step-img img {
+        transform: scale(1);
+      }
+      .step-img figcaption {
+        position: absolute;
+        left: 18px;
+        bottom: 18px;
+        padding: 6px 13px;
+        border-radius: 99px;
+        background: rgba(30, 10, 3, 0.78);
+        color: #fbf3e8;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      /* the number sits on the right edge of the photo: about 80% on the picture, 20% hanging off it */
+      .step-num {
+        position: absolute;
+        right: -0.2em;
+        top: -0.12em;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: clamp(88px, 10.5vw, 160px);
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: #ffe2a8;
+        text-shadow:
+          0 2px 0 rgba(120, 60, 10, 0.35),
+          0 14px 34px rgba(0, 0, 0, 0.5);
+        pointer-events: none;
+        font-feature-settings: "lnum" 1;
+      }
+      /* story panel: light from the top right, so top + right look pressed in and left + bottom look raised, with the shadow falling to the lower left */
+      .step-text {
+        position: relative;
+        padding: 46px 44px;
+        border-radius: 22px;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(0, 0, 0, 0.12));
+        border-style: solid;
+        border-width: 3px;
+        border-color: var(--p-edge) var(--p-edge) rgba(255, 255, 255, 0.24)
+          rgba(255, 255, 255, 0.24);
+        box-shadow:
+          -12px 14px 26px -6px rgba(0, 0, 0, 0.5),
+          inset 0 7px 12px -4px rgba(0, 0, 0, 0.5),
+          inset -7px 0 12px -4px rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.7s ease 0.15s,
+          transform 0.7s ease 0.15s;
+      }
+      .step.in .step-text {
+        opacity: 1;
+        transform: none;
+      }
+      .step-text h3 {
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-weight: 600;
+        font-size: clamp(38.4px, 4.1vw, 58.88px);
+        line-height: 1.05;
+        color: #fbf3e8;
+        margin: 0 0 16px;
+        text-transform: uppercase;
+      }
+      .step-text p {
+        font-size: 18px;
+        line-height: 1.62;
+        color: rgba(251, 243, 232, 0.9);
+        max-width: 480px;
+      }
+      /* draggable progress bar */
+      .process-progress {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        max-width: 760px;
+        margin: 44px auto 0;
+      }
+      .p-end {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        color: #ffe2a8;
+        min-width: 30px;
+        text-align: center;
+      }
+      .p-range {
+        --fill: 0%;
+        -webkit-appearance: none;
+        appearance: none;
+        flex: 1;
+        height: 30px;
+        background: transparent;
+        cursor: pointer;
+        margin: 0;
+      }
+      .p-range::-webkit-slider-runnable-track {
+        height: 5px;
+        border-radius: 5px;
+        background: linear-gradient(
+          to right,
+          #ffe2a8 var(--fill),
+          rgba(255, 255, 255, 0.26) var(--fill)
+        );
+      }
+      .p-range::-moz-range-track {
+        height: 5px;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.26);
+      }
+      .p-range::-moz-range-progress {
+        height: 5px;
+        border-radius: 5px;
+        background: #ffe2a8;
+      }
+      .p-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 24px;
+        height: 24px;
+        margin-top: -9.5px;
+        border-radius: 50%;
+        background: #fbf3e8;
+        border: 2px solid var(--amber);
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.18),
+          0 0 16px 4px rgba(0, 0, 0, 0.35);
+      }
+      .p-range::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fbf3e8;
+        border: 2px solid var(--amber);
+        box-shadow:
+          0 0 0 3px rgba(255, 255, 255, 0.18),
+          0 0 16px 4px rgba(0, 0, 0, 0.35);
+      }
+      .p-range:focus-visible {
+        outline: 2px solid #ffe2a8;
+        outline-offset: 6px;
+        border-radius: 8px;
+      }
+      @media (max-width: 900px) {
+        .process {
+          padding: 72px 20px 80px;
+        }
+        .step {
+          grid-template-columns: 1fr;
+          gap: 34px;
+        }
+        .step-text {
+          padding: 32px 26px;
+        }
+        .step-num {
+          right: -0.05em;
+          font-size: 90px;
+        }
+        .process-track {
+          padding: 8px 12px 32px 6px;
+          margin: -8px -12px -32px -6px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .step-text,
+        .step-img img {
+          transition: none;
+          opacity: 1;
+          transform: none;
+        }
+        .process-track {
+          scroll-behavior: auto;
+        }
+      }
+
+      /* ============ GIFTING ============ */
+      .gifts {
+        --g1: #8a5a3b;
+        --g2: #b07b55;
+        --gt: #fbf3e8;
+        --gd: rgba(251, 243, 232, 0.86);
+        width: 100%;
+        color: var(--gt);
+        padding: 128px 40px 150px;
+        overflow: hidden;
+        background: radial-gradient(90% 110% at 85% 0%, var(--g2) 0%, var(--g1) 64%);
+      }
+      .gifts-inner {
+        max-width: 1360px;
+        margin: 0 auto;
+      }
+      .gifts-head {
+        max-width: 900px;
+        margin-bottom: 68px;
+      }
+      .gifts-head h2 {
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-weight: 600;
+        font-size: clamp(46.08px, 6.14vw, 87.04px);
+        line-height: 1;
+        color: var(--gt);
+        margin: 0 0 18px;
+        text-transform: uppercase;
+      }
+      .gifts-head p {
+        font-size: 19px;
+        line-height: 1.55;
+        color: var(--gd);
+        max-width: 680px;
+      }
+      .gifts-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 30px;
+      }
+      .gifts-stage {
+        position: relative;
+      }
+      .gifts-decor {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        pointer-events: none;
+      }
+      .gifts-decor img {
+        position: absolute;
+        width: var(--w);
+        height: auto;
+        transform: rotate(var(--r));
+        filter: drop-shadow(0 14px 16px rgba(30, 8, 2, 0.45)) blur(var(--b, 0px));
+        animation: float 8s ease-in-out infinite;
+        animation-delay: var(--d, 0s);
+      }
+      .gifts-grid {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 26px;
+        align-items: start;
+        padding-bottom: 84px;
+      }
+      .gcard {
+        position: relative;
+        display: block;
+        aspect-ratio: 3/4;
+        border-radius: 22px;
+        overflow: hidden;
+        color: #fbf3e8;
+        text-decoration: none;
+        background: #2a0e03;
+        box-shadow: 0 30px 50px -26px rgba(20, 6, 0, 0.7);
+        transition:
+          transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+          box-shadow 0.5s;
+      }
+      .gcard:nth-child(odd) {
+        margin-top: 84px;
+      } /* every second card sits lower, so the row steps up and down */
+      .gcard:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 40px 60px -26px rgba(20, 6, 0, 0.8);
+      }
+      .gcard img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .gcard:hover img {
+        transform: scale(1.06);
+      }
+      .gcard::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(28, 9, 2, 0.94) 0%,
+          rgba(28, 9, 2, 0.8) 30%,
+          rgba(28, 9, 2, 0.28) 58%,
+          rgba(28, 9, 2, 0) 76%
+        );
+      }
+      .gcard-body {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
+        padding: 26px 24px 26px;
+      }
+      .gtag {
+        display: inline-block;
+        margin-bottom: 10px;
+        padding: 5px 11px;
+        border-radius: 99px;
+        background: rgba(251, 243, 232, 0.16);
+        backdrop-filter: blur(4px);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #ffe2a8;
+      }
+      .gcard h3 {
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-weight: 600;
+        font-size: 43.52px;
+        line-height: 1.02;
+        margin: 0 0 8px;
+        color: #fbf3e8;
+        text-transform: uppercase;
+      }
+      .gcard p {
+        font-size: 16.5px;
+        line-height: 1.5;
+        color: rgba(251, 243, 232, 0.9);
+      }
+      .gchips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+        list-style: none;
+      }
+      .gchips li {
+        padding: 5px 10px;
+        border-radius: 99px;
+        border: 1px solid rgba(255, 226, 168, 0.55);
+        font-size: 13px;
+        font-weight: 500;
+        color: #ffe2a8;
+      }
+      @media (max-width: 1100px) {
+        .gifts-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .gcard:nth-child(odd) {
+          margin-top: 0;
+        }
+        .gcard:nth-child(even) {
+          margin-top: 64px;
+        }
+        .gifts-decor {
+          display: none;
+        }
+      }
+      @media (max-width: 620px) {
+        .gifts {
+          padding: 80px 20px 90px;
+        }
+        .gifts-grid {
+          grid-template-columns: 1fr;
+          padding-bottom: 0;
+        }
+        .gcard:nth-child(n) {
+          margin-top: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .gifts-decor img {
+          animation: none;
+        }
+        .gcard,
+        .gcard img {
+          transition: none;
+        }
+      }
+
+      /* ============ DOC LAYOUT ============ */
+      .doc {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+      .hero {
+        min-height: 62vh;
+        display: grid;
+        place-items: center;
+        background: repeating-linear-gradient(45deg, #efe2ce 0 14px, #f3e8d6 14px 28px);
+        border-bottom: 1px solid var(--line);
+        text-align: center;
+        padding: 40px 20px;
+      }
+      .hero .ph {
+        border: 2px dashed var(--milk);
+        border-radius: 14px;
+        padding: 34px 40px;
+        background: rgba(251, 246, 238, 0.85);
+        max-width: 620px;
+      }
+      .hero h1 {
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-size: clamp(43.52px, 6.4vw, 71.68px);
+        line-height: 1.05;
+        color: var(--cocoa);
+        text-transform: uppercase;
+      }
+      .hero p {
+        margin-top: 10px;
+        color: var(--milk);
+      }
+      .hint {
+        display: inline-block;
+        margin-top: 16px;
+        font-size: 14.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--burgundy);
+      }
+
+      section.block {
+        padding: 84px 0 20px;
+      }
+      .eyebrow {
+        font-size: 13px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--burgundy);
+        font-weight: 600;
+      }
+      h2 {
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-size: clamp(38.4px, 5.12vw, 58.88px);
+        color: var(--cocoa);
+        line-height: 1.1;
+        margin: 6px 0 10px;
+        text-transform: uppercase;
+      }
+      .lede {
+        max-width: 720px;
+        color: #5b3f31;
+        font-size: 18.5px;
+      }
+
+      /* sitemap */
+      .sm {
+        margin-top: 34px;
+      }
+      .sm-root {
+        width: max-content;
+        max-width: 100%;
+        margin: 0 auto 14px;
+        background: var(--cocoa);
+        color: var(--cream);
+        padding: 14px 30px;
+        border-radius: 12px;
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-size: 33.28px;
+        font-weight: 600;
+        text-align: center;
+      }
+      .sm-global {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 6px;
+      }
+      .chip {
+        font-size: 13px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 7px 14px;
+        border-radius: 99px;
+        border: 1px solid var(--milk);
+        background: #fff9f0;
+      }
+      .chip.g {
+        background: var(--burgundy);
+        border-color: var(--burgundy);
+        color: #f6e7d2;
+      }
+      .sm-line {
+        width: 2px;
+        height: 26px;
+        background: var(--milk);
+        margin: 0 auto;
+      }
+      .sm-cols {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+        position: relative;
+        padding-top: 22px;
+      }
+      .sm-cols::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 10%;
+        right: 10%;
+        height: 2px;
+        background: var(--milk);
+      }
+      .sm-col {
+        position: relative;
+      }
+      .sm-col::before {
+        content: "";
+        position: absolute;
+        top: -22px;
+        left: 50%;
+        width: 2px;
+        height: 22px;
+        background: var(--milk);
+      }
+      .sm-page {
+        background: var(--choc);
+        color: var(--cream);
+        padding: 14px 12px;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 15.5px;
+      }
+      .sm-page small {
+        display: block;
+        font-weight: 400;
+        letter-spacing: 0.04em;
+        text-transform: none;
+        opacity: 0.75;
+        margin-top: 2px;
+      }
+      .sm-kids {
+        margin-top: 10px;
+        display: grid;
+        gap: 7px;
+      }
+      .sm-kids li {
+        border: 1.5px dashed var(--milk);
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 15.5px;
+        background: #fff9f0;
+        text-align: center;
+      }
+      .sm-extra {
+        margin-top: 36px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .sm-box {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 18px 20px;
+        background: #fff9f0;
+      }
+      .sm-box h3 {
+        font-size: 14.5px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--burgundy);
+        margin-bottom: 8px;
+      }
+      .sm-box li {
+        font-size: 15.5px;
+        padding: 3px 0;
+        color: #4b3226;
+      }
+      .legend {
+        display: flex;
+        gap: 22px;
+        flex-wrap: wrap;
+        margin-top: 22px;
+        font-size: 14.5px;
+        color: #5b3f31;
+      }
+      .legend i {
+        display: inline-block;
+        width: 22px;
+        height: 14px;
+        border-radius: 4px;
+        vertical-align: -2px;
+        margin-right: 7px;
+      }
+      @media (max-width: 900px) {
+        .sm-cols {
+          grid-template-columns: 1fr 1fr;
+        }
+        .sm-cols::before,
+        .sm-col::before {
+          display: none;
+        }
+        .sm-extra {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* spec cards */
+      .spec {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .spec .sm-box p,
+      .spec .sm-box li {
+        font-size: 16px;
+      }
+      .swatches {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+      .sw {
+        width: 58px;
+      }
+      .sw b {
+        display: block;
+        height: 44px;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+      }
+      .sw small {
+        font-size: 11px;
+        color: #5b3f31;
+        display: block;
+        text-align: center;
+        margin-top: 3px;
+      }
+      @media (max-width: 900px) {
+        .spec {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ============ FOOTER ============ */
+      .spacer-note {
+        padding: 70px 0 40px;
+      }
+      footer {
+        margin-top: 60px;
+        color: var(--secondary);
+        background: var(--primary);
+      }
+      .f-mid-wrap {
+        border-top: 1px solid rgba(244, 240, 235, 0.16);
+        border-bottom: 1px solid rgba(244, 240, 235, 0.16);
+      }
+      .f-mid {
+        display: grid;
+        grid-template-columns: 3fr 7fr;
+        gap: 50px;
+        padding: 70px 80px 40px;
+        max-width: none;
+        margin: 0;
+        position: relative;
+      }
+      .f-brand .logo-f img {
+        height: 80px;
+        filter: invert(1);
+        mix-blend-mode: screen;
+        display: block;
+        margin-bottom: 18px;
+      }
+      .f-brand p.tagline {
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-size: 33.28px;
+        line-height: 1.15;
+        margin-bottom: 18px;
+        color: var(--sand);
+      }
+      .f-brand address {
+        font-style: normal;
+        font-size: 16px;
+        opacity: 0.85;
+        margin-bottom: 22px;
+        line-height: 1.6;
+      }
+      .join h4 {
+        font-size: 13px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--amber);
+        margin-bottom: 8px;
+      }
+      .join form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .join input {
+        flex: 1 1 130px;
+        min-width: 0;
+        height: 46px;
+        background: rgba(244, 240, 235, 0.08);
+        border: 1.5px solid rgba(244, 240, 235, 0.55);
+        border-radius: 8px;
+        color: var(--secondary);
+        font: inherit;
+        font-size: 16.5px;
+        padding: 0 14px;
+      }
+      .join input:focus,
+      .join input:not(:placeholder-shown) {
+        outline: none;
+        border-color: var(--amber);
+        background: rgba(217, 142, 44, 0.1);
+      }
+      .join input:focus {
+        box-shadow: 0 0 0 3px rgba(217, 142, 44, 0.35);
+      }
+      .join input::placeholder {
+        color: rgba(244, 240, 235, 0.6);
+      }
+      .join button {
+        flex: 0 0 auto;
+        height: 46px;
+        padding: 0 18px;
+        border-radius: 8px;
+        background: var(--secondary);
+        color: var(--primary);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-size: 14.5px;
+        font-weight: 600;
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+      .join button:hover {
+        background: var(--amber);
+        transform: translateY(-1px);
+      }
+      .join small {
+        display: block;
+        margin-top: 8px;
+        opacity: 0.6;
+        font-size: 14px;
+      }
+      .f-links {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+      }
+      .f-links h4 {
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-weight: 600;
+        font-size: 33.28px;
+        line-height: 1;
+        margin-bottom: 18px;
+        color: var(--secondary);
+      }
+      .f-links h4::after {
+        content: "";
+        display: block;
+        width: 30px;
+        height: 2px;
+        margin-top: 12px;
+        background: var(--amber);
+      }
+      .f-links li a {
+        display: inline-block;
+        padding: 6px 0;
+        font-size: 17px;
+        opacity: 0.85;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+      }
+      .f-links li a:hover {
+        opacity: 1;
+        transform: translateX(3px);
+        color: var(--amber);
+      }
+      .soc a {
+        display: flex !important;
+        align-items: center;
+        gap: 10px;
+      }
+      .soc svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex: none;
+      }
+      .f-brand {
+        grid-row: 1 / span 2;
+      }
+      .f-links {
+        grid-row: 1;
+        grid-column: 2;
+      }
+      .legal {
+        grid-column: 2;
+        justify-self: end;
+        align-self: end;
+        display: flex;
+        gap: 22px;
+        white-space: nowrap;
+        margin-bottom: 36px;
+        font-size: 14px;
+        opacity: 0.6;
+      }
+
+      @media (max-width: 1000px) {
+        .f-mid {
+          grid-template-columns: 1fr;
+          padding: 50px 22px;
+        }
+        .f-links {
+          grid-template-columns: 1fr 1fr;
+        }
+        .legal {
+          grid-column: 1;
+          grid-row: auto;
+          justify-self: start;
+          margin: 0;
+          white-space: normal;
+          flex-wrap: wrap;
+        }
+        .f-brand,
+        .f-links {
+          grid-row: auto;
+          grid-column: 1;
+        }
+        .f-mid {
+          padding: 50px 22px 24px;
+        }
+      }
+      @media (max-width: 560px) {
+        .f-links {
+          grid-template-columns: 1fr 1fr;
+          gap: 26px 18px;
+        }
+        .f-links h4 {
+          font-size: 22px;
+          margin-bottom: 12px;
+        }
+        .f-links li a {
+          font-size: 16px;
+          padding: 4px 0;
+        }
+      }
+
+      /* ============ BUTTONS ============ */
+      .btn-lab {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 30px;
+      }
+      .panel {
+        border-radius: 16px;
+        padding: 30px;
+        display: grid;
+        gap: 28px;
+      }
+      .panel.on-light {
+        background: var(--secondary);
+        border: 1px solid var(--line);
+        --bg: var(--primary);
+        --fg: var(--secondary);
+        --ol: var(--primary);
+        --soft: var(--sand);
+      }
+      .panel.on-dark {
+        background: var(--primary);
+        --bg: var(--secondary);
+        --fg: var(--primary);
+        --ol: var(--secondary);
+        --soft: rgba(244, 240, 235, 0.14);
+      }
+      .panel.on-dark .plabel {
+        color: var(--sand);
+      }
+      .plabel {
+        font-size: 13px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: var(--burgundy);
+      }
+      .brow {
+        display: grid;
+        gap: 12px;
+      }
+      .opts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+      }
+      .opt-name {
+        font-size: 13px;
+        opacity: 0.65;
+        margin-top: 6px;
+        display: block;
+      }
+      .opt-name {
+        font-size: 13px;
+        opacity: 0.65;
+        margin-top: 6px;
+        display: block;
+      }
+      .on-light .opt-name {
+        color: var(--primary);
+      }
+      .on-dark .opt-name {
+        color: var(--secondary);
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 14.5px;
+        line-height: 1;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 16px 30px;
+        min-height: 48px;
+        border: 1.5px solid transparent;
+        cursor: pointer;
+        transition:
+          background-color 0.25s,
+          color 0.25s,
+          border-color 0.25s,
+          transform 0.25s,
+          background-size 0.35s;
+      }
+      .btn svg,
+      .lnk svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: transform 0.25s;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      .btn:active {
+        transform: translateY(0) scale(0.98);
+      }
+      /* solid */
+      .p-soft {
+        border-radius: 8px;
+        background: var(--bg);
+        color: var(--fg);
+      }
+      .p-soft:hover {
+        background: var(--amber);
+        color: var(--primary);
+      }
+      .p-pill {
+        border-radius: 999px;
+        background: var(--bg);
+        color: var(--fg);
+      }
+      .p-pill:hover {
+        background: var(--amber);
+        color: var(--primary);
+      }
+      .p-sweep {
+        border-radius: 0;
+        color: var(--fg);
+        background:
+          linear-gradient(var(--amber), var(--amber)) no-repeat left/0% 100%,
+          var(--bg);
+      }
+      .p-sweep:hover {
+        background-size: 100% 100%;
+        color: var(--primary);
+      }
+      /* outline */
+      .s-soft {
+        border-radius: 8px;
+        border-color: var(--ol);
+        color: var(--ol);
+        background: transparent;
+      }
+      .s-soft:hover {
+        background: var(--ol);
+        color: var(--bg-inv, var(--fg));
+      }
+      .on-light .s-soft:hover,
+      .on-light .s-pill:hover {
+        color: var(--secondary);
+      }
+      .on-dark .s-soft:hover,
+      .on-dark .s-pill:hover {
+        color: var(--primary);
+      }
+      .s-pill {
+        border-radius: 999px;
+        border-color: var(--ol);
+        color: var(--ol);
+        background: transparent;
+      }
+      .s-pill:hover {
+        background: var(--ol);
+      }
+      .s-soft2 {
+        border-radius: 8px;
+        background: var(--soft);
+        color: var(--ol);
+        border-color: transparent;
+      }
+      .on-dark .s-soft2 {
+        border-color: rgba(244, 240, 235, 0.35);
+        backdrop-filter: blur(6px);
+      }
+      .s-soft2:hover {
+        background: var(--amber);
+        color: var(--primary);
+        border-color: var(--amber);
+      }
+      /* link */
+      .lnk {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 14.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ol);
+        cursor: pointer;
+        padding: 12px 0;
+      }
+      .l-under {
+        border-bottom: 1.5px solid currentColor;
+        padding: 8px 0;
+      }
+      .l-under:hover svg,
+      .l-line:hover svg,
+      .l-circle:hover svg {
+        transform: translateX(5px);
+      }
+      .l-under:hover {
+        color: var(--amber);
+      }
+      .l-line {
+        background: linear-gradient(var(--amber), var(--amber)) no-repeat left bottom/100% 2px;
+        padding: 8px 0 10px;
+        background-color: transparent;
+        position: relative;
+      }
+      .l-line::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 42%;
+        background: var(--amber);
+        transform-origin: left;
+        transition: width 0.35s;
+      }
+      .l-line {
+        background: none;
+      }
+      .l-line:hover::after {
+        width: 100%;
+      }
+      .l-line svg {
+        color: var(--amber);
+      }
+      .l-circle .ic {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 1.5px solid currentColor;
+        display: grid;
+        place-items: center;
+        transition:
+          background 0.25s,
+          color 0.25s;
+      }
+      .l-circle:hover .ic {
+        background: var(--amber);
+        border-color: var(--amber);
+        color: var(--primary);
+      }
+      .l-circle span.t {
+        border-bottom: 1.5px solid currentColor;
+        padding-bottom: 4px;
+      }
+      @media (max-width: 900px) {
+        .btn-lab {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ============ WIREFRAME CONTROLS ============ */
+      .ctl {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        z-index: 80;
+        background: #1d0f09;
+        color: var(--cream);
+        border-radius: 14px;
+        padding: 12px 14px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        font-size: 14.5px;
+        max-width: 240px;
+      }
+      .ctl b {
+        display: block;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--amber);
+        margin-bottom: 8px;
+      }
+      .seg {
+        display: flex;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 99px;
+        padding: 3px;
+      }
+      .seg button {
+        flex: 1;
+        padding: 7px 10px;
+        border-radius: 99px;
+        font-size: 14.5px;
+      }
+      .seg button[aria-pressed="true"] {
+        background: var(--cream);
+        color: var(--cocoa);
+        font-weight: 600;
+      }
+      .ctl small {
+        display: block;
+        margin-top: 8px;
+        opacity: 0.65;
+        font-size: 13px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .ticker {
+          animation: none;
+        }
+        .header,
+        .logo img {
+          transition: none;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+      body.solid-header .header {
+        background: var(--primary);
+      }
+      main.doc-page {
+        padding-top: 118px;
+      }
+      main.doc-page > .doc > .cg-intro {
+        padding: 40px 0 0;
+      }
+      .cg-intro h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        font-size: clamp(51.2px, 5.89vw, 81.92px);
+        line-height: 1;
+        margin: 6px 0 10px;
+        color: var(--primary);
+        text-transform: uppercase;
+      }
+      .cg-intro p {
+        max-width: 680px;
+        font-size: 18px;
+        line-height: 1.6;
+        color: #4a3126;
+      }
+    </style>
+    <link rel="stylesheet" href="assets/stencil.css" />
+
+    <!-- ======================================================================
+         CSS: STYLES
+         CSS for this page. Colours, fonts and spacing are set as variables
+         near the top of the first block.
+         ====================================================================== -->
+    <style>
+      html {
+        font-synthesis-weight: none;
+      }
+    </style>
+    <link rel="stylesheet" href="assets/footer.css" />
+    <link rel="stylesheet" href="assets/pages.css" />
+    <style>
+      /* =====================================================================
+         ABOUT US (version 2)
+         Sequence: hero, origin, journey (sticky pictures), today, farms, team,
+         pod to bar, impact, promise, taste, questions.
+         One button style everywhere. Cocoa, cream and gold, with forest green from the farm photos.
+         ===================================================================== */
+      main.ab {
+        padding-top: 0;
+        background: #fbf7f1;
+        color: #24160f;
+        font-family: "Montserrat", sans-serif;
+      }
+      .ab h1,
+      .ab h2,
+      .ab h3 {
+        font-family: "Bebas Neue", "Impact", sans-serif;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.01em;
+        margin: 0;
+      }
+      .ab h2 {
+        font-size: clamp(46px, 5.4vw, 84px);
+        line-height: 0.94;
+        margin-bottom: 22px;
+        max-width: 14em;
+      }
+      .ab h1 em,
+      .ab h2 em {
+        font-style: normal;
+        color: #b4452a;
+      }
+      .ab-hero h1 em,
+      .ab-origin h2 em,
+      .ab-today h2 em,
+      .ab-farmsec h2 em,
+      .ab-impact h2 em,
+      .ab-gallery h2 em,
+      .ab-senses h2 em {
+        color: #e2a93b;
+      }
+      .ab p {
+        font-size: 18px;
+        line-height: 1.65;
+        color: #3a2a20;
+        margin: 0 0 16px;
+      }
+      .ab-w {
+        width: 100%;
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+      .ab-narrow {
+        max-width: 900px;
+      }
+      .ab-sec {
+        padding: clamp(72px, 9vw, 132px) 0;
+      }
+      .ab-sec.sand {
+        background: #f3ebdf;
+      }
+      .ab-lead {
+        font-size: clamp(19px, 1.6vw, 22px) !important;
+        color: #24160f !important;
+      }
+      .ab-head {
+        text-align: center;
+        max-width: 780px;
+        margin: 0 auto clamp(36px, 4.6vw, 64px);
+      }
+      .ab-head h2 {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .ab-head p {
+        margin: 0;
+      }
+
+      /* the one button, used everywhere */
+      .ab-btn {
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 54px;
+        padding: 0 34px;
+        font:
+          600 16px/1 "Montserrat",
+          sans-serif;
+        text-decoration: none;
+        color: #140b07 !important;
+        background: linear-gradient(135deg, #f7de97, #e2a93b 55%, #c98f2e);
+        box-shadow:
+          0 0 0 1px rgba(255, 236, 170, 0.4),
+          0 14px 36px -12px rgba(226, 169, 59, 0.75);
+        transition:
+          transform 0.25s,
+          box-shadow 0.25s;
+      }
+      .ab-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 18px 40px -10px rgba(226, 169, 59, 0.95);
+      }
+
+      /* 1. hero */
+      .ab-hero {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        min-height: min(92svh, 800px);
+        padding: calc(var(--bar-h) + var(--hdr-h) + 20px) 0 90px;
+        color: #fff;
+        background: #140c08;
+      }
+      .ab-hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background: var(--bg) center/cover no-repeat;
+        animation: abzoom 28s ease-out both;
+      }
+      .ab-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(0deg, rgba(20, 12, 8, 0.85) 0%, rgba(20, 12, 8, 0.25) 60%),
+          linear-gradient(90deg, rgba(20, 12, 8, 0.62) 0%, rgba(20, 12, 8, 0.1) 75%);
+      }
+      @keyframes abzoom {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.1);
+        }
+      }
+      .ab-hero h1 {
+        font-size: clamp(62px, 9.4vw, 148px);
+        line-height: 0.9;
+        max-width: 9em;
+        margin-bottom: 22px;
+        color: #fff;
+      }
+      .ab-hero p {
+        max-width: 33em;
+        font-size: clamp(18px, 1.6vw, 22px);
+        color: rgba(255, 255, 255, 0.92);
+        margin-bottom: 30px;
+      }
+      .ab-down {
+        position: absolute;
+        left: 50%;
+        bottom: 24px;
+        width: 46px;
+        height: 46px;
+        margin-left: -23px;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.6);
+      }
+      .ab-down::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 10px;
+        height: 10px;
+        margin: -8px 0 0 -5px;
+        border: solid #e2a93b;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        animation: abbob 1.8s ease-in-out infinite;
+      }
+      @keyframes abbob {
+        50% {
+          transform: translateY(6px) rotate(45deg);
+        }
+      }
+
+      /* 2. origin */
+      .ab-origin {
+        position: relative;
+        isolation: isolate;
+        color: #fff;
+        padding: clamp(90px, 12vw, 190px) 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background: #1c110b;
+      }
+      .ab-origin::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(
+            90deg,
+            rgba(20, 11, 7, 0.9) 0%,
+            rgba(20, 11, 7, 0.7) 45%,
+            rgba(20, 11, 7, 0.1) 100%
+          ),
+          var(--bg) center/cover no-repeat fixed;
+      }
+      .ab-origin-in {
+        max-width: 560px;
+      }
+      .ab-origin h2,
+      .ab-origin p {
+        color: #fff;
+      }
+      .ab-origin-photo {
+        justify-self: center;
+        width: clamp(280px, 32vw, 460px);
+        aspect-ratio: 1;
+        margin: 0;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow:
+          0 0 0 3px rgba(226, 169, 59, 0.85),
+          0 0 0 14px rgba(20, 11, 7, 0.45),
+          0 40px 70px -30px rgba(0, 0, 0, 0.8);
+      }
+      .ab-origin-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        animation: abpan 12s ease-in-out infinite alternate;
+      }
+
+      /* 3. journey: pictures fixed on the left, text scrolls on the right */
+      .ab-journey {
+        padding: clamp(72px, 9vw, 128px) 0 clamp(40px, 5vw, 70px);
+        background: #f3ebdf;
+      }
+      .ab-jgrid {
+        display: grid;
+        grid-template-columns: minmax(0, 540px) minmax(0, 1fr);
+        gap: clamp(30px, 5vw, 70px);
+        margin-top: clamp(30px, 4vw, 50px);
+        align-items: start;
+      }
+      .ab-stage {
+        position: sticky;
+        top: 96px;
+        height: min(76vh, 620px);
+        border-radius: 26px;
+        overflow: hidden;
+        background: #24160f;
+      }
+      .ab-stage img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transform: scale(1.06);
+        transition:
+          opacity 0.7s ease,
+          transform 1.2s ease;
+      }
+      .ab-stage img.on {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .ab-stage::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(20, 11, 7, 0.7) 0%, rgba(20, 11, 7, 0) 45%);
+      }
+      .ab-yr {
+        position: absolute;
+        z-index: 2;
+        left: 28px;
+        bottom: 14px;
+        font:
+          400 clamp(80px, 9vw, 140px) / 1 "Bebas Neue",
+          "Impact",
+          sans-serif;
+        color: #fff;
+      }
+      .ab-years article {
+        min-height: min(76vh, 620px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        opacity: 0.35;
+        transition: opacity 0.5s;
+      }
+      .ab-years article.on {
+        opacity: 1;
+      }
+      .ab-years h3 {
+        font-size: clamp(30px, 2.6vw, 38px);
+        line-height: 1;
+      }
+      .ab-years span {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border-radius: 12px;
+        background: #fff;
+        font-size: 14.5px;
+        line-height: 1.45;
+        color: #24160f;
+      }
+      .ab-years u {
+        text-decoration: none;
+        font:
+          400 30px / 1 "Bebas Neue",
+          "Impact",
+          sans-serif;
+        color: #b4452a;
+        margin-right: 4px;
+      }
+
+      /* 4. today: plantation photo across the whole width */
+      .ab-today {
+        position: relative;
+        isolation: isolate;
+        color: #fff;
+        padding: clamp(80px, 10vw, 150px) 0;
+        background: #1c110b;
+      }
+      .ab-today::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(
+            90deg,
+            rgba(20, 12, 8, 0.9) 0%,
+            rgba(20, 12, 8, 0.72) 50%,
+            rgba(20, 12, 8, 0.4) 100%
+          ),
+          var(--bg) center/cover no-repeat;
+      }
+      .ab-today h2,
+      .ab-today p,
+      .ab-today .ab-lead {
+        color: #fff !important;
+      }
+      .ab-today-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+        gap: clamp(30px, 6vw, 90px);
+        align-items: center;
+      }
+      .ab-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px 44px;
+        margin: 26px 0 28px;
+      }
+      .ab-stats div {
+        margin: 0;
+      }
+      .ab-stats dt {
+        font:
+          400 clamp(54px, 5.4vw, 80px) / 1 "Bebas Neue",
+          "Impact",
+          sans-serif;
+        color: #f7de97;
+      }
+      .ab-stats dd {
+        margin: 0;
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .ab-today-photo {
+        margin: 0;
+        border-radius: 14px;
+        overflow: hidden;
+        aspect-ratio: 4/5;
+        box-shadow:
+          0 0 0 2px rgba(226, 169, 59, 0.8),
+          0 40px 70px -30px rgba(0, 0, 0, 0.8);
+      }
+      .ab-today-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* 5. farms: cocoa colour with the layered squares on top */
+      .ab-farmsec {
+        position: relative;
+        isolation: isolate;
+        color: #f4ede3;
+        padding: clamp(72px, 9vw, 132px) 0;
+        background: #24160f;
+      }
+      .ab-farmsec::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: url(assets/img/layered-squares-chocolate.webp) center/cover no-repeat;
+        opacity: 0.9;
+      }
+      .ab-farmsec h2 {
+        color: #fff;
+      }
+      .ab-farmsec .ab-head p {
+        color: rgba(244, 237, 227, 0.9);
+      }
+      .ab-farms {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+      .ab-farms article {
+        padding: 26px 24px 28px;
+        border-radius: 22px;
+        background: rgba(20, 11, 7, 0.62);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+        display: flex;
+        flex-direction: column;
+      }
+      .ab-farms img {
+        width: 100%;
+        height: 170px;
+        object-fit: contain;
+        margin-bottom: 18px;
+        filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.5));
+      }
+      .ab-farms small {
+        font:
+          600 13px/1.3 "Montserrat",
+          sans-serif;
+        color: #f7de97;
+      }
+      .ab-farms h3 {
+        font-size: 36px;
+        line-height: 1;
+        color: #fff;
+        margin: 6px 0 10px;
+      }
+      .ab-farms p {
+        flex: 1;
+        font-size: 15.5px;
+        color: rgba(244, 237, 227, 0.88);
+      }
+      .ab-farms .ab-btn {
+        align-self: flex-start;
+        margin-top: 6px;
+      }
+
+      /* 6. team: a collage */
+      .ab-team {
+        padding: clamp(80px, 10vw, 140px) 0;
+        background: #fbf7f1;
+        overflow: hidden;
+      }
+      .ab-team-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: clamp(30px, 6vw, 90px);
+        align-items: center;
+      }
+      .ab-collage {
+        position: relative;
+        height: clamp(400px, 40vw, 540px);
+      }
+      .ab-collage figure {
+        position: absolute;
+        margin: 0;
+        overflow: hidden;
+        background: #f3ebdf;
+      }
+      .ab-collage img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .ab-collage figcaption {
+        position: absolute;
+        left: 12px;
+        bottom: 12px;
+        padding: 7px 14px;
+        border-radius: 99px;
+        background: rgba(20, 11, 7, 0.72);
+        color: #fff;
+        font-size: 13.5px;
+      }
+      .ab-collage .a {
+        left: 0;
+        top: 0;
+        width: 56%;
+        height: 100%;
+        border-radius: 14px;
+        box-shadow: 0 0 0 2px rgba(226, 169, 59, 0.8);
+      }
+      .ab-collage .b {
+        right: 0;
+        top: 2%;
+        width: 36%;
+        aspect-ratio: 1;
+        border-radius: 14px;
+        box-shadow: 0 0 0 8px #fbf7f1;
+      }
+      .ab-collage .b figcaption {
+        left: 50%;
+        bottom: 14px;
+        transform: translateX(-50%);
+        white-space: nowrap;
+      }
+      .ab-collage .c {
+        right: 2%;
+        bottom: 6%;
+        width: 44%;
+        aspect-ratio: 4/3;
+        border-radius: 14px;
+        transform: rotate(4deg);
+        box-shadow:
+          0 0 0 8px #fbf7f1,
+          0 30px 50px -24px rgba(36, 22, 15, 0.6);
+      }
+      .ab-collage .seal {
+        position: absolute;
+        left: 46%;
+        top: 44%;
+        width: clamp(110px, 12vw, 160px);
+        height: auto;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 0 6px #fbf7f1;
+        border-radius: 50%;
+      }
+
+      /* 7. pod to bar: arches, staggered */
+      .ab-pod {
+        position: relative;
+        isolation: isolate;
+        padding: clamp(80px, 10vw, 140px) 0;
+        background: #f3ebdf;
+      }
+      .ab-pod::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: url(assets/img/layered-squares-cream.webp) center/cover no-repeat;
+        opacity: 0.8;
+      }
+      .ab-arches {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 44px 26px;
+      }
+      .ab-arches li:nth-child(even) {
+        margin-top: 56px;
+      }
+      .ab-arches figure {
+        position: relative;
+        margin: 0 0 20px;
+        border-radius: 14px;
+        overflow: hidden;
+        aspect-ratio: 4/5;
+        box-shadow: 0 24px 40px -22px rgba(36, 22, 15, 0.55);
+      }
+      .ab-arches figure img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.9s;
+      }
+      .ab-arches li:hover figure img {
+        transform: scale(1.07);
+      }
+      .ab-arches h3 {
+        font-size: 30px;
+        line-height: 1.05;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .ab-arches li.end {
+        display: flex;
+        flex-direction: column;
+        margin-top: 56px;
+      }
+      .ab-arches li.end figure {
+        flex: 1;
+        margin: 0;
+        aspect-ratio: auto;
+        display: grid;
+        place-content: center;
+        justify-items: center;
+        gap: 18px;
+        padding: 24px;
+        text-align: center;
+        background:
+          linear-gradient(0deg, rgba(20, 12, 8, 0.78), rgba(20, 12, 8, 0.5)),
+          var(--bg) center/cover no-repeat;
+      }
+      .ab-arches li.end h3 {
+        font-size: 44px;
+        color: #fff;
+        margin: 0;
+      }
+
+      /* 8. impact: the photo fills the width, everything is centred */
+      .ab-impact {
+        position: relative;
+        isolation: isolate;
+        text-align: center;
+        color: #fff;
+        padding: clamp(90px, 11vw, 160px) 0;
+        background: #1c110b;
+      }
+      .ab-impact::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(0deg, rgba(20, 11, 7, 0.72), rgba(20, 11, 7, 0.62)),
+          var(--bg) center/cover no-repeat;
+      }
+      .ab-impact h2 {
+        color: #fff;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .ab-impact .ab-lead {
+        max-width: 34em;
+        margin: 0 auto !important;
+        color: rgba(255, 255, 255, 0.94) !important;
+      }
+      .ab-chain {
+        list-style: none;
+        margin: clamp(36px, 4.4vw, 60px) auto 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 34px;
+        max-width: 980px;
+      }
+      .ab-chain li {
+        position: relative;
+        padding: 28px 22px 30px;
+        border-radius: 14px;
+        background: #fff;
+        color: #24160f;
+        box-shadow: 0 30px 50px -28px rgba(0, 0, 0, 0.7);
+      }
+      .ab-chain li:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: -26px;
+        top: 50%;
+        width: 18px;
+        height: 18px;
+        margin-top: -9px;
+        border: solid #e2a93b;
+        border-width: 3px 3px 0 0;
+        transform: rotate(45deg);
+      }
+      .ab-chain svg {
+        display: block;
+        width: 54px;
+        height: 54px;
+        padding: 13px;
+        margin: 0 auto 14px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f7de97, #e2a93b);
+        fill: none;
+        stroke: #140b07;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .ab-chain b {
+        display: block;
+        font-size: 17px;
+        line-height: 1.3;
+        margin-bottom: 6px;
+      }
+      .ab-chain span {
+        font-size: 15px;
+        line-height: 1.5;
+        color: #4a3126;
+      }
+
+      /* 9. promise: in the bar / never in the bar */
+      .ab-trust {
+        padding: clamp(80px, 10vw, 140px) 0;
+        background: #f3ebdf;
+      }
+      .ab-ledger {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) clamp(130px, 13vw, 170px) minmax(0, 1fr);
+        align-items: center;
+        gap: 0;
+      }
+      .ab-ledger > div {
+        padding: clamp(34px, 4.4vw, 64px) clamp(26px, 3.6vw, 54px);
+        border-radius: 14px;
+        box-shadow: 0 40px 70px -40px rgba(36, 22, 15, 0.55);
+      }
+      .ab-ledger h3 {
+        font-size: clamp(40px, 4vw, 58px);
+        line-height: 1;
+        margin-bottom: 22px;
+      }
+      .ab-ledger ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 14px;
+      }
+      .ab-ledger li {
+        display: grid;
+        grid-template-columns: 30px 1fr;
+        gap: 14px;
+        font-size: 17.5px;
+        line-height: 1.45;
+      }
+      .ab-ledger li::before {
+        display: grid;
+        place-items: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        font-size: 15px;
+        font-weight: 700;
+      }
+      .ab-ledger .in {
+        background: #fff;
+      }
+      .ab-ledger .in li::before {
+        content: "✓";
+        background: #e2a93b;
+        color: #140b07;
+      }
+      .ab-ledger .out {
+        background: #1c110b;
+        color: #f4ede3;
+      }
+      .ab-ledger .out h3 {
+        color: #fff;
+      }
+      .ab-ledger .out li::before {
+        content: "✕";
+        background: #b4452a;
+        color: #fff;
+      }
+      .ab-ledger .seal {
+        justify-self: center;
+        width: clamp(110px, 11vw, 150px);
+        height: auto;
+      }
+      .ab-ledger .spin {
+        transform-origin: 100px 100px;
+        animation: abspin 40s linear infinite;
+      }
+      @keyframes abspin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* 10. taste */
+      .ab-taste {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 18px;
+      }
+      .ab-taste > div {
+        padding: 24px 24px 28px;
+        border-radius: 22px;
+        background: #f3ebdf;
+      }
+      .ab-taste img {
+        width: 100%;
+        height: 130px;
+        object-fit: contain;
+        margin-bottom: 14px;
+        filter: drop-shadow(0 14px 14px rgba(36, 22, 15, 0.3));
+      }
+      .ab-taste small {
+        font:
+          600 13px/1.3 "Montserrat",
+          sans-serif;
+        color: #b4452a;
+      }
+      .ab-taste h3 {
+        font-size: 36px;
+        line-height: 1;
+        margin: 6px 0 10px;
+      }
+      .ab-taste p {
+        margin: 0;
+        font-size: 16px;
+      }
+      .ab-how {
+        margin-top: clamp(36px, 4.4vw, 60px);
+        padding: clamp(28px, 3.4vw, 46px);
+        border-radius: 26px;
+        background: #24160f;
+        color: #fff;
+      }
+      .ab-how h3 {
+        font-size: clamp(38px, 3.6vw, 54px);
+        color: #fff;
+        margin-bottom: 20px;
+      }
+      .ab-how ol {
+        list-style: none;
+        margin: 0 0 24px;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 22px;
+        counter-reset: h;
+      }
+      .ab-how li {
+        counter-increment: h;
+      }
+      .ab-how li::before {
+        content: counter(h);
+        display: block;
+        font:
+          400 38px / 1 "Bebas Neue",
+          "Impact",
+          sans-serif;
+        color: #e2a93b;
+        margin-bottom: 8px;
+      }
+      .ab-how b {
+        display: block;
+        margin-bottom: 4px;
+      }
+      .ab-how span {
+        font-size: 15.5px;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.86);
+      }
+
+      /* taste cards: price and Buy now */
+      .ab-taste > div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .ab-taste .pic {
+        display: block;
+        width: 100%;
+      }
+      .ab-taste h3 a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .ab-taste p {
+        flex: 1;
+      }
+      .ab-price {
+        display: block;
+        margin: 14px 0 12px;
+        font:
+          400 40px / 1 "Bebas Neue",
+          "Impact",
+          sans-serif;
+        color: #b4452a;
+      }
+      .ab-taste .ab-btn {
+        width: 100%;
+        border: 0;
+        cursor: pointer;
+      }
+      .ab-more {
+        align-self: center;
+        margin-top: 12px;
+        font-size: 14.5px;
+        font-weight: 600;
+        color: #24160f;
+        text-underline-offset: 4px;
+      }
+      .ab-more:hover {
+        color: #b4452a;
+      }
+
+      /* 11. questions */
+      .ab-acc {
+        display: grid;
+        gap: 12px;
+        align-content: start;
+      }
+      .ab-acc details {
+        border-radius: 18px;
+        background: #fff;
+      }
+      .ab-acc summary {
+        list-style: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        padding: 22px 26px;
+        font:
+          700 clamp(17px, 1.4vw, 19px) / 1.35 "Montserrat",
+          sans-serif;
+      }
+      .ab-acc summary::-webkit-details-marker {
+        display: none;
+      }
+      .ab-acc summary::after {
+        content: "+";
+        flex: 0 0 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 1;
+        color: #140b07;
+        background: linear-gradient(135deg, #f7de97, #e2a93b);
+        transition: transform 0.35s;
+      }
+      .ab-acc details[open] summary::after {
+        transform: rotate(45deg);
+      }
+      .ab-acc p {
+        padding: 0 26px 24px;
+        margin: 0;
+        font-size: 16.5px;
+        max-width: 44em;
+      }
+      .ab-acc a {
+        color: #b4452a;
+        font-weight: 600;
+      }
+
+      /* small icons that sit with the text */
+      .ab-ico {
+        display: grid;
+        place-items: center;
+        width: 52px;
+        height: 52px;
+        flex: none;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f7de97, #e2a93b);
+      }
+      .ab-ico svg,
+      .ab-yhead + p + .res svg,
+      .ab-ticks svg,
+      .ab-stats svg,
+      .ab-orb svg {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .ab-ico svg {
+        width: 26px;
+        height: 26px;
+        color: #140b07;
+      }
+
+      .ab-origin-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+        gap: clamp(30px, 6vw, 90px);
+        align-items: center;
+      }
+      .ab-origin .ab-btn {
+        margin-top: 8px;
+      }
+
+      /* the shine on the button */
+      .ab-btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -60%;
+        width: 40%;
+        background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+        transform: skewX(-20deg);
+        animation: abshine 4.5s ease-in-out infinite;
+      }
+      @keyframes abshine {
+        0%,
+        60% {
+          left: -60%;
+        }
+        100% {
+          left: 130%;
+        }
+      }
+      @keyframes abpan {
+        from {
+          transform: scale(1) translate(0, 0);
+        }
+        to {
+          transform: scale(1.18) translate(-2%, -2%);
+        }
+      }
+
+      /* journey */
+      .ab-jwrap {
+        max-width: 1480px;
+      }
+      @media (min-width: 1100px) {
+        .ab-jwrap {
+          padding-left: 150px;
+          padding-right: 150px;
+        }
+      }
+      .ab-yhead {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 14px;
+      }
+      .ab-yhead i {
+        display: block;
+        font:
+          normal 400 22px / 1 "Bebas Neue",
+          "Impact",
+          sans-serif;
+        letter-spacing: 0.08em;
+        color: #b4452a;
+        margin-bottom: 4px;
+      }
+      .ab-years p {
+        font-size: 15.5px;
+        line-height: 1.55;
+        margin: 0 0 14px;
+      }
+      .ab-years .res svg {
+        width: 22px;
+        height: 22px;
+        flex: none;
+        color: #b4452a;
+      }
+      .ab-years u {
+        font-size: 26px;
+        margin-right: 0;
+      }
+
+      /* today */
+      .ab-ticks {
+        list-style: none;
+        margin: 0 0 18px;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 22px;
+      }
+      .ab-ticks li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15.5px;
+        color: #f7de97;
+      }
+      .ab-ticks svg {
+        width: 22px;
+        height: 22px;
+        color: #e2a93b;
+      }
+      .ab-stats svg {
+        display: block;
+        width: 30px;
+        height: 30px;
+        color: #e2a93b;
+        margin-bottom: 6px;
+      }
+
+      /* pod to bar: the icon sits on the photo, the number sits beside the title */
+      .ab-arches .ab-ico {
+        position: absolute;
+        left: 14px;
+        bottom: 14px;
+        width: 46px;
+        height: 46px;
+      }
+      .ab-arches .ab-ico svg {
+        width: 24px;
+        height: 24px;
+      }
+      .ab-arches h3 b {
+        font: inherit;
+        color: #e2a93b;
+        -webkit-text-stroke: 0;
+      }
+
+      /* how to taste: full width */
+      .ab-senses {
+        position: relative;
+        isolation: isolate;
+        text-align: center;
+        color: #fff;
+        padding: clamp(80px, 10vw, 140px) clamp(20px, 5vw, 80px);
+        background: #140b07;
+      }
+      .ab-senses::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(0deg, rgba(20, 11, 7, 0.78), rgba(20, 11, 7, 0.7)),
+          var(--bg) center/cover no-repeat;
+      }
+      .ab-senses h2 {
+        color: #fff;
+        margin: 0 auto clamp(44px, 5.4vw, 80px);
+      }
+      .ab-senses ol {
+        list-style: none;
+        margin: 0 0 clamp(40px, 5vw, 64px);
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+        max-width: 1500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .ab-senses li {
+        position: relative;
+      }
+      .ab-senses li:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 52px;
+        left: calc(50% + 70px);
+        right: calc(-50% + 70px);
+        border-top: 3px dotted rgba(226, 169, 59, 0.7);
+      }
+      .ab-orb {
+        display: grid;
+        place-items: center;
+        width: 104px;
+        height: 104px;
+        margin: 0 auto 22px;
+        border-radius: 50%;
+        background: rgba(226, 169, 59, 0.12);
+        box-shadow:
+          inset 0 0 0 2px #e2a93b,
+          0 0 0 10px rgba(226, 169, 59, 0.1);
+      }
+      .ab-orb svg {
+        width: 48px;
+        height: 48px;
+        color: #f7de97;
+      }
+      .ab-senses h3 {
+        font-size: 36px;
+        line-height: 1;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+      .ab-senses p {
+        max-width: 15em;
+        margin: 0 auto;
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.86);
+      }
+
+      /* questions: accordion left, picture right */
+      .ab-faqgrid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        gap: clamp(26px, 5vw, 70px);
+        align-items: start;
+      }
+      .ab-faqstage {
+        position: sticky;
+        top: 100px;
+        aspect-ratio: 4/5;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #24160f;
+      }
+      .ab-faqstage img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transform: scale(1.08);
+        transition:
+          opacity 0.6s ease,
+          transform 1.2s ease;
+      }
+      .ab-faqstage img.on {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* gallery */
+      .ab-gallery {
+        padding: clamp(80px, 10vw, 140px) 0;
+        background: #1c110b;
+        color: #fff;
+      }
+      .ab-gallery h2 {
+        color: #fff;
+      }
+      .ab-mosaic {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-rows: clamp(150px, 17vw, 240px);
+        grid-auto-flow: dense;
+        gap: 14px;
+      }
+      .ab-mosaic figure {
+        position: relative;
+        margin: 0;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #2a190d;
+      }
+      .ab-mosaic .s22 {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+      .ab-mosaic .s21 {
+        grid-column: span 2;
+      }
+      .ab-mosaic .s12 {
+        grid-row: span 2;
+      }
+      .ab-mosaic button {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: zoom-in;
+      }
+      .ab-mosaic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .ab-mosaic figure:hover img {
+        transform: scale(1.08);
+      }
+      .ab-mosaic figcaption {
+        position: absolute;
+        left: 12px;
+        bottom: 12px;
+        padding: 7px 14px;
+        border-radius: 99px;
+        background: rgba(20, 11, 7, 0.72);
+        color: #fff;
+        font-size: 13.5px;
+        pointer-events: none;
+        opacity: 0;
+        translate: 0 6px;
+        transition:
+          opacity 0.3s,
+          translate 0.3s;
+      }
+      .ab-mosaic figure:hover figcaption,
+      .ab-mosaic button:focus-visible + figcaption {
+        opacity: 1;
+        translate: 0 0;
+      }
+      .ab-lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 600;
+        display: grid;
+        place-items: center;
+        background: rgba(14, 8, 5, 0.94);
+        padding: 40px 70px;
+      }
+      .ab-lightbox[hidden] {
+        display: none;
+      }
+      .ab-lightbox img {
+        max-width: min(1200px, 100%);
+        max-height: 78vh;
+        border-radius: 14px;
+        box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.9);
+      }
+      .ab-lightbox p {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 26px;
+        margin: 0;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 16px;
+      }
+      .ab-lightbox button {
+        position: absolute;
+        width: 52px;
+        height: 52px;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        font-size: 34px;
+        line-height: 1;
+        cursor: pointer;
+      }
+      .ab-lightbox button:hover {
+        background: #e2a93b;
+        color: #140b07;
+      }
+      .ab-lightbox .x {
+        top: 22px;
+        right: 26px;
+      }
+      .ab-lightbox .prev {
+        left: 18px;
+        top: 50%;
+        margin-top: -26px;
+      }
+      .ab-lightbox .next {
+        right: 18px;
+        top: 50%;
+        margin-top: -26px;
+      }
+
+      @media (max-width: 1000px) {
+        .ab-farms,
+        .ab-arches,
+        .ab-taste {
+          grid-template-columns: 1fr 1fr;
+        }
+        .ab-arches li:nth-child(even) {
+          margin-top: 0;
+        }
+        .ab-chain {
+          grid-template-columns: 1fr;
+        }
+        .ab-chain li:not(:last-child)::after {
+          display: none;
+        }
+      }
+      @media (max-width: 800px) {
+        .ab-origin-grid {
+          grid-template-columns: 1fr;
+        }
+        .ab-chain {
+          grid-template-columns: 1fr;
+        }
+        .ab-chain li:not(:last-child)::after {
+          display: none;
+        }
+        .ab-lightbox {
+          padding: 70px 14px 60px;
+        }
+        .ab-faqgrid,
+        .ab-jgrid,
+        .ab-today-grid,
+        .ab-team-grid,
+        .ab-impact-grid,
+        .ab-ledger {
+          grid-template-columns: 1fr;
+        }
+        .ab-stage {
+          top: 70px;
+          height: 34vh;
+        }
+        .ab-years article {
+          min-height: 46vh;
+        }
+        .ab-ledger .in,
+        .ab-ledger .out {
+          padding: 34px 26px;
+        }
+        .ab-ledger .seal {
+          margin: 18px auto;
+        }
+        .ab-faqstage {
+          position: relative;
+          top: 0;
+          aspect-ratio: 16/10;
+          order: -1;
+        }
+        .ab-senses ol {
+          grid-template-columns: 1fr 1fr;
+          row-gap: 36px;
+        }
+        .ab-senses li::after {
+          display: none;
+        }
+        .ab-w {
+          padding: 0 20px;
+        }
+      }
+      /* Tablet: "Now taste it" is exactly as tall as the photos next to it */
+      @media (max-width: 1000px) {
+        .ab-arches li.end {
+          display: block;
+          margin-top: 0;
+        }
+        .ab-arches li.end figure {
+          flex: none;
+          aspect-ratio: 4 / 5;
+        }
+      }
+      /* Tablet: the journey keeps its pictures on the left and the years on the right,
+         and the farmer photo in "Still small, on purpose" is half the width and half the height */
+      @media (min-width: 600px) and (max-width: 1100px) {
+        .ab-jgrid {
+          grid-template-columns: clamp(280px, 38vw, 540px) minmax(0, 1fr);
+          gap: 28px;
+        }
+        .ab-stage {
+          top: 96px;
+          height: min(58vh, 400px);
+        }
+        .ab-years article {
+          min-height: min(58vh, 400px);
+        }
+        .ab-yr {
+          left: 16px;
+          font-size: 76px;
+        }
+      }
+      @media (max-width: 800px) {
+        .ab-today-photo {
+          width: 50%;
+          margin-inline: auto;
+        }
+      }
+      /* Phone: the journey keeps a slim picture on the left and the years on the right */
+      @media (max-width: 599.98px) {
+        .ab-jgrid {
+          grid-template-columns: clamp(104px, 32vw, 200px) minmax(0, 1fr);
+          gap: 14px;
+        }
+        .ab-stage {
+          top: 84px;
+          height: min(44vh, 250px);
+          border-radius: 16px;
+        }
+        .ab-years article {
+          min-height: min(44vh, 250px);
+        }
+        .ab-yr {
+          left: 10px;
+          bottom: 8px;
+          font-size: 44px;
+        }
+        .ab-years h3 {
+          font-size: 22px;
+        }
+        .ab-years span {
+          font-size: 13px;
+          padding: 10px 12px;
+        }
+      }
+      @media (max-width: 560px) {
+        .ab-farms,
+        .ab-arches,
+        .ab-taste,
+        .ab-senses ol {
+          grid-template-columns: 1fr;
+        }
+        .ab-collage {
+          height: 420px;
+        }
+      }
+      /* Phone: the eight "pod to bar" cards are two across, the question photo is a slim banner */
+      @media (max-width: 599.98px) {
+        .ab-arches {
+          grid-template-columns: 1fr 1fr;
+          gap: 22px 14px;
+        }
+        .ab-arches h3 {
+          font-size: 20px;
+        }
+        .ab-arches li.end h3 {
+          font-size: 30px;
+        }
+        .ab-arches li.end figure {
+          padding: 14px;
+        }
+        .ab-faqstage {
+          aspect-ratio: 2 / 1;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .ab-hero-bg,
+        .ab-down::after,
+        .ab-ledger .spin {
+          animation: none;
+        }
+        .ab-stage img {
+          transition: none;
+        }
+      }
+    </style>
+    <script>
+      /* About page: the pictures on the left follow the year you are reading */
+      document.addEventListener("DOMContentLoaded", () => {
+        const items = [...document.querySelectorAll(".ab-years article")];
+        const pics = [...document.querySelectorAll(".ab-stage img")];
+        const year = document.getElementById("abYear");
+        if (!items.length) return;
+        const set = (i) => {
+          pics.forEach((p, k) => p.classList.toggle("on", k === i));
+          items.forEach((a, k) => a.classList.toggle("on", k === i));
+          year.textContent = items[i].querySelector(".ab-yhead i").textContent;
+        };
+        set(0);
+        const io = new IntersectionObserver(
+          (es) =>
+            es.forEach((e) => {
+              if (e.isIntersecting) set(+e.target.dataset.i);
+            }),
+          { rootMargin: "-45% 0px -45% 0px" },
+        );
+        items.forEach((a) => io.observe(a));
+
+        /* questions: the picture on the right follows the open question */
+        const qs = [...document.querySelectorAll("#abAcc details")];
+        const qp = [...document.querySelectorAll(".ab-faqstage img")];
+        qs.forEach((d, k) =>
+          d.addEventListener("toggle", () => {
+            if (d.open) qp.forEach((p, n) => p.classList.toggle("on", n === k));
+          }),
+        );
+
+        /* gallery: click a photo to see it larger */
+        const shots = [...document.querySelectorAll("#abMosaic figure")];
+        const box = document.getElementById("abLight");
+        if (box && shots.length) {
+          const big = box.querySelector("img");
+          const cap = box.querySelector("p");
+          let cur = 0;
+          const show = (n) => {
+            cur = (n + shots.length) % shots.length;
+            const im = shots[cur].querySelector("img");
+            big.src = im.currentSrc || im.src;
+            big.alt = im.alt;
+            cap.textContent = shots[cur].querySelector("figcaption").textContent;
+          };
+          const open = (n) => {
+            show(n);
+            box.hidden = false;
+            document.body.style.overflow = "hidden";
+          };
+          const close = () => {
+            box.hidden = true;
+            document.body.style.overflow = "";
+          };
+          shots.forEach((f, n) =>
+            f.querySelector("button").addEventListener("click", () => open(n)),
+          );
+          box.querySelector(".x").onclick = close;
+          box.querySelector(".prev").onclick = () => show(cur - 1);
+          box.querySelector(".next").onclick = () => show(cur + 1);
+          box.addEventListener("click", (e) => e.target === box && close());
+          document.addEventListener("keydown", (e) => {
+            if (box.hidden) return;
+            if (e.key === "Escape") close();
+            if (e.key === "ArrowLeft") show(cur - 1);
+            if (e.key === "ArrowRight") show(cur + 1);
+          });
+        }
+
+        /* taste cards: show the live price from the catalogue */
+        if (window.Sero && Sero.P) {
+          document.querySelectorAll(".ab-price").forEach((el) => {
+            const p = Sero.P.find((x) => x.id === +el.dataset.pid);
+            if (p) el.textContent = "$" + p.price.toFixed(2);
+          });
+        }
+      });
+    </script>
+    <!-- Motion (zoom-out hero, rising headline, scroll reveals): see assets/motion.css and assets/motion.js -->
+    <script>
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
+        document.documentElement.classList.add("mo-on");
+    </script>
+    <link rel="stylesheet" href="assets/motion.css?v=1" />
+    <link rel="stylesheet" href="assets/menu.css?v=1" />
+  </head>
+  <!-- ======================================================================
+       AREA: BODY
+       Everything the visitor sees.
+       ====================================================================== -->
+
+  <body class="solid-header gift-page">
+    <!-- ============ ANNOUNCEMENT BAR (scrolls away; 4 rotating messages in a loop) ============ -->
+    <div class="announce" role="region" aria-label="Announcements">
+      <div class="ticker" aria-live="off">
+        <span>Free shipping on all corporate orders</span>
+        <span>Members get extra discounts every month</span>
+        <span>Fresh farm chocolates, made in small batches</span>
+        <span>Join the Sero Club &amp; unlock member-only drops</span>
+        <span>Free shipping on all corporate orders</span>
+        <span>Members get extra discounts every month</span>
+        <span>Fresh farm chocolates, made in small batches</span>
+        <span>Join the Sero Club &amp; unlock member-only drops</span>
+      </div>
+    </div>
+
+    <!-- ============ HEADER ============ -->
+    <!-- ======================================================================
+         AREA: HEADER
+         Logo, main navigation (Shop, Gifts, Membership, Contact, Our
+         story), account and cart icons.
+         ====================================================================== -->
+    <header class="header" id="header">
+      <div class="left">
+        <button class="icon-btn burger" id="burger" aria-label="Open menu">
+          <svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18" /></svg>
+        </button>
+        <nav aria-label="Main">
+          <ul>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="custom-gifts.html">Gifts</a></li>
+            <li><a href="membership.html">Membership</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="about.html" aria-current="page">Our story</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <a class="logo" href="index.html" aria-label="Sero Chocolates – home"
+        ><img src="assets/logo-trim.png" alt="Sero Chocolates – El buen cacao"
+      /></a>
+
+      <div class="actions">
+        <div class="search" id="search">
+          <input type="search" placeholder="Search chocolates…" aria-label="Search" />
+          <button class="icon-btn" id="searchBtn" aria-label="Search">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="6.5" />
+              <path d="M20 20l-4.2-4.2" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="acct" id="acct">
+          <!-- state A: signed out -->
+          <a class="icon-btn out" href="#" aria-label="Sign in or join"
+            ><svg viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6" /></svg
+            ><span class="lbl">Sign in</span></a
+          >
+          <!-- state B: signed in -->
+          <button
+            class="icon-btn in"
+            id="acctBtn"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-label="Account menu"
+          >
+            <span class="avatar">A</span><span class="lbl member-tag">MEMBER</span>
+          </button>
+          <div class="menu-pop" role="menu">
+            <div class="who">
+              <b>Hi, Aarav</b><small>Sero Club member · 10% monthly perk</small>
+            </div>
+            <a href="#" role="menuitem">My account</a>
+            <a href="#" role="menuitem">Orders</a>
+            <a href="#" role="menuitem">Membership &amp; perks</a>
+            <a href="#" role="menuitem">Wishlist</a>
+            <a href="#" class="signout" role="menuitem">Sign out</a>
+          </div>
+        </div>
+
+        <a class="icon-btn cart" href="#" aria-label="Cart, 2 items"
+          ><svg viewBox="0 0 24 24">
+            <path d="M5 8h14l-1.2 11.2a1.5 1.5 0 0 1-1.5 1.3H7.7a1.5 1.5 0 0 1-1.5-1.3L5 8z" />
+            <path d="M9 8V6.5a3 3 0 0 1 6 0V8" /></svg
+          ><span class="badge">2</span></a
+        >
+      </div>
+    </header>
+
+    <!-- ======================================================================
+         AREA: MOBILE MENU
+         Slide-out menu shown on phones and tablets.
+         ====================================================================== -->
+    <div class="drawer" id="drawer">
+      <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="custom-gifts.html">Gifts</a
+      ><a href="membership.html">Membership</a><a href="contact.html">Contact</a
+      ><a href="about.html">Our story</a>
+    </div>
+
+    <!-- ======================================================================
+         AREA: MAIN CONTENT
+         The page body. Each numbered block below is one section.
+         ====================================================================== -->
+    <main class="ab">
+      <!-- ======================================================================
+           SECTION: 1. Hero
+           ====================================================================== -->
+      <section class="ab-hero" aria-labelledby="ab-h1">
+        <div class="ab-hero-bg" style="--bg: url(assets/img/cocoa-orchard-rows.webp)"></div>
+        <div class="ab-w">
+          <h1 id="ab-h1">It started on a <em>farm porch.</em></h1>
+          <p>
+            Single-origin Guatemalan chocolate, made by people who know the farm. Here is where we
+            began, how we grew, and how every bar is made.
+          </p>
+          <a class="ab-btn" href="shop.html">Shop now</a>
+        </div>
+        <a class="ab-down" href="#origin" aria-label="Scroll to our origin"></a>
+      </section>
+
+      <!-- ======================================================================
+           SECTION: 2. Where it began (2018)
+           The farm photo stays fixed in the background while the text scrolls over it.
+           ====================================================================== -->
+      <section
+        class="ab-origin"
+        id="origin"
+        aria-labelledby="ab-o"
+        style="--bg: url(assets/img/cacao-pods-wheelbarrow-sunset.webp)"
+      >
+        <div class="ab-w ab-origin-grid">
+          <div class="ab-origin-in">
+            <h2 id="ab-o">Where it began: one cup of <em>hot chocolate, 2018</em></h2>
+            <p>
+              Three of us drank hot chocolate on a farm in Izabal. It tasted nothing like the bars
+              we knew.
+            </p>
+            <a class="ab-btn" href="shop.html">Shop now</a>
+          </div>
+          <figure class="ab-origin-photo">
+            <img
+              src="assets/img/chocolate-pouring-from-spatula.webp"
+              alt="Rich chocolate being poured"
+              loading="lazy"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           SECTION: 3. Our journey, 2018 to 2025
+           Pictures stay fixed on the left and change as the text on the right scrolls.
+           ====================================================================== -->
+      <section class="ab-journey" aria-labelledby="ab-j">
+        <div class="ab-w ab-jwrap">
+          <h2 id="ab-j">From one farm porch to <em>500+ farming families</em></h2>
+          <div class="ab-jgrid">
+            <div class="ab-stage" aria-hidden="true">
+              <img class="on" data-i="0" src="assets/img/cacao-pods-drying-shed.webp" alt="" />
+              <img data-i="1" src="assets/img/hands-holding-split-cacao-pod.webp" alt="" />
+              <img data-i="2" src="assets/img/cacao-beans-drying-yard.webp" alt="" />
+              <img data-i="3" src="assets/img/chocolate-makers-in-kitchen.webp" alt="" />
+              <img data-i="4" src="assets/img/dark-chocolate-bars-on-slate.webp" alt="" />
+              <img data-i="5" src="assets/img/gift-black-box.webp" alt="" />
+              <img data-i="6" src="assets/img/stacked-chocolate-bars-and-nuts.webp" alt="" />
+              <img data-i="7" src="assets/img/hands-holding-colourful-cacao-pods.webp" alt="" />
+              <b class="ab-yr" id="abYear">2018</b>
+            </div>
+            <div class="ab-years">
+              <article data-i="0">
+                <div class="ab-yhead">
+                  <span class="ab-ico"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M5 9h11v5a5 5 0 01-5 5h-1a5 5 0 01-5-5V9z" />
+                      <path d="M16 10h2a2.5 2.5 0 010 5h-2" />
+                      <path d="M9 3c-1 1.2 1 2 0 3.5M13 3c-1 1.2 1 2 0 3.5" /></svg
+                  ></span>
+                  <div>
+                    <i>2018</i>
+                    <h3>The first harvest</h3>
+                  </div>
+                </div>
+                <p>
+                  Three of us, one rented workshop and a promise to visit every farm we buy from.
+                </p>
+                <span class="res"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="9" cy="8" r="3" />
+                    <circle cx="17" cy="9" r="2.4" />
+                    <path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.4c3 0 6 2 6 5.6" /></svg
+                  ><u>12</u> farming families and our first 400 hand-made bars</span
+                >
+              </article>
+              <article data-i="1">
+                <div class="ab-yhead">
+                  <span class="ab-ico"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M12 21v-9" />
+                      <path d="M12 12c0-4 3-6.5 7-6.5 0 4-3 6.5-7 6.5z" />
+                      <path d="M12 15c0-3-2.2-5-6-5 0 3 2.2 5 6 5z" /></svg
+                  ></span>
+                  <div>
+                    <i>2019</i>
+                    <h3>Learning from the farms</h3>
+                  </div>
+                </div>
+                <p>A whole season beside the farmers, learning how fermenting shapes flavour.</p>
+                <span class="res"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="9" cy="8" r="3" />
+                    <circle cx="17" cy="9" r="2.4" />
+                    <path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.4c3 0 6 2 6 5.6" /></svg
+                  ><u>40</u> farming families and our first single-origin bar, Finca Kampura</span
+                >
+              </article>
+              <article data-i="2">
+                <div class="ab-yhead">
+                  <span class="ab-ico"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="12" cy="12" r="4" />
+                      <path
+                        d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"
+                      /></svg
+                  ></span>
+                  <div>
+                    <i>2020</i>
+                    <h3>Drying done right</h3>
+                  </div>
+                </div>
+                <p>
+                  We helped three cooperatives build raised drying beds under translucent roofs.
+                </p>
+                <span class="res"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="9" cy="8" r="3" />
+                    <circle cx="17" cy="9" r="2.4" />
+                    <path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.4c3 0 6 2 6 5.6" /></svg
+                  ><u>80</u> farming families and steadier batches</span
+                >
+              </article>
+              <article data-i="3">
+                <div class="ab-yhead">
+                  <span class="ab-ico"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <ellipse cx="12" cy="8" rx="8" ry="3" />
+                      <path d="M4 8v8c0 1.7 3.6 3 8 3s8-1.3 8-3V8" />
+                      <path d="M12 8v4" /></svg
+                  ></span>
+                  <div>
+                    <i>2021</i>
+                    <h3>Our own stone grinder</h3>
+                  </div>
+                </div>
+                <p>
+                  Granite grinders in our Guatemala City kitchen, so every step happens in-house.
+                </p>
+                <span class="res"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M8 12.5l3 3 5-6" /></svg
+                  >Every bar now goes from bean to wrapper under one roof</span
+                >
+              </article>
+              <article data-i="4">
+                <div class="ab-yhead">
+                  <span class="ab-ico"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M12 3l1.8 5 5.2 1.8-5.2 1.8L12 17l-1.8-5.4L5 9.8 10.2 8 12 3z"
+                      /></svg
+                  ></span>
+                  <div>
+                    <i>2022</i>
+                    <h3>Honest verdicts</h3>
+                  </div>
+                </div>
+                <p>We sent our bars to international tastings and waited for honest verdicts.</p>
+                <span class="res"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="9" cy="8" r="3" />
+                    <circle cx="17" cy="9" r="2.4" />
+                    <path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.4c3 0 6 2 6 5.6" /></svg
+                  ><u>240</u> farming families in the network</span
+                >
+              </article>
+              <article data-i="5">
+                <div class="ab-yhead">
+                  <span class="ab-ico"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <rect x="3" y="9" width="18" height="12" rx="1" />
+                      <path d="M12 9v12M3 13h18" />
+                      <path
+                        d="M12 9c-2-4-6-3-5 0 .6 1.4 3 1 5 0zM12 9c2-4 6-3 5 0-.6 1.4-3 1-5 0z"
+                      /></svg
+                  ></span>
+                  <div>
+                    <i>2023</i>
+                    <h3>Made for sharing</h3>
+                  </div>
+                </div>
+                <p>Custom gift boxes with ribbons tied and notes written by hand.</p>
+                <span class="res"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" /></svg
+                  >Sent to families and teams in more than a dozen countries</span
+                >
+              </article>
+              <article data-i="6">
+                <div class="ab-yhead">
+                  <span class="ab-ico"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M4 9l1.5-5h13L20 9" />
+                      <path d="M4 9v11h16V9" />
+                      <path d="M4 9a3 3 0 006 0 3 3 0 006 0 3 3 0 004 0" /></svg
+                  ></span>
+                  <div>
+                    <i>2024</i>
+                    <h3>Cafes, hotels and shops</h3>
+                  </div>
+                </div>
+                <p>A wholesale range of bars, bark and couverture built for professionals.</p>
+                <span class="res"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M8 12.5l3 3 5-6" /></svg
+                  >Served in cafes and hotels across the region</span
+                >
+              </article>
+              <article data-i="7">
+                <div class="ab-yhead">
+                  <span class="ab-ico"
+                    ><svg viewBox="0 0 24 24" aria-hidden="true">
+                      <circle cx="9" cy="8" r="3" />
+                      <circle cx="17" cy="9" r="2.4" />
+                      <path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.4c3 0 6 2 6 5.6" /></svg
+                  ></span>
+                  <div>
+                    <i>2025</i>
+                    <h3>Still small, still careful</h3>
+                  </div>
+                </div>
+                <p>Growing without growing apart: every batch is still tasted by hand.</p>
+                <span class="res"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="9" cy="8" r="3" />
+                    <circle cx="17" cy="9" r="2.4" />
+                    <path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.4c3 0 6 2 6 5.6" /></svg
+                  ><u>500+</u> farming families grow cacao for Sero</span
+                >
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           SECTION: 4. Where we are today
+           ====================================================================== -->
+      <section
+        class="ab-today"
+        aria-labelledby="ab-t"
+        style="--bg: url(assets/img/plantation-aerial-green-field.webp)"
+      >
+        <div class="ab-w ab-today-grid">
+          <div>
+            <h2 id="ab-t">Still small, <em>on purpose</em></h2>
+            <p class="ab-lead">
+              We make less so we can taste and adjust every batch before it leaves the kitchen.
+            </p>
+            <ul class="ab-ticks">
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3c3 4 6 7 6 11a6 6 0 01-12 0c0-4 3-7 6-11z" /></svg
+                >Small batches
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M8 12.5l3 3 5-6" /></svg
+                >Every batch tasted by hand
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z" />
+                  <circle cx="12" cy="10" r="2.5" /></svg
+                >Every bar names its farm
+              </li>
+            </ul>
+            <p>
+              Today more than 500 farming families grow cacao for Sero, on four named farms and
+              cooperatives in Guatemala.
+            </p>
+            <dl class="ab-stats">
+              <div>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="9" cy="8" r="3" />
+                  <circle cx="17" cy="9" r="2.4" />
+                  <path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.4c3 0 6 2 6 5.6" />
+                </svg>
+                <dt>500+</dt>
+                <dd>farming families</dd>
+              </div>
+              <div>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 21s-7-6-7-11a7 7 0 0114 0c0 5-7 11-7 11z" />
+                  <circle cx="12" cy="10" r="2.5" />
+                </svg>
+                <dt>4</dt>
+                <dd>named farms</dd>
+              </div>
+              <div>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="6" cy="6" r="2.2" />
+                  <circle cx="18" cy="18" r="2.2" />
+                  <path d="M8 6h6a3 3 0 010 6h-4a3 3 0 000 6h6" />
+                </svg>
+                <dt>100%</dt>
+                <dd>traceable beans</dd>
+              </div>
+            </dl>
+            <a class="ab-btn" href="shop.html">Shop now</a>
+          </div>
+          <figure class="ab-today-photo">
+            <img
+              src="assets/img/farmer-carrying-basket-of-pods.webp"
+              alt="A farmer carrying a basket of cacao pods"
+              loading="lazy"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           SECTION: 5. From one farm to four
+           ====================================================================== -->
+      <section class="ab-farmsec" aria-labelledby="ab-f">
+        <div class="ab-w">
+          <div class="ab-head">
+            <h2 id="ab-f">From one farm <em>to four</em></h2>
+            <p>
+              Every bar comes from a single place, so you can taste the difference between one farm
+              and the next.
+            </p>
+          </div>
+          <div class="ab-farms">
+            <article>
+              <img src="assets/Sero_Images/assets_cutouts/cut-kampura.png" alt="" loading="lazy" />
+              <small>Caribbean side, Izabal</small>
+              <h3>Finca Kampura</h3>
+              <p>
+                Green, humid country near Lake Izabal. Notes of panela and citrus. Our customer
+                favourite.
+              </p>
+              <a class="ab-btn" href="product.html?id=4">Shop now</a>
+            </article>
+            <article>
+              <img src="assets/Sero_Images/assets_cutouts/cut-tesoro.png" alt="" loading="lazy" />
+              <small>Pacific lowlands, Escuintla</small>
+              <h3>Finca El Tesoro</h3>
+              <p>
+                Shaded cacao in the warm lowlands. A deep, round flavour. The most classic of the
+                four.
+              </p>
+              <a class="ab-btn" href="product.html?id=3">Shop now</a>
+            </article>
+            <article>
+              <img
+                src="assets/Sero_Images/assets_cutouts/cut-aguablanca.png"
+                alt=""
+                loading="lazy"
+              />
+              <small>Pacific lowlands, Escuintla</small>
+              <h3>Finca Agua Blanca</h3>
+              <p>
+                Warm, humid lowlands near the Pacific coast. Deep, full dark chocolate, bought
+                direct from the finca.
+              </p>
+              <a class="ab-btn" href="product.html?id=1">Shop now</a>
+            </article>
+            <article>
+              <img src="assets/Sero_Images/assets_cutouts/cut-asipasm.png" alt="" loading="lazy" />
+              <small>River valley, Valle del Polochic</small>
+              <h3>Aj Asipasm</h3>
+              <p>
+                Grown by a Maya Q'eqchi' growers' cooperative in the Polochic valley. The
+                cooperative's signature 70% dark.
+              </p>
+              <a class="ab-btn" href="product.html?id=2">Shop now</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           SECTION: 6. From the pod to the bar
+           Seven steps: a photo, a small icon and a short title. No long text.
+           ====================================================================== -->
+      <section class="ab-pod" aria-labelledby="ab-m">
+        <div class="ab-w">
+          <div class="ab-head">
+            <h2 id="ab-m">From the pod <em>to the bar</em></h2>
+          </div>
+          <ol class="ab-arches">
+            <li>
+              <figure>
+                <img
+                  src="assets/img/farmer-cutting-yellow-pod.webp"
+                  alt="A farmer cutting a ripe pod"
+                  loading="lazy"
+                /><span class="ab-ico"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="6" cy="7" r="2.5" />
+                    <circle cx="6" cy="17" r="2.5" />
+                    <path d="M8 8.5L20 18M8 15.5L20 6" /></svg
+                ></span>
+              </figure>
+              <h3><b>1</b> Cut by hand</h3>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="assets/img/hands-holding-split-cacao-pod.webp"
+                  alt="Hands holding an opened pod"
+                  loading="lazy"
+                /><span class="ab-ico"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4 8l8-4 8 4v9l-8 4-8-4V8z" />
+                    <path d="M4 8l8 4 8-4M12 12v9" /></svg
+                ></span>
+              </figure>
+              <h3><b>2</b> Fermented</h3>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="assets/img/cacao-beans-drying-yard.webp"
+                  alt="Cacao beans drying in the sun"
+                  loading="lazy"
+                /><span class="ab-ico"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4" />
+                    <path
+                      d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"
+                    /></svg
+                ></span>
+              </figure>
+              <h3><b>3</b> Dried in the sun</h3>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="assets/img/worker-holding-cocoa-nibs.webp"
+                  alt="Hands holding roasted cacao nibs"
+                  loading="lazy"
+                /><span class="ab-ico"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 3c1 3 5 5 5 10a5 5 0 01-10 0c0-2 1-3.5 2-4.5 0 1.5 1 2.5 2 2.5 0-3-1-5 1-8z"
+                    /></svg
+                ></span>
+              </figure>
+              <h3><b>4</b> Roasted and cracked</h3>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="assets/img/chocolate-makers-in-kitchen.webp"
+                  alt="Chocolate makers at the stone grinders"
+                  loading="lazy"
+                /><span class="ab-ico"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <ellipse cx="12" cy="8" rx="8" ry="3" />
+                    <path d="M4 8v8c0 1.7 3.6 3 8 3s8-1.3 8-3V8" />
+                    <path d="M12 8v4" /></svg
+                ></span>
+              </figure>
+              <h3><b>5</b> Ground on stone</h3>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="assets/img/chocolate-pouring-from-spatula.webp"
+                  alt="Chocolate being poured from a spatula"
+                  loading="lazy"
+                /><span class="ab-ico"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M10 14V5a2 2 0 014 0v9a4 4 0 11-4 0z" />
+                    <path d="M12 9v7" /></svg
+                ></span>
+              </figure>
+              <h3><b>6</b> Tempered</h3>
+            </li>
+            <li>
+              <figure>
+                <img
+                  src="assets/img/dark-chocolate-with-cacao-beans.webp"
+                  alt="Dark chocolate with cacao beans"
+                  loading="lazy"
+                /><span class="ab-ico"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3l1.8 5 5.2 1.8-5.2 1.8L12 17l-1.8-5.4L5 9.8 10.2 8 12 3z" /></svg
+                ></span>
+              </figure>
+              <h3><b>7</b> Tasted, then wrapped</h3>
+            </li>
+            <li class="end">
+              <figure style="--bg: url(assets/img/chocolate-blocks-with-nibs.webp)">
+                <h3>Now taste it</h3>
+                <a class="ab-btn" href="shop.html">Shop now</a>
+              </figure>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           SECTION: 7. Meet the team
+           ====================================================================== -->
+      <section class="ab-team" aria-labelledby="ab-p">
+        <div class="ab-w ab-team-grid">
+          <div class="ab-tcopy">
+            <h2 id="ab-p">A small kitchen, <em>careful hands</em></h2>
+            <p class="ab-lead">
+              We started as three people and one rented workshop. Today a small team in Guatemala
+              City turns the beans into bars, and every batch is still tasted by hand.
+            </p>
+            <a class="ab-btn" href="shop.html">Shop now</a>
+          </div>
+          <div class="ab-collage" aria-hidden="true">
+            <figure class="a">
+              <img src="assets/img/chocolate-makers-in-kitchen.webp" alt="" loading="lazy" />
+            </figure>
+            <figure class="b">
+              <img src="assets/img/worker-holding-cocoa-nibs.webp" alt="" loading="lazy" />
+              <figcaption>Nibs, sorted by hand</figcaption>
+            </figure>
+            <figure class="c">
+              <img src="assets/img/melted-chocolate-flowing-in-tank.webp" alt="" loading="lazy" />
+              <figcaption>Ground on stone</figcaption>
+            </figure>
+            <svg class="seal" viewBox="0 0 200 200">
+              <defs>
+                <path id="abring" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
+              </defs>
+              <circle cx="100" cy="100" r="96" fill="#1c110b" />
+              <circle cx="100" cy="100" r="90" fill="none" stroke="#e2a93b" stroke-width="1.5" />
+              <text
+                font-size="15"
+                letter-spacing="0"
+                fill="#f7de97"
+                font-family="Montserrat, sans-serif"
+                font-weight="700"
+              >
+                <textPath href="#abring" textLength="480" lengthAdjust="spacing">
+                  TASTED BY HAND · EVERY BATCH · SINCE 2018 ·
+                </textPath>
+              </text>
+              <text
+                x="100"
+                y="116"
+                text-anchor="middle"
+                font-size="52"
+                fill="#fff"
+                font-family="Bebas Neue, Impact, sans-serif"
+              >
+                2018
+              </text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           SECTION: 8. Your order supports farmers directly
+           ====================================================================== -->
+      <section
+        class="ab-impact"
+        aria-labelledby="ab-i"
+        style="--bg: url(assets/img/hands-holding-colourful-cacao-pods.webp)"
+      >
+        <div class="ab-w">
+          <h2 id="ab-i">Your order supports <em>farmers directly</em></h2>
+          <p class="ab-lead">
+            We buy straight from the growers and pay them more than the market price, for quality
+            and not just volume.
+          </p>
+          <ol class="ab-chain">
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 8h14l-1 12H6L5 8z" />
+                <path d="M9 8V6a3 3 0 016 0v2" />
+              </svg>
+              <b>You buy a bar</b>
+              <span>Your order funds the next batch of beans.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7L12 3z"
+                />
+              </svg>
+              <b>The grower is paid for quality</b>
+              <span>Direct purchase, with a premium for careful work.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21v-8" />
+                <path d="M12 13c0-4 3-6 7-6 0 4-3 6-7 6z" />
+                <path d="M12 15c0-3-2-5-6-5 0 3 2 5 6 5z" />
+              </svg>
+              <b>The family reinvests</b>
+              <span>In tools, drying beds, school and the next harvest.</span>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           SECTION: 9. Gallery
+           A mosaic of photos from the farm, the kitchen and the bars. Click one to see it larger.
+           ====================================================================== -->
+      <section class="ab-gallery" aria-labelledby="ab-g">
+        <div class="ab-w">
+          <div class="ab-head">
+            <h2 id="ab-g">From farm to bar, <em>in pictures</em></h2>
+          </div>
+          <div class="ab-mosaic" id="abMosaic">
+            <figure class="s22">
+              <button type="button">
+                <img
+                  src="assets/img/hands-holding-colourful-cacao-pods.webp"
+                  alt="Hands holding colourful cacao pods"
+                  loading="lazy"
+                />
+              </button>
+              <figcaption>Pods, picked ripe</figcaption>
+            </figure>
+            <figure>
+              <button type="button">
+                <img
+                  src="assets/img/farmer-cutting-yellow-pod.webp"
+                  alt="A farmer cutting a yellow pod"
+                  loading="lazy"
+                />
+              </button>
+              <figcaption>Cut by hand</figcaption>
+            </figure>
+            <figure>
+              <button type="button">
+                <img
+                  src="assets/img/cacao-pods-in-wooden-crates.webp"
+                  alt="Cacao pods in wooden crates"
+                  loading="lazy"
+                />
+              </button>
+              <figcaption>Pods in crates</figcaption>
+            </figure>
+            <figure class="s21">
+              <button type="button">
+                <img
+                  src="assets/img/cacao-beans-drying-yard.webp"
+                  alt="Cacao beans drying in the sun"
+                  loading="lazy"
+                />
+              </button>
+              <figcaption>Drying in the sun</figcaption>
+            </figure>
+            <figure class="s12">
+              <button type="button">
+                <img
+                  src="assets/img/worker-holding-cocoa-nibs.webp"
+                  alt="Hands holding roasted cacao nibs"
+                  loading="lazy"
+                />
+              </button>
+              <figcaption>Nibs, sorted by hand</figcaption>
+            </figure>
+            <figure class="s12">
+              <button type="button">
+                <img
+                  src="assets/img/chocolate-makers-in-kitchen.webp"
+                  alt="Makers in the chocolate kitchen"
+                  loading="lazy"
+                />
+              </button>
+              <figcaption>In our kitchen</figcaption>
+            </figure>
+            <figure class="s21">
+              <button type="button">
+                <img
+                  src="assets/img/melted-chocolate-flowing-in-tank.webp"
+                  alt="Melted chocolate flowing"
+                  loading="lazy"
+                />
+              </button>
+              <figcaption>Chocolate, melted</figcaption>
+            </figure>
+            <figure>
+              <button type="button">
+                <img
+                  src="assets/img/dark-chocolate-bars-on-slate.webp"
+                  alt="Dark chocolate bars on slate"
+                  loading="lazy"
+                />
+              </button>
+              <figcaption>Dark bars</figcaption>
+            </figure>
+            <figure>
+              <button type="button">
+                <img
+                  src="assets/img/stacked-chocolate-bars-and-nuts.webp"
+                  alt="Stacked chocolate bars and nuts"
+                  loading="lazy"
+                />
+              </button>
+              <figcaption>Bars and almonds</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+      <div class="ab-lightbox" id="abLight" hidden role="dialog" aria-label="Photo">
+        <button type="button" class="x" aria-label="Close">&times;</button>
+        <button type="button" class="nav prev" aria-label="Previous photo">&lsaquo;</button>
+        <img alt="" />
+        <button type="button" class="nav next" aria-label="Next photo">&rsaquo;</button>
+        <p></p>
+      </div>
+
+      <!-- ======================================================================
+           SECTION: 10. What goes in the bar, and what never does
+           Two panels with the seal in its own column between them.
+           ====================================================================== -->
+      <section class="ab-trust" aria-labelledby="ab-v">
+        <div class="ab-w">
+          <div class="ab-head">
+            <h2 id="ab-v">What goes in the bar, <em>and what never does</em></h2>
+          </div>
+          <div class="ab-ledger">
+            <div class="in">
+              <h3>In every bar</h3>
+              <ul>
+                <li>One farm, named on the pack</li>
+                <li>Cacao, cocoa butter and sugar</li>
+                <li>Milk, almonds or matcha only where a recipe needs them</li>
+                <li>Small batches, tasted by hand</li>
+              </ul>
+            </div>
+            <svg class="seal" viewBox="0 0 200 200" aria-hidden="true">
+              <defs>
+                <path id="abring2" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
+              </defs>
+              <circle cx="100" cy="100" r="96" fill="#e2a93b" />
+              <g class="spin">
+                <text
+                  font-size="15.5"
+                  letter-spacing="0"
+                  fill="#140b07"
+                  font-family="Montserrat, sans-serif"
+                  font-weight="700"
+                >
+                  <textPath href="#abring2" textLength="480" lengthAdjust="spacing">
+                    ONE FARM · ONE BAR · NOTHING TO HIDE ·
+                  </textPath>
+                </text>
+              </g>
+              <path
+                d="M70 102l22 22 40-46"
+                fill="none"
+                stroke="#140b07"
+                stroke-width="9"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <div class="out">
+              <h3>Never in a Sero bar</h3>
+              <ul>
+                <li>Blended beans from many places</li>
+                <li>Long ingredient lists</li>
+                <li>Ready-made chocolate, reshaped</li>
+                <li>Batches that go out untasted</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           SECTION: 11. Four bars, four tastes
+           ====================================================================== -->
+      <section class="ab-sec" aria-labelledby="ab-ta">
+        <div class="ab-w">
+          <div class="ab-head">
+            <h2 id="ab-ta">Four bars, <em>four tastes</em></h2>
+          </div>
+          <div class="ab-taste">
+            <div>
+              <a class="pic" href="product.html?id=4"
+                ><img
+                  src="assets/Sero_Images/assets_cutouts/cut-kampura.png"
+                  alt="Finca Kampura"
+                  loading="lazy"
+              /></a>
+              <small>Bright and fruity</small>
+              <h3><a href="product.html?id=4">Finca Kampura</a></h3>
+              <p>Notes of panela and citrus.</p>
+              <b class="ab-price" data-pid="4">$9.00</b>
+              <button type="button" class="ab-btn" data-buy="4">Buy now</button>
+              <a class="ab-more" href="product.html?id=4">View product</a>
+            </div>
+            <div>
+              <a class="pic" href="product.html?id=3"
+                ><img
+                  src="assets/Sero_Images/assets_cutouts/cut-tesoro.png"
+                  alt="Finca El Tesoro"
+                  loading="lazy"
+              /></a>
+              <small>Deep and classic</small>
+              <h3><a href="product.html?id=3">Finca El Tesoro</a></h3>
+              <p>A round, full cacao flavour.</p>
+              <b class="ab-price" data-pid="3">$8.50</b>
+              <button type="button" class="ab-btn" data-buy="3">Buy now</button>
+              <a class="ab-more" href="product.html?id=3">View product</a>
+            </div>
+            <div>
+              <a class="pic" href="product.html?id=1"
+                ><img
+                  src="assets/Sero_Images/assets_cutouts/cut-aguablanca.png"
+                  alt="Finca Agua Blanca"
+                  loading="lazy"
+              /></a>
+              <small>Dark and full</small>
+              <h3><a href="product.html?id=1">Finca Agua Blanca</a></h3>
+              <p>Deep, full dark chocolate.</p>
+              <b class="ab-price" data-pid="1">$8.50</b>
+              <button type="button" class="ab-btn" data-buy="1">Buy now</button>
+              <a class="ab-more" href="product.html?id=1">View product</a>
+            </div>
+            <div>
+              <a class="pic" href="product.html?id=2"
+                ><img
+                  src="assets/Sero_Images/assets_cutouts/cut-asipasm.png"
+                  alt="Aj Asipasm"
+                  loading="lazy"
+              /></a>
+              <small>A cooperative's signature</small>
+              <h3><a href="product.html?id=2">Aj Asipasm</a></h3>
+              <p>70% dark from the Polochic valley.</p>
+              <b class="ab-price" data-pid="2">$9.00</b>
+              <button type="button" class="ab-btn" data-buy="2">Buy now</button>
+              <a class="ab-more" href="product.html?id=2">View product</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           SECTION: 12. How to taste chocolate
+           Full width. Four senses, each with its own icon, joined by a dotted gold line.
+           ====================================================================== -->
+      <section
+        class="ab-senses"
+        aria-labelledby="ab-s"
+        style="--bg: url(assets/img/dark-chocolate-bars-on-slate.webp)"
+      >
+        <h2 id="ab-s">How to taste <em>chocolate</em></h2>
+        <ol>
+          <li>
+            <span class="ab-orb"
+              ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" />
+                <circle cx="12" cy="12" r="3" /></svg
+            ></span>
+            <h3>Look and snap</h3>
+            <p>A well-tempered bar shines and breaks cleanly.</p>
+          </li>
+          <li>
+            <span class="ab-orb"
+              ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 9h10a3 3 0 100-3M3 14h14a3 3 0 110 3M3 19h8" /></svg
+            ></span>
+            <h3>Smell</h3>
+            <p>Breathe in first. You may find fruit, nuts or caramel.</p>
+          </li>
+          <li>
+            <span class="ab-orb"
+              ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3c3 4 6 7 6 11a6 6 0 01-12 0c0-4 3-7 6-11z" /></svg
+            ></span>
+            <h3>Melt</h3>
+            <p>Let a square melt slowly on your tongue.</p>
+          </li>
+          <li>
+            <span class="ab-orb"
+              ><svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" /></svg
+            ></span>
+            <h3>Notice the finish</h3>
+            <p>See what stays after it is gone. Then try the next farm.</p>
+          </li>
+        </ol>
+        <a class="ab-btn" href="shop.html">Shop now</a>
+      </section>
+
+      <!-- ======================================================================
+           SECTION: 13. Questions
+           Answers on the left, a picture on the right that follows the open question.
+           ====================================================================== -->
+      <section class="ab-sec sand" aria-labelledby="ab-q">
+        <div class="ab-w">
+          <div class="ab-head">
+            <h2 id="ab-q">Questions, <em>answered plainly</em></h2>
+          </div>
+          <div class="ab-faqgrid">
+            <div class="ab-acc" id="abAcc">
+              <details name="abfaq" open data-i="0">
+                <summary>What does "bean to bar" mean?</summary>
+                <p>
+                  It means we make the chocolate ourselves, starting from the raw cacao bean:
+                  sorting, roasting, cracking, grinding, refining and tempering. Most chocolate
+                  brands buy ready-made chocolate and reshape it. We start one step earlier.
+                </p>
+              </details>
+              <details name="abfaq" data-i="1">
+                <summary>Where do your beans come from?</summary>
+                <p>
+                  From farms and cooperatives in Guatemala: Escuintla on the Pacific side, and
+                  Izabal and the Polochic valley in the east. Each bar is named after the place its
+                  beans came from.
+                </p>
+              </details>
+              <details name="abfaq" data-i="2">
+                <summary>Can I visit the farms or the kitchen?</summary>
+                <p>
+                  We are planning visits. Use the <a href="contact.html">contact page</a> to tell us
+                  you are interested and we will write back when dates are set.
+                </p>
+              </details>
+              <details name="abfaq" data-i="3">
+                <summary>Do you ship abroad, and what about gifts for teams?</summary>
+                <p>
+                  Yes. Corporate orders ship free, and we make custom gift boxes with your logo or a
+                  handwritten note. See <a href="custom-gifts.html">gifting</a> or send a request on
+                  the contact page.
+                </p>
+              </details>
+              <details name="abfaq" data-i="4">
+                <summary>Are your bars vegan or allergen-free?</summary>
+                <p>
+                  Our dark bars are made from cacao and a little sugar, and several are vegan. Milk
+                  bars contain milk, and some recipes contain nuts. Every product page lists its
+                  ingredients and diet notes.
+                </p>
+              </details>
+              <details name="abfaq" data-i="5">
+                <summary>How should I store chocolate?</summary>
+                <p>
+                  Keep it cool, dry and away from sunlight and strong smells. A pantry or cupboard
+                  is best. The fridge can pick up smells and dull the flavour, and a sunny window
+                  melts it.
+                </p>
+              </details>
+            </div>
+            <div class="ab-faqstage" aria-hidden="true">
+              <img class="on" data-i="0" src="assets/img/chocolate-makers-in-kitchen.webp" alt="" />
+              <img data-i="1" src="assets/img/plantation-aerial-green-field.webp" alt="" />
+              <img data-i="2" src="assets/img/cocoa-orchard-rows.webp" alt="" />
+              <img data-i="3" src="assets/img/gift-black-box.webp" alt="" />
+              <img data-i="4" src="assets/img/dark-chocolate-with-cacao-beans.webp" alt="" />
+              <img data-i="5" src="assets/img/dark-chocolate-bars-on-slate.webp" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <!-- ======================================================================
+         AREA: FOOTER
+         Logo, newsletter sign-up, and the shop / Sero / help links.
+         ====================================================================== -->
+    <footer class="sf">
+      <div class="sf-in">
+        <div class="sf-brand">
+          <a class="sf-logo" href="index.html" aria-label="Sero Chocolates – home"
+            ><img src="assets/logo-light.png" alt="Sero Chocolates"
+          /></a>
+          <p class="sf-tag">Fresh farm chocolates, every time.</p>
+          <form
+            class="sf-join"
+            onsubmit="
+              this.querySelector('button').textContent = 'Thank you';
+              return false;
+            "
+          >
+            <input
+              type="email"
+              placeholder="Your email address"
+              aria-label="Email address"
+              required
+            /><button type="submit">Join us</button>
+          </form>
+          <small class="sf-note"
+            >Free shipping over $50. New harvests, member offers and stories from the farm. No
+            spam.</small
+          >
+        </div>
+        <nav aria-label="Shop">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="shop.html">All chocolates</a></li>
+            <li><a href="shop.html?cat=dark">Single-origin dark</a></li>
+            <li><a href="shop.html?cat=flavoured">Flavoured bars</a></li>
+            <li><a href="shop.html?cat=gifts">Gift boxes</a></li>
+            <li><a href="shop.html?cat=bark">Bark and spreads</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Company">
+          <h4>Sero</h4>
+          <ul>
+            <li><a href="about.html">Our story</a></li>
+            <li><a href="custom-gifts.html">Gifts for teams</a></li>
+            <li><a href="contact.html?type=corporate">Corporate orders</a></li>
+            <li><a href="membership.html">Membership</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Help">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="contact.html">Contact us</a></li>
+            <li><a href="account.html">Your account</a></li>
+            <li><a href="cart.html">Your cart</a></li>
+            <li><a href="index.html#faq-h">Questions</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Connect">
+          <h4>Connect</h4>
+          <ul class="sf-social">
+            <li><a href="#" aria-label="Sero on Facebook" data-social="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" /></svg>Facebook</a></li>
+            <li><a href="#" aria-label="Sero on X (Twitter)" data-social="X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" /></svg>X (Twitter)</a></li>
+            <li><a href="#" aria-label="Sero on Instagram" data-social="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" /><path d="M16 11.4A4 4 0 1 1 12.6 8 4 4 0 0 1 16 11.4z" /><path d="M17.5 6.5h.01" /></svg>Instagram</a></li>
+            <li><a href="#" aria-label="Sero on TikTok" data-social="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12a4 4 0 1 0 4 4V3c.5 2.5 2.5 4 5 4" /></svg>TikTok</a></li>
+            <li><a href="#" aria-label="Sero on YouTube" data-social="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.5 6.4a2.8 2.8 0 0 0-1.9-2C18.9 4 12 4 12 4s-6.9 0-8.6.5a2.8 2.8 0 0 0-1.9 2A29 29 0 0 0 1 11.8a29 29 0 0 0 .5 5.3A2.8 2.8 0 0 0 3.4 19c1.7.5 8.6.5 8.6.5s6.9 0 8.6-.5a2.8 2.8 0 0 0 1.9-2 29 29 0 0 0 .5-5.2 29 29 0 0 0-.5-5.4z" /><path d="M9.75 15 15.5 11.75 9.75 8.5z" /></svg>YouTube</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <!-- wireframe controls -->
+    <!-- ======================================================================
+         AREA: HEADER STATE DEMO PANEL
+         Small switcher used while designing to preview header states.
+         Remove before launch.
+         ====================================================================== -->
+    <div class="ctl">
+      <b>Header state</b>
+      <div class="seg" role="group" aria-label="Header account state">
+        <button id="sOut" aria-pressed="true">Signed out</button>
+        <button id="sIn" aria-pressed="false">Signed in</button>
+      </div>
+      <small>Scroll to see the header turn solid.</small>
+    </div>
+
+    <!-- ======================================================================
+         JS: PAGE SCRIPT
+         JavaScript for this page (inline).
+         ====================================================================== -->
+    <script>
+      const body = document.body;
+      const hdr = document.getElementById("header");
+      const onScroll = () => {
+        body.classList.toggle("scrolled", window.scrollY > 40);
+        hdr.style.top = Math.max(0, 38 - window.scrollY) + "px"; // header rides up under the announcement bar, then sticks at 0
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // account state toggle
+      const sOut = document.getElementById("sOut"),
+        sIn = document.getElementById("sIn"),
+        acct = document.getElementById("acct");
+      const setState = (signedIn) => {
+        body.classList.toggle("signed-in", signedIn);
+        sOut.setAttribute("aria-pressed", String(!signedIn));
+        sIn.setAttribute("aria-pressed", String(signedIn));
+        acct.classList.remove("open");
+      };
+      sOut.onclick = () => setState(false);
+      sIn.onclick = () => setState(true);
+
+      // account menu
+      const acctBtn = document.getElementById("acctBtn");
+      acctBtn.onclick = (e) => {
+        e.stopPropagation();
+        const o = acct.classList.toggle("open");
+        acctBtn.setAttribute("aria-expanded", String(o));
+      };
+      document.addEventListener("click", () => {
+        acct.classList.remove("open");
+        acctBtn.setAttribute("aria-expanded", "false");
+      });
+
+      // search expand
+      const search = document.getElementById("search");
+      document.getElementById("searchBtn").onclick = () => {
+        const o = search.classList.toggle("open");
+        if (o) search.querySelector("input").focus();
+      };
+
+      // mobile drawer
+      const drawer = document.getElementById("drawer");
+      document.getElementById("burger").onclick = () => drawer.classList.toggle("open");
+      drawer.onclick = () => drawer.classList.remove("open");
+      // tapping anywhere outside the open menu, or pressing Escape, closes it
+      document.addEventListener("click", (e) => {
+        if (!drawer.classList.contains("open")) return;
+        if (drawer.contains(e.target) || document.getElementById("burger").contains(e.target)) return;
+        drawer.classList.remove("open");
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") drawer.classList.remove("open");
+      });
+    </script>
+    <!-- ======================================================================
+         JS: SHARED SCRIPTS
+         Files loaded from the assets folder (cart, catalogue, theme
+         behaviour).
+         ====================================================================== -->
+    <script src="assets/stencil.js"></script>
+    <script src="assets/sero.js"></script>
+    <script src="assets/motion.js?v=1"></script>
+    <script src="assets/menu.js?v=1" defer></script>
+  </body>
+</html>

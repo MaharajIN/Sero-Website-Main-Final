@@ -1,0 +1,390 @@
+/* ==========================================================================
+   SERO CLUB: one component, used the same way on every page that shows it
+   (Home and Membership today). Change it here and every page follows.
+
+   Desktop : text, the four points and the two buttons on the left, member card on the right
+   Tablet  : title + points on the left, card on the right, the two buttons under the card
+   Phone   : title, points, buttons, then the card
+
+   Markup (copy as is):
+   <section class="sclub" aria-labelledby="sclub-h"> <div class="sclub-in">
+     <div class="sclub-head"> crown, h2.sclub-title, p.sclub-tag, p.sclub-lead </div>
+     <ol class="sclub-steps"> 4 x li > i + text </ol>
+     <div class="sclub-acts"> 2 x a.sc-btn (.gold / .line) </div>
+     <div class="sclub-card"> card </div>
+   </div></section>
+   ========================================================================== */
+.sclub {
+  --sc-gold: #e2a93b;
+  --sc-gold-l: #f7de97;
+  --sc-foil: linear-gradient(135deg, #f7de97 0%, #e2a93b 38%, #b98330 62%, #f3d27e 100%);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #2a190d;
+  color: #f4ede3;
+  font-family: "Montserrat", system-ui, sans-serif;
+  padding: clamp(56px, 7vw, 104px) clamp(20px, 4.4vw, 72px);
+}
+.sclub::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url(img/club-layered-squares.webp) center/cover no-repeat;
+  pointer-events: none;
+}
+.sclub .sclub-in {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  grid-template-areas:
+    "head card"
+    "steps card"
+    "acts card";
+  column-gap: clamp(32px, 5vw, 80px);
+  row-gap: 28px;
+  align-content: center;
+  align-items: center;
+}
+.sclub .sclub-head {
+  grid-area: head;
+}
+.sclub .sclub-crown {
+  display: inline-grid;
+  place-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(226, 169, 59, 0.12);
+  color: var(--sc-gold);
+  box-shadow: inset 0 0 0 1px rgba(226, 169, 59, 0.35);
+}
+.sclub .sclub-crown svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+.sclub .sclub-title {
+  font-family: "Bebas Neue", "Impact", sans-serif !important;
+  font-weight: 400;
+  font-size: clamp(60px, 7vw, 104px);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  margin: 16px 0 8px;
+  padding: 0 0 0.04em;
+  background: var(--sc-foil);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.sclub .sclub-tag {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(13px, 1.2vw, 16px);
+  line-height: 1;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--sc-gold-l);
+}
+.sclub .sclub-lead {
+  margin: 18px 0 0;
+  font-weight: 600;
+  font-size: clamp(19px, 1.8vw, 24px);
+  line-height: 1.3;
+  color: #fff1c4;
+}
+.sclub .sclub-steps {
+  grid-area: steps;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.35;
+}
+.sclub .sclub-steps li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: rgba(244, 237, 227, 0.92);
+}
+.sclub .sclub-steps i {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--sc-foil);
+  color: #140b07;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+}
+.sclub .sclub-acts {
+  grid-area: acts;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.sclub .sc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 28px;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    transform 0.15s;
+}
+.sclub .sc-btn:hover {
+  transform: translateY(-2px);
+}
+.sclub .sc-btn.gold {
+  background: var(--sc-foil);
+  color: #140b07;
+  box-shadow: 0 14px 34px -12px rgba(226, 169, 59, 0.75);
+}
+.sclub .sc-btn.gold:hover {
+  background: #fff;
+}
+.sclub .sc-btn.line {
+  background: transparent;
+  color: #fff;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7);
+}
+.sclub .sc-btn.line:hover {
+  background: #fff;
+  color: #140b07;
+}
+
+/* the member card */
+.sclub .sclub-card {
+  grid-area: card;
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 24px 0;
+}
+.sclub .sclub-card::before {
+  content: "";
+  position: absolute;
+  inset: 6% 2%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(226, 169, 59, 0.42), rgba(226, 169, 59, 0));
+  filter: blur(18px);
+  animation: sclub-glow 5s ease-in-out infinite;
+}
+.sclub .sclub-float {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  animation: sclub-float 7s ease-in-out infinite;
+}
+.sclub .sclub-mcard {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 1.586 / 1;
+  border-radius: 22px;
+  padding: clamp(20px, 2.2vw, 28px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff6e6;
+  border: 1.5px solid transparent;
+  background:
+    radial-gradient(120% 120% at 0% 0%, #3a2414, #140b06 62%) padding-box,
+    var(--sc-foil) border-box;
+  box-shadow: 0 40px 80px -24px rgba(0, 0, 0, 0.9);
+}
+.sclub .sclub-mcard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 236, 190, 0.26) 47%, transparent 58%);
+  background-size: 260% 100%;
+  animation: sclub-sheen 5.5s ease-in-out infinite;
+  pointer-events: none;
+}
+.sclub .sc-r1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.sclub .sc-wm {
+  font-family: "Bebas Neue", "Impact", sans-serif;
+  font-size: clamp(34px, 3.4vw, 48px);
+  letter-spacing: 0.16em;
+  line-height: 1;
+}
+.sclub .sc-wm small {
+  display: block;
+  margin-top: 8px;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  background: var(--sc-foil);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.sclub .sc-chip {
+  width: 50px;
+  height: 38px;
+  border-radius: 8px;
+  background: var(--sc-foil);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+.sclub .sc-r2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 246, 230, 0.66);
+}
+.sclub .sc-r2 b {
+  display: block;
+  margin-top: 6px;
+  font-family: "Bebas Neue", "Impact", sans-serif;
+  font-weight: 400;
+  font-size: clamp(22px, 2.1vw, 30px);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #fff6e6;
+  white-space: nowrap;
+}
+.sclub .sc-r2 span:last-child {
+  text-align: right;
+}
+@keyframes sclub-glow {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+@keyframes sclub-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(-1.5deg);
+  }
+}
+@keyframes sclub-sheen {
+  0% {
+    background-position: 140% 0;
+  }
+  55%,
+  100% {
+    background-position: -50% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sclub .sclub-card::before,
+  .sclub .sclub-float,
+  .sclub .sclub-mcard::after {
+    animation: none;
+  }
+}
+
+/* tablet: title + points on the left, card on the right, both buttons under the card */
+@media (max-width: 1100px) {
+  .sclub .sclub-in {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    grid-template-areas:
+      "head card"
+      "steps acts";
+    max-width: 700px;
+    column-gap: 36px;
+    row-gap: 24px;
+  }
+  .sclub .sclub-title {
+    font-size: clamp(46px, 7.2vw, 60px);
+    margin: 10px 0 6px;
+  }
+  .sclub .sclub-tag {
+    letter-spacing: 0.3em;
+  }
+  .sclub .sclub-lead {
+    font-size: 18px;
+    margin-top: 12px;
+  }
+  .sclub .sclub-steps {
+    align-self: start;
+    gap: 12px;
+    font-size: 15.5px;
+  }
+  .sclub .sclub-steps i {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  .sclub .sclub-acts {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 12px;
+    align-self: start;
+  }
+  .sclub .sc-btn {
+    width: 100%;
+    min-height: 50px;
+    padding: 0 10px;
+    font-size: 15px;
+  }
+  .sclub .sclub-float {
+    max-width: 300px;
+  }
+}
+/* phone: title, points, buttons, then the card */
+@media (max-width: 599.98px) {
+  .sclub .sclub-in {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "head"
+      "steps"
+      "acts"
+      "card";
+    max-width: 520px;
+  }
+  .sclub .sclub-head {
+    text-align: center;
+  }
+  .sclub .sclub-title {
+    font-size: clamp(54px, 17vw, 80px);
+  }
+  .sclub .sclub-float {
+    max-width: 320px;
+  }
+}

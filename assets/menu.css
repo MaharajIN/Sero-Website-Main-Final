@@ -1,0 +1,116 @@
+/* ==========================================================================
+   MENU (tablet and phone, up to 1100px wide). Same on every page.
+   - the menu slides in from the left and takes about half of the screen
+   - a clear close button (X) sits inside it
+   - tapping outside it closes it (assets/menu.js)
+   - a round menu button floats on the screen once the header has scrolled away
+   ========================================================================== */
+.fm {
+  display: none;
+}
+@media (max-width: 1100px) {
+  body .drawer {
+    position: fixed !important;
+    inset: 0 auto 0 0 !important;
+    width: min(max(50vw, 270px), 400px) !important;
+    max-width: none !important;
+    height: 100% !important;
+    padding: 74px 22px 24px !important;
+    display: flex !important;
+    flex-direction: column;
+    gap: 4px !important;
+    z-index: 1000 !important;
+    background: #fbf7f1 !important;
+    color: #24160f !important;
+    overflow-y: auto;
+    transform: translateX(-105%) !important;
+    visibility: hidden;
+    transition:
+      transform 0.3s ease,
+      visibility 0s linear 0.3s;
+    box-shadow: none;
+  }
+  body .drawer.open {
+    transform: none !important;
+    visibility: visible;
+    transition:
+      transform 0.3s ease,
+      visibility 0s;
+    box-shadow:
+      0 0 0 100vmax rgba(20, 11, 7, 0.55),
+      10px 0 40px rgba(0, 0, 0, 0.25);
+  }
+  body .drawer a {
+    display: block;
+    font-size: clamp(26px, 5.6vw, 34px) !important;
+    line-height: 1.1 !important;
+    padding: 10px 0 !important;
+    border: 0 !important;
+    color: #24160f;
+  }
+  body .drawer a:hover,
+  body .drawer a[aria-current="page"] {
+    color: #b4452a;
+  }
+  /* the close button */
+  body .drawer .x,
+  body .drawer .dr-x {
+    position: absolute !important;
+    top: 14px !important;
+    right: 12px !important;
+    left: auto !important;
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #24160f;
+    color: #fff;
+    cursor: pointer;
+  }
+  body .drawer .x svg,
+  body .drawer .dr-x svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+  /* the floating menu button */
+  .fm.show {
+    display: grid;
+    position: fixed;
+    z-index: 900;
+    left: 12px;
+    top: 12px;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #24160f;
+    color: #fff;
+    box-shadow:
+      0 0 0 2px rgba(226, 169, 59, 0.85),
+      0 10px 24px -8px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+  .fm svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body .drawer,
+  body .drawer.open {
+    transition: none;
+  }
+}
